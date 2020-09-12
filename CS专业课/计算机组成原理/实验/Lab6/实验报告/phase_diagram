@@ -1,0 +1,7 @@
+digraph lab5 {
+	fontsize=18 rankdir=LR
+	"usr_done==1'b1" -> "usr_done==1'b1" [label="not need_read"]
+	"usr_done==1'b1" -> "usr_done==1'b0" [label=need_read]
+	"usr_done==1'b0" -> "usr_done==1'b1" [label=enter]
+	"usr_done==1'b0" -> "usr_done==1'b0" [label="not enter"]
+}

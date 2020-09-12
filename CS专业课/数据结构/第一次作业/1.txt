@@ -1,0 +1,18 @@
+#define MAXSIZE 1000
+
+typedef struct {
+	ElemType data;
+	int cur;
+}SLinkList;
+
+// 合并有序的La, Lb, 放到Lc中，仍保持有序。（这里有序是从小到大）
+// 数组Lc的大小是La和Lb大小之和
+void MergeList_SL(SLinkList *La, SLinkList *Lb, SLinkList *Lc) {
+	int cura = 0, curb = 0, curc = 0;
+	while(cura && curb) {
+		if(La[cura] <= Lb[curb]) Lc[curc++] = La[cura++];
+		else Lc[curc++] = Lb[curb++];
+	}
+	while(cura) Lc[curc++] = La[cura++];
+	while(curb) Lc[curc++] = Lb[curb++];
+}

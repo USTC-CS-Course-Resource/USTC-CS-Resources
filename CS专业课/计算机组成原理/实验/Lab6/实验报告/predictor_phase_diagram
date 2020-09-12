@@ -1,0 +1,11 @@
+digraph lab5 {
+	fontsize=18 rankdir=LR
+	"state==2'b00" -> "state==2'b01" [label="need branch"]
+	"state==2'b01" -> "state==2'b10" [label="need branch"]
+	"state==2'b10" -> "state==2'b11" [label="need branch"]
+	"state==2'b11" -> "state==2'b11" [label="need branch"]
+	"state==2'b11" -> "state==2'b10" [label="need not branch"]
+	"state==2'b10" -> "state==2'b01" [label="need not branch"]
+	"state==2'b01" -> "state==2'b00" [label="need not branch"]
+	"state==2'b00" -> "state==2'b00" [label="need not branch"]
+}

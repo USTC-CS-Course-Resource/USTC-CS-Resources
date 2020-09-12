@@ -1,0 +1,15 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	DATA_LOC                3025
+//	DEC1                    3027
+//	DO                      300D
+//	HEX4000                 3028
+//	LOOP_TEST               3001
+//	LUT                     3026
+//	MINUS                   3019
+//	MINUS_TO_N              3020
+//	NEXT_TEST               3009
+//	OK                      3024
+//	R0_RSHIFT               3015
+//	R1_RSHIFT               3010
+//	RSHIFT                  3005

@@ -1,0 +1,136 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{xeCJK}
+\usepackage{float}
+
+%好像是数学的包
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%页面布局包
+\usepackage{geometry}
+%画图包
+\usepackage{tikz}
+%画图背景包
+\usetikzlibrary{backgrounds}
+
+\geometry{left=3.0cm, right=3.0cm, top=3cm, bottom=3cm}
+
+%自定义命令
+\newcommand{\psiG}{\psi_{G}}
+%在tikz中画一个顶点
+%#1:node名称
+%#2:位置
+%#3:标签
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%在tikz中画一条边
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%在tikz中放一个标签
+%#1:名称
+%#2:位置
+%#3:标签内容
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+
+\title{Introduction to Computing Systems\\Homework 4}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+	\maketitle
+	\section{}
+	\textcolor{red}{
+		A: BRnzp -171
+		B: JSR -171
+		Both A and B result in the PC being changed to (PC+1)-171.
+		However, B saves the linkage information in R7 and A does not affect R7.
+	}\par
+	\qquad The instruction A stands for BR(Branches), while B is a JSR. After A, PC would be loaded with $(PC^{+}+SEXT(101010101))$. And after B, PC would be loaded with $(PC^{+}+SEXT(11101010101))$.\par
+	The main differences is that the instruction with opcodes 0000 needs bit[11:9] to check n,z,p; while the one with opcodes 0100 needs bit[11] to check whether it is a JSR or JSRR. So the offset in BR can only get 9 bits, while in JSR, it can get to 11 bits, which means a larger range is available.\par
+	
+	\section{}
+	\subsection*{a}
+	\textcolor{red}{
+		0001 011 010 1 00000 (ADD R3, R2, \#0 )
+		Using only NOT.
+	}\par
+	\begin{lstlisting}[language=C++]
+	1001 011 010 111111		; NOT R3, R2
+	1001 011 011 111111		; NOT R3, R3
+	\end{lstlisting}
+	
+	\subsection*{b}
+	\begin{lstlisting}[language=C++]
+	1001 001 011 111111		; NOT R1, R3
+	0001 001 001 1 00001		; ADD R1, R1, #1
+	0001 001 010 000 001		; ADD R1, R2, R1
+	\end{lstlisting}
+	\subsection*{c}
+	\begin{lstlisting}[language=C++]
+	0101 001 001 000 001		;AND R1, R1, R1
+	\end{lstlisting}
+	\subsection*{d}
+	No. The condition codes in LC3 is based on the last value loaded into a general purpose register. And this value cannot be both negative and zero at the same time.\par
+	\subsection*{e}
+	\begin{lstlisting}[language=C++]
+	0101 010 010 1 00000		;AND R2, R2, #0
+	\end{lstlisting}
+	
+	\section{}
+	\begin{lstlisting}[language=C++]
+	0001 101 000 1 11000
+	\end{lstlisting}
+	
+	\section{}
+	Including PC, MEMORY(and MDR, MAR), IR, CONTROL UNIT, REG FILE, MARMUX.\par
+
+	\section{}
+	\subsection*{a}
+	Turn R0 into $R0\times 2^{4}$. Or Turn R0 into $R0<<4$.
+	\subsection*{b}
+	\begin{table}[H]
+		\footnotesize
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline 
+			PC & R0 & R1 & R2 & R3 & R4 & R5 & R6 & R7 & N & Z & P \\ 
+			\hline 
+			x3006(since there's a breakpoint) & x0050 & x0000 & x0000 & x0000 & x0000 & x0000 & x0000 & x0000 & 0 & 1 & 0 \\ 
+			\hline 
+		\end{tabular} 
+	\end{table}
+	\subsection*{c}
+	\begin{tabular}{|c|c|}
+		\hline 
+		instruction & clock cycles \\ 
+		\hline 
+		AND & 1+5+1+1+1=9 \\ 
+		\hline 
+		ADD & 1+5+1+1+1=9 \\ 
+		\hline 
+		LD & 1+5+1+1+1+5+1=15 \\ 
+		\hline 
+		BRp & 1+5+1+1+1=9 \\ 
+		\hline 
+	\end{tabular} \par
+	And the program uses 1 AND, (1+4*2=9) ADDs, 1 LD, 4 BRps.\par
+	So the total number would be \underline{$1\times 9+9\times 9+1\times 15+4\times 9=141$}
+
+	\section{}
+	The numbers of ones in x3100 would be stored into R0.
+	
+	\section{}
+	\begin{lstlisting}[language=C]
+	0110 001 000 000000		;LD R1, R0, #0
+	0000 100 000000010		;BRn
+	\end{lstlisting}
+	
+	
+	
+	
+		
+\end{document}

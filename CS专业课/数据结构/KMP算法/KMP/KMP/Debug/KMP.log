@@ -1,0 +1,6 @@
+﻿  KMP.cpp
+D:\大学课程\数据结构\KMP算法\KMP\KMP\KMP.cpp(16,11): warning C4018: “<”: 有符号/无符号不匹配
+D:\大学课程\数据结构\KMP算法\KMP\KMP\KMP.cpp(26,22): warning C4018: “<”: 有符号/无符号不匹配
+D:\大学课程\数据结构\KMP算法\KMP\KMP\KMP.cpp(26,39): warning C4018: “<”: 有符号/无符号不匹配
+D:\大学课程\数据结构\KMP算法\KMP\KMP\KMP.cpp(30,8): warning C4018: “>=”: 有符号/无符号不匹配
+  KMP.vcxproj -> D:\大学课程\数据结构\KMP算法\KMP\Debug\KMP.exe

@@ -1,0 +1,29 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	FINAL                   3040
+//	LOOP1                   3004
+//	LOOP2                   300C
+//	LOOP3                   3014
+//	LOOP4                   301C
+//	LOOP5                   3024
+//	LOOP6                   302C
+//	LOOP7                   3034
+//	LOOP8                   303C
+//	Nx0001                  3044
+//	Nx0002                  3045
+//	Nx8A9C                  3043
+//	ZERO11                  3007
+//	ZERO12                  300F
+//	ZERO13                  3017
+//	ZERO14                  301F
+//	ZERO15                  3027
+//	ZERO16                  302F
+//	ZERO17                  3037
+//	ZERO18                  303F
+//	ZERO21                  300B
+//	ZERO22                  3013
+//	ZERO23                  301B
+//	ZERO24                  3023
+//	ZERO25                  302B
+//	ZERO26                  3033
+//	ZERO27                  303B

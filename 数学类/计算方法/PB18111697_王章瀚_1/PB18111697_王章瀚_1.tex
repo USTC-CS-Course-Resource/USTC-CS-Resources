@@ -1,0 +1,207 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,             
+	frame =shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname                      
+}
+
+
+\title{计算方法编程练习：级数求和}
+\author{王章瀚　PB18111697}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+本次作业要求在给定的x下求以下级数的近似值：
+$$\psi (x)=\sum_{k=1}^{+\infty}\frac{1}{k(k+x)}$$
+
+其中分别取$x=0.0,\ 0.5,\ 1.0,\ \sqrt{2},\ 10.0,\ 100.0,\ 300.0$，计算$\psi(x)$的近似值，要求截断误差在$10^{-6}$内。
+
+输出格式：$x\mbox{和}\psi (x)\mbox{的值}$
+
+\qquad $x=0.0, y=1.644934066848226$
+
+\qquad $x=0.5, y=1.227411277760219$
+
+\section{Method}
+\subsection{Method 1}
+由于题目要求的是近似值，且要求限制是截断误差。故应先计算，在截断误差的要求范围内，k应算到哪一步。
+
+对于这个函数，由于题目要求的$x$满足$x\ge 0$，故对较大的$k$有：
+\begin{align*}
+E(x)&=\sum_{k=MIN\_K+1}^{+\infty}\frac{1}{k(k+x)}\\
+&\leq \sum_{k=MIN\_K+1}^{+\infty}\frac{1}{k^{2}}\\
+&\leq \int_{MIN\_K}^{+\infty}\frac{1}{k^{2}}\,dk\\
+&=\frac{1}{MIN\_K}\leq 10^{-6}
+\end{align*}
+因此有：$$MIN\_K \ge \frac{1}{10^{-6}} = 10^{6}$$
+
+该方法的实现代码及效果放在了附录A.
+
+\subsection{Method 2}
+此外，根据课程主页上原题的提示，还有优化后的方法，即注意到$\psi (1)=1$的事实，可以考虑求$$\frac{\psi(x)-\psi(1)}{1-x}=\sum_{k=1}^{+\infty}\frac{1}{k(k+1)(k+x)}$$
+易见，这个函数相较于原本的$\psi(x)$收敛速度更快。
+考虑到$0\leq x\leq 300$类似地，可以算出原函数的截断误差$E(x)$满足，
+\begin{align*}
+E(x)&\leq 300\sum_{k=MIN\_K+1}^{+\infty}\frac{1}{k(k+1)(k+x)}\\
+&\leq \sum_{k=MIN\_K+1}^{+\infty}\frac{300}{k^{3}}\\
+&\leq \int_{MIN\_K}^{+\infty}\frac{300}{k^{3}}\,dk\\
+&=\frac{300}{2MIN\_K^{2}}\leq 10^{-6}
+\end{align*}
+因此有：$$MIN\_K \ge \sqrt{\frac{150}{10^{-6}}}$$
+这样的构造使得计算量大大减少。
+该方法的实现代码及效果放在了附录B.
+
+\section{Result}
+按照Method1的算法，其输出结果如下：\par
+\qquad x=0.000000,y=1.644933066848770e+00\par
+\qquad x=0.500000,y=1.227410277760964e+00\par
+\qquad x=1.000000,y=9.999990000010476e-01\par
+\qquad x=1.414214,y=8.749819960221313e-01\par
+\qquad x=10.000000,y=2.928958254023105e-01\par
+\qquad x=100.000000,y=5.187277522689390e-02\par
+\qquad x=300.000000,y=2.094121308480047e-02\par
+\vspace{1cm}
+按照Method2的算法，其输出结果如下：\par
+\qquad x=0.000000,y=1.644934066826041e+00\par
+\qquad x=0.500000,y=1.227411277749111e+00\par
+\qquad x=1.000000,y=1.000000000000000e+00\par
+\qquad x=1.414214,y=8.749829960301527e-01\par
+\qquad x=10.000000,y=2.928968255968175e-01\par
+\qquad x=100.000000,y=5.187377737541299e-02\par
+\qquad x=300.000000,y=2.094221956986198e-02\par
+
+从上述答案中可见，尽管使用Method1的算法在截断误差要求为$10^{-6}$的情况下，也能满足截断误差在$10^{-6}$范围内的要求，但如果提高截断误差精确度，则计算过于缓慢。相比之下Method2的算法，能够更快地得到计算结果。
+\section{Discussion}
+本题中，由于要求的截断误差不那么严格，因此暴力计算的方法并不会对效率造成太大影响。但如果要求精度更高，则需要考虑对要求的函数稍作修改，从而提高收敛速度等。
+
+\section*{A Computer Code of Method 1}
+\begin{lstlisting}[language=C++]
+#include <cstdio>
+#include <cmath>
+
+// 设置允许截断误差值
+const double TRUNCATION_ERROR = 1e-6;
+// 原方法下，计算在允许截断误差下的k应计算到多少位
+const double MIN_K_0 = 1/TRUNCATION_ERROR;
+
+// x们及x的个数
+const double array_x[] = { 0.0, 0.5, 1.0, pow(2, 0.5), 10.0, 100.0, 300.0 };
+const int X_NUM = 7;
+
+// 原方法
+double psi_0(double x) {
+	double answer = 0;
+	double k = 1;
+	// 直接对1/((x+k)x)求和
+	while (k <= MIN_K_0) {
+		answer += 1/(k*(k+x));
+		k++;
+	}
+	return answer;
+}
+
+int main()
+{
+	for (double i : array_x) {
+		printf("x=%lf,y=%.15e\n", i, psi_0(i));
+	}
+}
+\end{lstlisting}
+
+\section*{B Computer Code of Method 2}
+\begin{lstlisting}[language=C++]
+#include <cstdio>
+#include <cmath>
+using namespace std;
+
+// 设置允许截断误差值
+const double TRUNCATION_ERROR = 1e-6;
+// 新方法下，计算在允许截断误差下的k应计算到多少位
+const double MIN_K = 150/pow(TRUNCATION_ERROR, 0.5);
+// 原方法下，计算在允许截断误差下的k应计算到多少位
+const double MIN_K_0 = 1/TRUNCATION_ERROR;
+
+// x们及x的个数
+const double array_x[] = { 0.0, 0.5, 1.0, pow(2, 0.5), 10.0, 100.0, 300.0 };
+const int X_NUM = 7;
+
+// 经提示改进的方法
+double psi(double x) {
+	double answer = 0;
+	double k = 1;
+	// 先计算(psi(x)-psi(1))/(1-x)，其收敛速度更快
+	while (k <= MIN_K) {
+		answer += 1/(k*(k+x)*(k+1));
+		k++;
+	}
+	return 1 + (answer)*(1 - x);
+}
+
+int main()
+{
+	for (double i : array_x) {
+		printf("x=%lf,y=%.15e\n", i, psi_0(i));
+	}
+	printf("\n");
+	
+	for (double i : array_x) {
+		printf("x=%lf,y=%.15e\n", i, psi(i));
+	}
+}
+
+\end{lstlisting}
+
+\end{document}

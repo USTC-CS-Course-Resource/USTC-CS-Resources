@@ -1,0 +1,22 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	A_GRADE                 3049
+//	A_RANK                  304C
+//	As                      3052
+//	B_GRADE                 304A
+//	B_RANK                  304D
+//	Bs                      3053
+//	Cs                      3054
+//	DEST                    3051
+//	D_GRADE                 304B
+//	Ds                      3055
+//	GRADE                   3050
+//	LOOP_PRE                3045
+//	MAXGRADE                304F
+//	NOTA                    302B
+//	NOTB                    3039
+//	NOTD                    3042
+//	NUM                     304E
+//	findMaxLoop             300C
+//	nothing                 3017
+//	storeLoop               3009

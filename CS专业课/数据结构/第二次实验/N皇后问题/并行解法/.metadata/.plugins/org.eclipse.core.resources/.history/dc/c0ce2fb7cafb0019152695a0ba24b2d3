@@ -1,0 +1,81 @@
+import java.util.concurrent.*;
+
+public class NQueens {
+	public static void main(String args[]) 
+			throws InterruptedException, ExecutionException{
+			long start = System.currentTimeMillis();
+			ForkJoinPool forkJoinPool = new ForkJoinPool();
+			int N = 12;
+			int layout[] = new int[N];
+			CountTask task = new CountTask(layout, 0, N);
+			Future<Integer> result = forkJoinPool.submit(task);
+			System.out.println(N+" Queens' solutions amount is "+result.get());
+			long end = System.currentTimeMillis();
+			System.out.println("using "+(end-start)+"ms");
+		}
+	}
+	class CountTask extends RecursiveTask<Integer> {
+		private static final long serialVersionUID = 3609740918537745785L;
+		int cur_layout[];
+		private int row;
+		private int N;
+		
+		public CountTask(int cur_layout[], int row, int N) {
+			this.cur_layout = cur_layout.clone();
+			this.row = row;
+			this.N = N;
+		}
+		
+		@Override
+		protected Integer compute() {
+			int sum = 0;
+			//判断任务是否已经不需要再拆分了
+			boolean canCompute = row == (N-1);
+			if(canCompute) {
+				for(int i = 0; i < N; i++) {
+					cur_layout[row] = i;
+					if(is_ok(row)) {
+						sum = 1;
+						for (int j = 0; j < N; j++) {
+							for (int k = 0; k < N; k++) {
+								if (k == cur_layout[j]) System.out.print('Q');
+								else System.out.print('#');
+							}
+							System.out.println();
+						}
+						break;
+					}
+					else {
+						sum = 0;
+					}
+				}
+			} else {
+				//拆分成N个子任务
+				CountTask task[] = new CountTask[N];
+				int counter = 0;
+				for(int i = 0; i < N; i++) {
+					cur_layout[row] = i;
+					if(is_ok(row)) {
+						task[counter++] = new CountTask(cur_layout, row+1, N);
+						task[counter-1].fork();
+					}
+				}
+				//获得子任务结果。若得不到结果，此线程不会往下运行
+				for(int i = 0; i < counter; i++) {
+					sum += task[i].join();
+				}
+			}
+			return sum;
+		}
+		
+		boolean is_ok(int row) {
+			for(int i = 0 ; i < row; i++) {
+				if(cur_layout[row] == cur_layout[i] 
+						|| Math.abs(cur_layout[row]-cur_layout[i]) == row-i) {
+					return false;
+				}
+			}
+			return true;
+		}
+		
+	}

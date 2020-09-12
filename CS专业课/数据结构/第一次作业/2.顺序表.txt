@@ -1,0 +1,30 @@
+#define MAXSIZE 100
+
+typedef struct {
+	ElemType *elem;
+	int length;
+	int listsize;
+}SqList;
+
+// 求(La-Lb)∪(Lb-La)，存到Lc中
+void difference(SqList La, SqList Lb, SqList Lc) {
+	// 先把La中元素全部放进Lc中。
+	for(Lc.length = 0; Lc.length < La.length; Lc.length++)
+		Lc.elem[Lc.lenght] = La.elem[Lc.lenght];
+	
+	// 把Lb中元素放入Lc中，如有重复元素，删除之
+	for(i = 0; i < Lb.length; i++) {
+		j = 0;
+		while(j < Lc.length && Lb[i] != Lc.elem[j]) j++;
+		if(j != Lc.length) {
+			// 发现La和Lb共有元素Lc.elem[j]，须删去
+			Lc.length--;
+			for(k = j; k < Lc.length; k++) 
+				Lc.elem[k] = Lc.elem[k+1];
+		}
+		else // 不是共同元素，添加即可
+			Lc.elem[Lc.length++] = Lb[i];
+	}
+}
+			
+	

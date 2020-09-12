@@ -1,0 +1,25 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	A_GRADE                 304C
+//	A_RANK                  304F
+//	As                      3057
+//	B_GRADE                 304D
+//	B_RANK                  3050
+//	Bs                      3058
+//	Cs                      3059
+//	DEST                    3053
+//	DEST_END100             3054
+//	D_GRADE                 304E
+//	Ds                      305A
+//	GRADE                   3051
+//	LOOP_PRE                3041
+//	NOTA                    3027
+//	NOTB                    3035
+//	NOTD                    303E
+//	SEARCH_LOOP             300B
+//	SET0_LOOP               3047
+//	SETn1_LOOP              3004
+//	SORT_LOOP               3016
+//	nDEST_END               3056
+//	nDEST_END100            3055
+//	nGRADE_END              3052

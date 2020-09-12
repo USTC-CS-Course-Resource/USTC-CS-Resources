@@ -1,0 +1,12 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	ELSE                    305F
+//	c_n30                   3076
+//	func                    3021
+//	func_stack              3078
+//	main                    300C
+//	main_R7                 3020
+//	main_ret                301F
+//	sof_message             3066
+//	stack_size              3077
+//	stackoverflow           3063

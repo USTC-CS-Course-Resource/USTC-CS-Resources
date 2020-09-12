@@ -1,0 +1,8 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	LOOP                    3007
+//	Nx000E                  3012
+//	Nx8000                  3014
+//	NxFFFE                  3013
+//	OK                      3011
+//	ZP                      300A

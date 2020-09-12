@@ -1,0 +1,114 @@
+.postBody{
+    font: 16px/1.5 tahoma,arial,sans-serif;
+}
+#cnblogs_post_body h4 {
+    font-size: 16px;
+}
+
+td {
+   width:220px;
+}
+#cnblogs_post_body img {
+ 
+    max-width: 660px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+#cnblogs_post_body p img{
+display:block;
+margin:30px auto 30px auto;
+}
+
+#cnblogs_post_body table{
+
+margin:20px auto;
+}
+
+#cnblogs_post_body p {
+    margin: 10px auto;
+    text-indent: 0;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 2;
+    text-indent: 2em;
+    color: #252525;
+}
+#topics .postTitle {
+    font-size: 28px;
+    font-weight: 900;
+   text-align:center;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #e12;
+}
+#topics .postTitle a {
+    color: #c12;
+    text-align: center;
+}
+
+#MySignature { 
+border:solid 1px #E5E5E5;
+padding:10px;
+background:#FFFEFE url(https://images.cnblogs.com/cnblogs_com/grenet/226272/o_o_o_info.png) no-repeat scroll 15px 50%;
+padding-left:80px;
+}
+#MySignature div{
+line-height: 25px;
+}
+
+#topics .postBody blockquote {
+    border: none;
+    border-left: 5px solid rgba(139, 175, 220, 0.6);
+    background-color: rgba(221, 221, 221, 0.4);
+    margin: 0;
+    padding-left: 10px;
+}
+
+#cnblogs_post_body h3 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+#cnblogs_post_body ul a:link {
+    text-decoration: underline;
+    color: #515adc;
+}
+.toc{
+ color: #515adc;
+
+}
+
+#main {
+    width: 1600px;
+    margin: 20px auto 0;
+    clear: both;
+}
+
+#navList li {
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    list-style-type: none;
+    margin: 0 25px;
+}
+
+#mainContent {
+    background: none;
+    float: left;
+    overflow: visible;
+    text-overflow: ellipsis;
+    width: 900px;
+    word-break: break-all;
+    margin-left: 150px;
+}
+#sideBar {
+    width: 290px;
+    margin-right: 100px;
+    float: right;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: visible;
+    word-break: break-all;
+}

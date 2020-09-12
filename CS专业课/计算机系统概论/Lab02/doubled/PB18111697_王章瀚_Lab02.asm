@@ -1,0 +1,27 @@
+		.ORIG		x3000
+		LD		R0, Nx8A9C
+
+		LD		R1, Nx0001
+		LD		R2, Nx0002
+		AND		R4, R4, #0
+
+LOOP		AND		R3, R0, R2
+		BRz		ZERO1
+		ADD		R4, R4, R1
+ZERO1		ADD		R1, R2, R2
+		BRz		FINAL		
+		AND		R3, R0, R1
+		BRz		ZERO2
+		ADD		R4, R4, R2
+ZERO2		ADD		R2, R1, R1
+		BRnp		LOOP
+
+FINAL		AND		R2, R0, R2
+		ADD		R0, R4, R2
+
+		HALT
+
+Nx8A9C		.FILL		x8A9C
+Nx0001		.FILL		x0001
+Nx0002		.FILL		x0002
+		.END

@@ -1,0 +1,39 @@
+typedef struct LNode {
+	ElemType data;
+	struct LNode *next;
+}LNode, *LinkList;
+
+// 求(La-Lb)∪(Lb-La)，存到Lc中，并使用La和Lb原有内存空间
+void difference(LNode *La, LNode *Lb, LNode *Lc) {
+	// 先把La中元素全部放进Lc中。
+	Lc = La;
+
+	// pc指向Lc最后一个元素
+	pc = Lc;
+	while(pc->next) pc = pc->next;
+
+	// 把Lb中元素放入Lc中，如有重复元素，删除之
+	for(pb = Lb; pb->next; ) {
+		// 查找Lc中目前是否有和pb的data相等的元素
+		tempc = Lc;
+		while(tempc->next && tempc->next->data != pb->data) tempc = tempc->next;
+		if(tempc->next) {
+			// 发现La和Lb共有元素tempc->next，须删去
+			temp = tempc->next->next;
+			free(tempc->next);
+			tempc->next = temp;
+			if(tempc->next) pc = tempc;
+		}
+		else {
+			// 不是共同元素，添加即可
+			temp = pb->next;
+			pb -> next = null;
+			pc->next = pb;
+			pb = temp;
+			
+		}
+			
+	}
+}
+			
+	

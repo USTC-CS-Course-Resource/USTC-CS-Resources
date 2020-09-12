@@ -1,0 +1,26 @@
+	.ORIG	x3000
+
+		LD	R4, DATA_LOC
+		
+LOOP_TEST	LDR	R0, R4, #0
+		BRn	OK
+		LDR	R1, R4, #1		
+		ADD	R4, R4, #2
+
+LOOP		NOT	R2, R1
+		ADD	R2, R2, #1
+		ADD	R2, R0, R2	
+		BRnz	NZ		;R0>R1
+		ADD	R0, R2, #0
+		BRnzp	LOOP
+NZ		BRn	N		;R0<R1
+		BRnzp	LOOP_TEST	;R0==R1
+N		ADD	R2, R2, #-1
+		NOT	R2, R2
+		ADD	R1, R2, #0
+		BRnzp	LOOP	
+
+OK		HALT
+
+DATA_LOC	.FILL	x3200
+		.END

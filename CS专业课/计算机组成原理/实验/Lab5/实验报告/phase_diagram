@@ -1,0 +1,5 @@
+digraph lab5 {
+	fontsize=18 rankdir=LR
+	pc -> next_pc
+	pc -> pc [label=stall]
+}

@@ -1,0 +1,170 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{xeCJK}
+\usepackage{float}
+
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{black}\bfseries,
+	extendedchars = false,
+	frame =shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{black}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{black},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname                      
+}
+
+%好像是数学的包
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+%页面布局包
+\usepackage{geometry}
+%画图包
+\usepackage{tikz}
+%画图背景包
+\usetikzlibrary{backgrounds}
+
+\geometry{left=3.0cm, right=3.0cm, top=3cm, bottom=3cm}
+
+%自定义命令
+\newcommand{\psiG}{\psi_{G}}
+%在tikz中画一个顶点
+%#1:node名称
+%#2:位置
+%#3:标签
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%在tikz中画一条边
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%在tikz中放一个标签
+%#1:名称
+%#2:位置
+%#3:标签内容
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+\newcommand{\keyPoint}[2]{$\bullet$#1：#2\par}
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+
+
+
+
+\title{Introduction to Computing Systems\\Homework 5}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+	\maketitle
+	\section{}
+	The instruction is 0010 001 111111111. So R1 will contains \underline{x23FF}.
+	
+	\section{}
+	The \#30 cannot be represented as a signed number in 5 bits.\par
+	To fix it, we can use the ADD twice. Like this: \par
+	\begin{lstlisting}[language=C++]
+	ADD	R3, R3, #15
+	ADD	R3, R3, #15
+	\end{lstlisting}
+	
+	\section{}
+	\subsection*{a}
+	As following:\par
+	\begin{tabular}{|c|c|}
+		\hline 
+		Symbol & Address \\ 
+		\hline 
+		LOOP & x3003 \\ 
+		\hline 
+		L1 & x300A \\ 
+		\hline 
+		NEXT & x300B \\ 
+		\hline 
+		DONE & x300D \\ 
+		\hline 
+		NUMBERS & x300E \\ 
+		\hline 
+	\end{tabular} 
+	\subsection*{b}
+	After the program is finished, R0 contains the amount of the numbers; R3 contains the amount of the numbers that the last bit is 0; R4 contains the amount of the numbers that the last bit is 1.\par
+	
+	\section{}
+	\jumpLine
+	(a). LDR R3, R1, \#0\par
+	(b). NOT R4, R4\par
+	(c). ADD R4, R4, \#1\par
+	
+	\section{}
+	\subsection*{a}
+	They will be as following:\par
+	\begin{tabular}{|c|c|}
+		\hline 
+		R0 & x300B \\ 
+		\hline 
+		R1 & x300D \\ 
+		\hline 
+		R2 & x000A \\ 
+		\hline 
+		R3 & x1263 \\ 
+		\hline 
+		R4 & x300B \\ 
+		\hline 
+	\end{tabular} 
+	\subsection*{b}
+	They will be as following:\par
+	\begin{tabular}{|c|c|}
+		\hline 
+		Addr1 & x300B \\ 
+		\hline 
+		Addr2 & x000A \\ 
+		\hline 
+		Addr3 & x000A \\ 
+		\hline 
+		Addr4 & x300B \\ 
+		\hline 
+		Addr5 & x300D \\ 
+		\hline 
+	\end{tabular} 
+
+	\section{}
+	The R2 contains the data in x3500, instead of the address x3500. So when storing the number, we shall use "\underline{LD R2, VECTOR}", then "\underline{STR R0, R2, \#1}".\par
+	
+	\section{}
+	Count the amount of the data in which at least one 1 locates at the same position with R1(from MASK), ranging from x4000 to x4009. Then store it into x5000.
+	
+	\section{}
+	Interrupt-driven I/O is more efficient. Because it avoids the trouble that the CPU need to keep asking whether there is an I/O in Polling Mode.\par
+	
+	\section{}
+	\subsection*{a}
+	Keep outputing x0032 in ASCII code, which is 2.\par
+	\subsection*{b}
+	It output the key striked in twice.\par
+	\subsection*{c}
+	It will still keep outputing 2.\par
+	
+	\section{}
+	Output "ABCDEFGHIJ"(exclude the quotation marks)\par
+	
+	
+		
+\end{document}

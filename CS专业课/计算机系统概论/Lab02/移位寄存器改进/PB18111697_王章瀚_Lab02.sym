@@ -1,0 +1,11 @@
+//Symbol Name		Page Address
+//----------------	------------
+//	CHECK_N                 3011
+//	CHECK_P                 300A
+//	N                       300E
+//	Nx8A9C                  3016
+//	Nxn8000                 3017
+//	NxnC000                 3018
+//	OK                      3015
+//	P                       3008
+//	START                   3010
