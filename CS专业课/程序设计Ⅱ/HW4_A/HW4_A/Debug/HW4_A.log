@@ -1,0 +1,4 @@
+﻿  pch.cpp
+  HW4_A.cpp
+d:\vsproject\hw4_a\hw4_a\hw4_a.cpp(73): warning C4715: “solve”: 不是所有的控件路径都返回值
+  HW4_A.vcxproj -> D:\VSProject\HW4_A\Debug\HW4_A.exe

@@ -1,0 +1,5 @@
+No one chooses links or pages with equal probability.
+There is no real potential to surf directly to each page on the web.
+The 90-10 (or any fixed) breakdown is just a guess.
+It does not take the "back" button or bookmarks into account.
+We can only afford to work with a small sample of the web.

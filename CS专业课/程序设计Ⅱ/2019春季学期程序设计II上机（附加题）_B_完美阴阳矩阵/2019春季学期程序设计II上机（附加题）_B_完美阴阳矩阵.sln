@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2019春季学期程序设计II上机（附加题）_B_完美阴阳矩阵", "2019春季学期程序设计II上机（附加题）_B_完美阴阳矩阵\2019春季学期程序设计II上机（附加题）_B_完美阴阳矩阵.vcxproj", "{DC366F38-D46C-4E5F-A394-210D9EEA0212}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Debug|x64.ActiveCfg = Debug|x64
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Debug|x64.Build.0 = Debug|x64
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Debug|x86.ActiveCfg = Debug|Win32
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Debug|x86.Build.0 = Debug|Win32
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Release|x64.ActiveCfg = Release|x64
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Release|x64.Build.0 = Release|x64
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Release|x86.ActiveCfg = Release|Win32
+		{DC366F38-D46C-4E5F-A394-210D9EEA0212}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FF5B09E-9C2A-469E-95F6-DF04E6A58F7F}
+	EndGlobalSection
+EndGlobal

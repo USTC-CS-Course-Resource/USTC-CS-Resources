@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2019春季学期程序设计II上机_5_A_闰年问题", "2019春季学期程序设计II上机_5_A_闰年问题\2019春季学期程序设计II上机_5_A_闰年问题.vcxproj", "{999B4505-E2F3-46F5-90A7-CDF6394C7255}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Debug|x64.ActiveCfg = Debug|x64
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Debug|x64.Build.0 = Debug|x64
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Debug|x86.ActiveCfg = Debug|Win32
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Debug|x86.Build.0 = Debug|Win32
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Release|x64.ActiveCfg = Release|x64
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Release|x64.Build.0 = Release|x64
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Release|x86.ActiveCfg = Release|Win32
+		{999B4505-E2F3-46F5-90A7-CDF6394C7255}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {91B6628D-3F99-44FE-BF71-B471AA68E73A}
+	EndGlobalSection
+EndGlobal

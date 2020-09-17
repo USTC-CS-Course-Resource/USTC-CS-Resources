@@ -1,0 +1,253 @@
+\documentclass[UTF8]{article}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame =shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname                      
+}
+
+
+%画图包
+\usepackage{tikz}
+%画图背景包
+\usetikzlibrary{backgrounds}
+
+%自定义命令
+\newcommand{\psiG}{\psi_{G}}
+%在tikz中画一个顶点
+%#1:node名称
+%#2:位置
+%#3:标签
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%在tikz中画一条边
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%在tikz中放一个标签
+%#1:名称
+%#2:位置
+%#3:标签内容
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+\newcommand{\vr}{\bm{r}}
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%放在导言区
+\newcommand{\points}[1]{
+	$$ \left\{ 
+	\begin{array}{l}
+	#1
+	\end{array}
+	\right.
+	$$
+}
+
+
+
+\title{计算方法编程练习：级数求和}
+\author{王章瀚　PB18111697}
+
+
+\begin{document}
+\section{线性表}
+26页“时间复杂度却不同”\\
+
+
+
+\section{串}
+
+
+	
+	
+	
+	
+\section{树}
+\subsection{树的存储结构}
+\subsubsection{双亲表示法}
+如果需要访问双亲的情况比较多，可以用这种方法。\par
+不仅可以用来表示数，也可以用来表示森林。（显然的。不连通即可。）
+\subsubsection{孩子表示法}
+容易访问孩子，不容易访问双亲。
+需要增加头结点去表示森林
+\begin{lstlisting}[language=C++]
+//孩子链表节点
+class CTNode{
+	int child;
+	CTNode *next;
+};
+tpyedef CTNode* ChildPtr;
+
+//孩子链表
+class CTBox{
+	TElemType data;
+	//孩子链表头指针
+	ChildPtr firstchild;
+};
+
+//孩纸表示法树
+class CTree{
+	CTBox nodes[MAX_TREE_SIZE];
+	int n, r;
+}
+\end{lstlisting}
+\subsubsection{兄弟表示法}
+可以把所有根节点当作兄弟。此时可以对森林作先根遍历（对应二叉树先序遍历）和后根遍历（对应二叉树中序遍历）。
+\begin{lstlisting}[language=C++]
+//孩子兄弟链表节点
+class CSNode{
+	ElemType data; //节点的数据
+	CSNode *firstchild; //节点的第一个孩子
+	CSNode *nextsibling; //节点的兄弟
+};
+\end{lstlisting}
+\subsubsection{例8}
+统计树（森林）中叶子节点个数。即二叉链中结点的firstchild为空的数目。
+\begin{lstlisting} [language=C++]
+int n = 0;
+void CSleaf(CSTree T){
+	if(T != nullptr]) {
+		if(T->firstchild != nullptr) n++;
+		CSleaf(T->firstchild);
+		CSleaf(T->nextsibling);
+	}
+}
+\end{lstlisting}
+
+\subsubsection{例10}
+求树的度（最大分支数）
+\begin{lstlisting} [language=C++]
+void SCDegree(CSTree T, int &degree) {
+	if(T == NULL) degree = 0;
+	else {
+		d = 1;p = T->firstchild;
+		// 遍历兄弟来统计孩子数
+		while(p->nextsibling != NULL) {
+			p = p->nextsibling; d++;
+		}
+	}
+	CSDegree(T->firstchild, d1); CSDegree(T->nextsilbling, d2);
+	degree = max(d1, d2, d);
+}
+\end{lstlisting}
+
+\subsection{最优树，最优二叉树——赫夫曼树}
+\subsubsection{一些概念}
+路径：从树中一个结点到另一个结点之间的分支。\par
+路径长度：路径分支数目。\par
+树的路径长度：根到每一结点路径长度之和\par
+结点的带权路径长度：该结点到树根之间的路径长度与结点上权的乘积\par
+树的带权路径长度：加起来。$WPL=\sum_{i=1}^{n}w_{i}*l_{i}$
+\subsubsection{赫夫曼树的应用}
+最佳判定算法。
+
+\subsection{树与等价问题}
+$\bullet$等价类划分\par
+$\bullet$MFSet树型结构，Find(S, x),Merge(\&S, i, j)\par
+
+\subsection{回溯法与树的遍历}
+\subsubsection{求含n个元素的集合的幂集}
+算法基本描述如下：\par
+$\bullet$n个元素$\rightarrow$高度为n的满二叉树\par
+$\bullet$根节点：空集\par
+$\bullet$叶子：形成幂集中的一个元素\par
+$\bullet$左分支：取\par
+$\bullet$右分支：舍\par
+
+\subsubsection{树的计数}
+具有n个节点的不同形态的树有多少棵？\par
+值相同则称\textbf{等价}，不同则称\textbf{相似}\par
+给定先序序列，寻找中序遍历的所有可能性。\par
+
+
+\section{图}
+$\bullet$图在邻接矩阵和邻接表上的遍历算法及应用。\par
+$\bullet$求图的最小生成树，最短路径，拓扑排序，关键路径等算法及其应用，性能分析。\par
+一些定义：
+$\bullet$无向图：\par
+$\qquad$$\bullet$无向图边：边$(v,w)\in E$，则$v$与$w$为邻接点\par
+$\qquad$$\bullet$无向图度：$TD(v)$\par
+$\qquad$$\bullet$连通分量：极大连通子图\par
+
+$\bullet$有向图：\par
+$\qquad$$\bullet$有向图弧：弧$\left< v,w\right>\in E$，$w$为弧头，$v$为弧尾。顶点$v$邻接到顶点$w$，顶点$w$邻接自顶点$v$\par
+$\qquad$$\bullet$有向图度：入度：$ID(v)$；出度$OD(v)$\par
+$\qquad$$\bullet$简单路径：没有环路的路径\par
+$\qquad$$\bullet$简单环：没有重复绕圈圈\par
+$\qquad$$\bullet$强连通图：可以有向连通的有向图\par
+$\qquad$$\bullet$强连通分量：有向图中的极大强连通子图\par
+
+$\bullet$稀疏图：$e<nlogn$\par
+$\bullet$网：图中边或弧上有权。有向图，有向网，无向图，无向网\par
+\subsection{关系集存储方法}
+教材算法7.1-7.3
+\subsubsection{数组表示法邻接矩阵}
+\begin{lstlisting} [language=C++]
+typedef struct {
+	// 顶点向量
+	VertexType vexs[MAX_VERTEX_NUM];
+	AdjMatrix arcs;
+	int vexnum, arcnum;
+	GraphKind kind;
+}
+\end{lstlisting}
+
+\subsubsection{邻接表}
+\begin{lstlisting} [language=C++]
+typedef struct ArcNode { //表结点
+	int adjvex; //弧指向的顶点的位置
+	struct ArcNode *nextarc; 指向下一条弧的指针
+	InfoType *info;
+} ArcNode;
+\end{lstlisting}
+
+\subsection{有向无环图及其应用}
+\keypoint{表达式共享子式}{}
+\keypoint{描述一项工程}{工程由若干\textbf{活动}组成}
+\subsubsection{拓扑排序}
+\keypoint{顶点表示活动的网(AOV-网)}{用弧表示活动间有限关系的有向图}
+\keypoint{拓扑排序算法}{
+	\points{
+		\mbox{1.在图中找一个没有前驱的顶，输出;}\\
+		\mbox{2.删除以其为尾的弧,直至所有顶已输出.可建立一个0度顶栈来实现.}\\
+		\mbox{时间复杂度为o(n+e)}\\
+	}
+}
+\subsubsection{关键路径}
+
+
+
+	
+	
+	
+	
+\end{document}

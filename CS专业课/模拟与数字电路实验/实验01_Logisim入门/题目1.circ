@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="2.7.1" version="1.0">
+This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
+<lib desc="#Wiring" name="0"/>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4">
+    <tool name="ROM">
+      <a name="contents">addr/data: 8 8
+0
+</a>
+    </tool>
+  </lib>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#Base" name="6">
+    <tool name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+  </lib>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="6" map="Button2" name="Menu Tool"/>
+    <tool lib="6" map="Button3" name="Menu Tool"/>
+    <tool lib="6" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="6" name="Poke Tool"/>
+    <tool lib="6" name="Edit Tool"/>
+    <tool lib="6" name="Text Tool">
+      <a name="text" val=""/>
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="halign" val="center"/>
+      <a name="valign" val="base"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin">
+      <a name="tristate" val="false"/>
+    </tool>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="labelloc" val="east"/>
+    </tool>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="circuit" val="main"/>
+    <a name="clabel" val=""/>
+    <a name="clabelup" val="east"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <wire from="(470,140)" to="(530,140)"/>
+    <wire from="(470,160)" to="(530,160)"/>
+    <wire from="(470,180)" to="(530,180)"/>
+    <wire from="(470,200)" to="(530,200)"/>
+    <wire from="(470,220)" to="(530,220)"/>
+    <wire from="(470,240)" to="(530,240)"/>
+    <wire from="(470,260)" to="(530,260)"/>
+    <wire from="(470,280)" to="(530,280)"/>
+    <wire from="(150,140)" to="(210,140)"/>
+    <wire from="(150,160)" to="(210,160)"/>
+    <wire from="(150,180)" to="(210,180)"/>
+    <wire from="(150,200)" to="(210,200)"/>
+    <wire from="(150,220)" to="(210,220)"/>
+    <wire from="(150,240)" to="(210,240)"/>
+    <wire from="(150,260)" to="(210,260)"/>
+    <wire from="(150,280)" to="(210,280)"/>
+    <wire from="(790,140)" to="(850,140)"/>
+    <wire from="(790,160)" to="(850,160)"/>
+    <wire from="(790,180)" to="(850,180)"/>
+    <wire from="(790,200)" to="(850,200)"/>
+    <wire from="(790,220)" to="(850,220)"/>
+    <wire from="(790,240)" to="(850,240)"/>
+    <wire from="(790,260)" to="(850,260)"/>
+    <wire from="(790,280)" to="(850,280)"/>
+    <wire from="(750,210)" to="(850,210)"/>
+    <wire from="(750,130)" to="(850,130)"/>
+    <wire from="(750,170)" to="(850,170)"/>
+    <wire from="(750,190)" to="(850,190)"/>
+    <wire from="(750,230)" to="(850,230)"/>
+    <wire from="(750,250)" to="(850,250)"/>
+    <wire from="(750,150)" to="(850,150)"/>
+    <wire from="(750,270)" to="(850,270)"/>
+    <wire from="(430,130)" to="(530,130)"/>
+    <wire from="(430,170)" to="(530,170)"/>
+    <wire from="(430,190)" to="(530,190)"/>
+    <wire from="(430,210)" to="(530,210)"/>
+    <wire from="(430,230)" to="(530,230)"/>
+    <wire from="(430,250)" to="(530,250)"/>
+    <wire from="(430,150)" to="(530,150)"/>
+    <wire from="(430,270)" to="(530,270)"/>
+    <wire from="(110,130)" to="(210,130)"/>
+    <wire from="(110,170)" to="(210,170)"/>
+    <wire from="(110,190)" to="(210,190)"/>
+    <wire from="(110,210)" to="(210,210)"/>
+    <wire from="(110,230)" to="(210,230)"/>
+    <wire from="(110,250)" to="(210,250)"/>
+    <wire from="(110,270)" to="(210,270)"/>
+    <wire from="(110,150)" to="(210,150)"/>
+    <comp lib="0" loc="(750,230)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xc422"/>
+    </comp>
+    <comp lib="0" loc="(750,150)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4428"/>
+    </comp>
+    <comp lib="0" loc="(150,220)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(790,140)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x8410"/>
+    </comp>
+    <comp lib="0" loc="(470,160)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x820"/>
+    </comp>
+    <comp lib="0" loc="(470,180)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xfffe"/>
+    </comp>
+    <comp lib="0" loc="(430,130)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x200"/>
+    </comp>
+    <comp lib="0" loc="(430,210)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1010"/>
+    </comp>
+    <comp lib="0" loc="(790,220)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x5f66"/>
+    </comp>
+    <comp lib="0" loc="(150,200)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(150,280)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(150,160)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(470,200)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1ff0"/>
+    </comp>
+    <comp lib="0" loc="(430,150)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x3ff8"/>
+    </comp>
+    <comp lib="0" loc="(470,240)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1ff0"/>
+    </comp>
+    <comp lib="0" loc="(430,270)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="5" loc="(850,130)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="16"/>
+      <a name="matrixrows" val="16"/>
+      <a name="color" val="#ff0000"/>
+      <a name="offcolor" val="#ffffff"/>
+    </comp>
+    <comp lib="0" loc="(470,220)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1ff0"/>
+    </comp>
+    <comp lib="0" loc="(430,250)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(750,250)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x44aa"/>
+    </comp>
+    <comp lib="0" loc="(110,230)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(110,170)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(110,250)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(150,140)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(750,190)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x51ee"/>
+    </comp>
+    <comp lib="0" loc="(150,260)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(470,260)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xfffe"/>
+    </comp>
+    <comp lib="0" loc="(430,190)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(790,240)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x5f66"/>
+    </comp>
+    <comp lib="5" loc="(210,130)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="16"/>
+      <a name="matrixrows" val="16"/>
+      <a name="color" val="#ff0000"/>
+      <a name="offcolor" val="#ffffff"/>
+    </comp>
+    <comp lib="0" loc="(150,240)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(110,270)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0xfffe"/>
+    </comp>
+    <comp lib="0" loc="(470,140)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(790,160)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1f44"/>
+    </comp>
+    <comp lib="0" loc="(110,130)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x7ffc"/>
+    </comp>
+    <comp lib="0" loc="(110,210)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(110,190)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x3ff8"/>
+    </comp>
+    <comp lib="0" loc="(750,270)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x44aa"/>
+    </comp>
+    <comp lib="0" loc="(790,260)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4422"/>
+    </comp>
+    <comp lib="0" loc="(790,180)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x5f00"/>
+    </comp>
+    <comp lib="0" loc="(750,130)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x410"/>
+    </comp>
+    <comp lib="0" loc="(750,170)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x8482"/>
+    </comp>
+    <comp lib="0" loc="(110,150)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(150,180)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(430,170)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x440"/>
+    </comp>
+    <comp lib="0" loc="(430,230)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1010"/>
+    </comp>
+    <comp lib="0" loc="(790,200)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x1f22"/>
+    </comp>
+    <comp lib="0" loc="(470,280)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x100"/>
+    </comp>
+    <comp lib="0" loc="(790,280)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x444"/>
+    </comp>
+    <comp lib="0" loc="(750,210)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x31aa"/>
+    </comp>
+    <comp lib="5" loc="(530,130)" name="DotMatrix">
+      <a name="inputtype" val="row"/>
+      <a name="matrixcols" val="16"/>
+      <a name="matrixrows" val="16"/>
+      <a name="color" val="#ff0000"/>
+      <a name="offcolor" val="#ffffff"/>
+    </comp>
+  </circuit>
+</project>
