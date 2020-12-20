@@ -1,0 +1,18 @@
+\contentsline {section}{\numberline {1}实验简介}{2}{section.1}% 
+\contentsline {section}{\numberline {2}理论基础}{2}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}多元回归方程形式}{2}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}Logistics Regression 模型}{2}{subsection.2.2}% 
+\contentsline {subsection}{\numberline {2.3}优化方法}{2}{subsection.2.3}% 
+\contentsline {section}{\numberline {3}优化算法}{3}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}Gradient Descent 算法(GD)}{3}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}Stochastic Gradient Descent 算法(SGD)}{3}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}Newton法}{3}{subsection.3.3}% 
+\contentsline {section}{\numberline {4}实验结果}{4}{section.4}% 
+\contentsline {subsection}{\numberline {4.1}总体对比}{4}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.2}GD算法实验结果}{4}{subsection.4.2}% 
+\contentsline {subsection}{\numberline {4.3}SGD算法实验结果}{5}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.4}Newton法实验结果}{5}{subsection.4.4}% 
+\contentsline {subsection}{\numberline {4.5}sklearn 实验结果}{6}{subsection.4.5}% 
+\contentsline {section}{\numberline {5}附录: 实验代码}{7}{section.5}% 
+\contentsline {subsection}{\numberline {5.1}对率回归算法代码(包括GD,SGD,Newton)}{7}{subsection.5.1}% 
+\contentsline {subsection}{\numberline {5.2}绘图代码}{8}{subsection.5.2}% 

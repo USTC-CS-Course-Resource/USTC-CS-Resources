@@ -116,6 +116,10 @@
 \newcommand{\imp}{\rightarrow}
 %%%%%%%%%%%%%偏导%%%%%%%%%%%%%
 \newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
 
 %%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
 \newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
@@ -225,6 +229,13 @@ $$\partialx{z}{\bm{x}}=(\partialx{\bm{y_n}}{\bm{y_{n-1}}}\partialx{\bm{y_{n-1}}}
 	写成矩阵形式, 有$AV=U\Sigma$即$A=U\Sigma V^T$, 其中$U\in C^{m\times m}$, 为$AA^T$的特征向量构成矩阵; $\Sigma\in C^{m\times n}$; $V\in C^{n\times n}$, 为$A^TA$的特征向量构成矩阵
 \item 任意矩阵都可以作奇异值分解
 \item 截断奇异值分解: $A\approx U_k\Sigma_kV_k^T$, $U_k\in C^{m\times k}$即取前k列; $\Sigma_k\in C^{k\times k}$; $V_k\in C^{n\times k}$, 即取前k行
+\end{itemize}
+
+\subsection{矩阵的秩}
+\begin{itemize}
+\item Sylvester不等式. $A\in\mathbf{R}^{m\times n}$, $B\in\mathbf{R}^{n\times s}$, 那么有
+	$$rank(A)+rank(B)-n\le rank(AB)\le min\{rank(A), rank(B)\}$$
+\item $$rank(A+B)\le rank(A)+rank(B)$$
 \end{itemize}
 
 \subsection{概率分布}
@@ -491,7 +502,7 @@ s.t.\left\{\begin{array}{l}g_i(\bm{x})\le0,i=1,2,\cdots,m\\h_j(\bm{x})=0,j=1,2,\
 错误 & $e_{10}$ & $e_{11}$ \\
 \hline
 \end{tabular}
-假设性能相同应该有$e_{01}=e_{10}$, $|e_{01}-e_{10}|\sim N$, 从而$$\tau_{\chi^2}=\frac{(|e_{01}-e_{10}|-1)^2}{e_{01}+e_{10}}\sim\chi_1^2$$
+假设性能相同应该有$e_{01}=e_{10}$, $|e_{01}-e_{10}|$服从只有大于0部分的类正态分布, 从而$$\tau_{\chi^2}=\frac{(|e_{01}-e_{10}|-1)^2}{e_{01}+e_{10}}\sim\chi_1^2$$
 \subsubsection{Friedman检验与Nemenyi后续检验}
 \begin{itemize}
 \item 定义序值,对每个算法在不同数据集序值求均值, 则有$$\tau_{\chi^2}=\frac{k-1}{k}\frac{12N}{k^2-1}\sum\limits_{i=1}^k(r_i-\frac{k+1}{2})^2\sim\chi_{k-1}^2$$
@@ -540,6 +551,147 @@ s.t.\left\{\begin{array}{l}g_i(\bm{x})\le0,i=1,2,\cdots,m\\h_j(\bm{x})=0,j=1,2,\
 \item 噪声(数据标签就标错了): $$\epsilon^2=E_D\left[(y_D-y)^2\right]$$
 \item 偏差(期望输出与真实标记的差别):$$bias^2(x)=(\bar{f}(x)-y)^2$$
 \item 偏差-方差分解:$$E(f;D)=bias^2(x)+var(x)+\epsilon^2$$
+\item 通常来说偏差与方差不可兼得. 例如用二次函数和三次函数, 二次函数偏差大(拟合能力差)而方差小(阶数小), 三次函数则相反.
+\end{itemize}
+
+\section{线性模型}
+\subsection{线性回归}
+\begin{itemize}
+\item 对$d$个属性, $m$个样本的情况, 尝试学习$f(\bm{x}_i)=\bm{\omega}^T\bm{x}_i+b$使得$f(\bm{x}_i)\approx y_i$
+\item 则有$$\hat{\bm{\omega}}^*=\arg\min\limits_{\hat{\bm{\omega}}}(\bm{y}-\bm{X}\hat{\bm{\omega}})^T(\bm{y}-\bm{X}\hat{\bm{\omega}})$$
+只需要对$\hat{\bm{\omega}}$求导得到$2\bm{X}^T(\bm{X}\hat{\bm{\omega}}-\bm{y})$, 从而
+$$\hat{\bm{\omega}}^*=(X^TX)^{-1}X^Ty$$
+写成熟悉的形式:$X^TX\hat{\bm{\omega}}^*=X^Ty$, 
+	\begin{itemize}
+	\item $X^TX$是半正定矩阵($x^TX^TXx=(Xx)^T(Xx)=y^Ty\ge0).$
+	\item 如果$X^TX$满秩, 那么可以直接这样做;\\
+		如果不满秩(X列数多余行数, 可以解出多个$\hat{\bm{\omega}}$), 需要引入\textbf{正则化项}
+	\end{itemize}
+\item 考虑可微函数$g(\cdot)$, 则
+$$y=g^{-1}(\bm{\omega}^T\bm{x}+b)$$
+称为广义线性模型(generalized linear model), $g(\cdot)$称为联系函数(link function)
+\end{itemize}
+\subsection{对数几率回归(二分类任务)}
+\begin{itemize}
+\item 理想情况是用阶跃函数, 但是它不可微, 故用对数几率函数(logistic function)(这样的函数称为替代函数(surrogate func)$$y=\frac{1}{1+e^{-z}}$$
+它是一种Sigmoid函数(S形函数)
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[
+	xlabel={z},
+	ylabel={y},
+	yscale=0.7,
+	xmin=-10, xmax=10,
+	ymin=0, ymax=1,
+	xtick={-10,-5,0,5,10},
+	ytick={0,0.5,1},
+	legend pos=north west,
+	ymajorgrids=true,
+	grid style=dashed,
+]	
+\addplot[no markers, color=blue, domain=-20:20, samples=1000, line width=2] {1/(1+exp(-x))};
+\end{axis}
+\end{tikzpicture}
+\item 以此则有
+$$y=\frac{1}{1+e^{-(\omega^Tx+b)}}$$
+$$ln\frac{y}{1-y}=\omega^Tx+b$$
+其中$\frac{y}{1-y}$称为几率(odds), 反映了正例的相对可能性
+\item 求极大似然:$$l(\omega,b)=\sum\limits_{i=1}^m\ln p(y_i|x_i;\omega,b)$$.
+\item 这里令$$p(y=1|x;\omega,b)=\frac{1}{1+e^{-\omega^Tx+b}}=\frac{e^{\omega^Tx+b}}{1+e^{\omega^Tx+b}}$$
+$$p(y=0|x;\omega,b)=\frac{e^{-\omega^Tx+b}}{1+e^{-\omega^Tx+b}}=\frac{1}{1+e^{\omega^Tx+b}}$$
+\item 令$\beta=(\omega;b),\hat{x}=(x;1)$, 则$\omega^Tx+b$可简写为$\beta^T\hat{x}$. 进而有
+$$l(\beta)=\sum\limits_{i=1}^m(-y_i\beta^T\hat{x}_i+\ln(1+e^{\beta^T\hat{x}_i}))$$
+	\begin{itemize}
+	\item 这里抽象出一个函数$$f(x)=-ax+\ln(1+e^x)$$
+	其一阶, 二阶导数为:
+	$$f'(x)=-a+\frac{1}{1+e^x}=-a+\sigma(x)$$
+	$$f''(x)=\sigma(x)(1-\sigma(x))>0\qquad(\sigma(x)\in(0,1))$$
+	因此$l(\hat{\omega})$是关于$\hat{\omega}$的凸函数
+	\end{itemize}
+\item 对负对数似然求导数. $$\nabla(\hat{\omega})=\sum\limits_{i}f'(z_i)\partialx{z_i}{\hat{\omega}}=\sum\limits_i\left(-y_i+\frac{1}{1+e^{-z_i}}\right)x_i=-\sum\limits_i\left(y_i-P(y=1|\hat{x}_i;\hat{\omega})\right)\hat{x}_i$$
+$$\nabla^2l(\hat{\omega})=\partialx{\nabla l(\hat{\omega})}{\hat{\omega}^T}=\sum\limits_ip_1(1-p_1)\hat{x}_i\hat{x}^T_i$$
+\item 计算方法:
+	\begin{itemize}
+	\item 梯度下降法:
+	$$\hat{\omega}_{t+1}\leftarrow \hat{\omega}_t-\alpha\nabla l(\hat{\omega})$$
+	\item 牛顿法:
+	$$\hat{\omega}_{t+1}\leftarrow \hat{\omega}_t-(\nabla^2l(\hat{\omega}))^{-1}\nabla l(\hat{\omega})$$
+	\end{itemize}
+\end{itemize}
+\subsection{线性判别分析(LDA, 分类任务)}
+\subsubsection{二分类任务}
+\begin{itemize}
+\item 基本思想: 投影, 同类点尽可能近, 不同类点尽可能远. 是一种监督降维技术.
+\item 一些量:
+	\begin{itemize}
+	\item 第c类示例集合: $X_c$
+	\item 第c类示例集合的均值向量: $\mu_c=\frac{1}{|X_c|}\sum_{x\in X_c}x$
+	\item 第c类示例的协方差矩阵: $\Sigma_c=\sum_{x\in X_c}(x-\mu_c)(x-\mu_c)^T$
+	\item 两样本中心在直线上的投影: $\frac{1}{|X_c|}\sum_{x\in X_c}\omega^Tx=\omega^T\mu_c$
+	\item 两类样本的协方差: $\sum_{x\in X_c}(\omega^Tx-\omega^T\mu_c)^2=\omega^T\Sigma_c\omega$
+	\end{itemize}
+\item 最大化目标:
+\begin{align*}
+J&=\frac{\|\omega^T\mu_0-\omega^T\mu_1\|_2^2}{\omega^T\Sigma_0\omega+\omega^T\Sigma_1\omega}\\
+&=\frac{\omega^T(\mu_0-\mu_1)(\mu_0-\mu_1)^T\omega}{\omega^T(\Sigma_0+\Sigma_1)\omega}\\
+&=\frac{\omega^TS_b\omega}{\omega^TS_{\omega} \omega}
+\end{align*}
+其中
+\begin{itemize}
+\item 类间散度: $S_b=(\mu_0-\mu_1)(\mu_0-\mu_1)^T$
+\item 类内散度: $S_{\omega}=\Sigma_0+\Sigma_1$
+\item 广义瑞利商: $\max\frac{\omega^TS_b\omega}{\omega^TS_{\omega} \omega}$
+\end{itemize}
+\item 从而得到优化问题:
+$$\max\limits_{\omega}\omega^TS_b\omega\qquad s.t.\ \omega^TS_{\omega}\omega=1$$
+由拉格朗日乘子法解之得$S_b\omega=\lambda S_{\omega}\omega$, 即
+$$\omega=\frac{1}{\lambda}S_{\omega}^{-1}(\mu_0-\mu_1)(\mu_0-\mu_1)^T\omega\propto S_{\omega}^{-1}(\mu_0-\mu_1)$$
+\end{itemize} 
+\subsubsection{LDA推广: 多分类任务}
+\begin{itemize}
+\item 全局散度矩阵: $S_t=S_b+S_{\omega}=\sum\limits_i(x_i-\mu)(x_i-\mu)^T$
+\item 类内散度矩阵: $S_{\omega}=\sum\limits_cS_{\omega_c}$, 其中$S_{\omega_c}=\sum\limits_{x\in X_c}(x-\mu_c)(x-\mu_c)^T$
+\item 类间散度矩阵: 
+\begin{align*}
+S_b&=S_t-S_{\omega}\\
+&=\sum\limits_i(x_i-\mu)(x_i-\mu)^T-\sum\limits_c\sum\limits_{x\in X_c}(x-\mu_c)(x-\mu_c)^T\\
+&=\sum\limits_ix_ix_i^T-m\mu\mu^T-\sum\limits_c(\sum\limits_{x\in X_c}xx^T-m_c\mu_c\mu_c^T)\\
+&=\sum\limits_c(m_c\mu_c\mu_c^T-m\mu\mu^T)\qquad(\mbox{注意到$\sum\limits_i$和$\sum\limits_c\sum\limits_{x\in X_c}$都是对所有样本点的求和})\\
+&=\sum\limits_cm_c(\mu_c-\mu)(\mu_c-\mu)^T
+\end{align*}
+\item 由此得到优化目标:
+$$\max\limits_{W}=\frac{tr(W^TS_bW)}{tr(W^TS_WW)}=\frac{\sum_iw_i^TS_bw_i}{\sum_iw_i^TS_ww_i}$$
+\item 写成$$\max\limits_{W}tr(W^TS_bW)\qquad s.t.\ tr(W^TS_WW)=1$$
+可得$S_bW=\lambda S_WW$, \textcolor{red}{$W$的闭式解是$S_W^{-1}S_b$的$N-1$个最大广义特征值所对应的特征向量组成的矩阵}.
+\item 这里$S_b$的秩为$N-1$
+	\begin{itemize}
+	\item $rank(S_b)\le N-1$的证明:
+		\begin{align*}
+		rank(S_b)&=rank(\sum\limits_cm_c(\mu_c-\mu)(\mu_c-\mu)^T)\\
+		&\le rank(\sum\limits_cm_c(\mu_c-\mu))\qquad\mbox{($rank(AB)\le\min\{rank(A),rank(B)$\})}\\
+		&\le N-1\qquad\mbox{($\sum\limits_cm_c(\mu_c-\mu)=0$及$rank(A+B)\le rank(A)+rank(B)$)}
+		\end{align*}
+	\end{itemize}
+\end{itemize}
+\subsection{多分类学习——用二分类学习器解决多分类问题}
+\begin{itemize}
+\item 拆分策略
+	\begin{itemize}
+	\item \textbf{一对一(One vs. One, OvO)}: $N$个类别两两配对, $N(N-1)/2$个二分类任务, 投票法得到结果. 分类器多, 但每次训练量小.
+	\item \textbf{一对其余(One vs. Rest, OvR)}: 一类为正例, 其余类为反例, $N$个分类任务. 比较置信度得到类别. 分类器少, 但每次训练量大.
+	\item \textbf{多对多(Many vs. Many, MvM)}: 对$N$个类做$M$次划分(每次分出正类反类或不使用), 成为二分类训练集. 然后将海明距离或欧氏距离最小的作为预测类. 具有纠错能力, 即使某个分类器有错也可能产生正确结果. 任意两个类别之间码距越小, 纠错能力越强.
+		\begin{itemize}
+		\item 海明码的性质:
+			\begin{itemize}
+			\item 最小码矩为$d$的海明编码能够纠错$\floor{\frac{d-1}{2}}$个错误. 这是因为即使错了这么多, 也能够通过选取最接近的正确编码来给出正确预测.
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\subsection{类别不平衡问题}
+\begin{itemize}
+\item 欠采样: 去除一些反例使正反数目相近
+\item 过采样: 增加一些正例使正反数目相近
+\item 阈值移动: 将分类决策条件$\frac{y}{1-y}>1$预测为正例改为:$\frac{y}{1-y}>\frac{m^+}{m^-}$预测为正例.
 \end{itemize}
 
 

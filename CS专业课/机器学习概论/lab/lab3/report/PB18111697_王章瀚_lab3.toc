@@ -1,0 +1,8 @@
+\contentsline {section}{\numberline {1}算法数学基础}{2}{section.1}% 
+\contentsline {subsection}{\numberline {1.1}提升树}{2}{subsection.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.1}基本思想}{2}{subsubsection.1.1.1}% 
+\contentsline {subsubsection}{\numberline {1.1.2}相关公式}{2}{subsubsection.1.1.2}% 
+\contentsline {subsection}{\numberline {1.2}Gradient Tree Boost}{3}{subsection.1.2}% 
+\contentsline {subsubsection}{\numberline {1.2.1}目标函数与最优权重}{3}{subsubsection.1.2.1}% 
+\contentsline {subsubsection}{\numberline {1.2.2}split 的准则}{3}{subsubsection.1.2.2}% 
+\contentsline {section}{\numberline {2}算法过程简介}{3}{section.2}% 
