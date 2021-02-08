@@ -22,3 +22,6 @@
 [submodule "CS专业课/模拟与数字电路实验/FLXG_FPGA"]
 	path = CS专业课/模拟与数字电路实验/FLXG_FPGA
 	url = https://github.com/USTC-CS-Course-Resource/FLXG_FPGA.git
+[submodule "CS专业课/数理逻辑/InferenceEngine"]
+	path = CS专业课/数理逻辑/InferenceEngine
+	url = https://github.com/USTC-CS-Course-Resource/InferenceEngine.git
