@@ -6,3 +6,11 @@
 \contentsline {subsubsection}{\numberline {1.2.1}目标函数与最优权重}{3}{subsubsection.1.2.1}% 
 \contentsline {subsubsection}{\numberline {1.2.2}split 的准则}{3}{subsubsection.1.2.2}% 
 \contentsline {section}{\numberline {2}算法过程简介}{3}{section.2}% 
+\contentsline {subsection}{\numberline {2.1}Split 准则算法}{3}{subsection.2.1}% 
+\contentsline {subsection}{\numberline {2.2}XGBoost 算法}{4}{subsection.2.2}% 
+\contentsline {section}{\numberline {3}实验结果}{4}{section.3}% 
+\contentsline {subsection}{\numberline {3.1}总体效果}{4}{subsection.3.1}% 
+\contentsline {subsection}{\numberline {3.2}单棵决策树}{5}{subsection.3.2}% 
+\contentsline {subsection}{\numberline {3.3}XGBoost}{5}{subsection.3.3}% 
+\contentsline {subsection}{\numberline {3.4}sklearn 的 GradientBoostingClassifier}{6}{subsection.3.4}% 
+\contentsline {section}{\numberline {4}实验小结}{6}{section.4}% 

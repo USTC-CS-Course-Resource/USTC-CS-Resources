@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.1)  21 DEC 2020 00:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.1)  2 JAN 2021 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1818,7 +1818,7 @@ and DVIPDFMx (CTEX)
 ) [1
 
 ]
-<model2.png, id=158, 1041.8925pt x 475.7775pt>
+<model2.png, id=205, 1041.8925pt x 475.7775pt>
 File: model2.png Graphic file (type png)
 <use model2.png>
 Package pdftex.def Info: model2.png  used on input line 177.
@@ -1843,81 +1843,116 @@ n/10.53937/59 '\OT1/cmr/m/n/10.53937 , \C70/rm/m/n/10.53937/62 ^^Q \C70/rm/m/n/
 10.53937 Model2,
  []
 
-<model1234.png, id=161, 1019.81pt x 358.33875pt>
+<model1234.png, id=207, 1019.81pt x 358.33875pt>
 File: model1234.png Graphic file (type png)
 <use model1234.png>
 Package pdftex.def Info: model1234.png  used on input line 183.
 (pdftex.def)             Requested size: 330.58546pt x 116.15797pt.
 [2 <./model2.png> <./model1234.png>]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 216.
- [3] [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
+put line 219.
+ [3]
+<single_tree.png, id=276, 450.68375pt x 290.08376pt>
+File: single_tree.png Graphic file (type png)
+<use single_tree.png>
+Package pdftex.def Info: single_tree.png  used on input line 275.
+(pdftex.def)             Requested size: 264.46837pt x 170.23167pt.
+ [4]
+<xgboost.png, id=289, 862.22125pt x 628.3475pt>
+File: xgboost.png Graphic file (type png)
+<use xgboost.png>
+Package pdftex.def Info: xgboost.png  used on input line 283.
+(pdftex.def)             Requested size: 470.166pt x 342.62956pt.
+
+Overfull \hbox (3.46135pt too wide) in paragraph at lines 280--285
+[]\C70/rm/m/n/10.53937/7e Ó \C70/rm/m/n/10.53937/54 ^^H \OT1/cmr/m/n/10.53937 X
+G-Boost \C70/rm/m/n/10.53937/62 € \C70/rm/m/n/10.53937/67 /\OT1/cmr/m/n/10.5393
+7 , \C70/rm/m/n/10.53937/59 ^^Z \C70/rm/m/n/10.53937/75 ^^_ \C70/rm/m/n/10.5393
+7/62 ^^P \C70/rm/m/n/10.53937/51 à \C70/rm/m/n/10.53937/68 õ ^^Q \C70/rm/m/n/10
+.53937/53 » \C70/rm/m/n/10.53937/5f % \C70/rm/m/n/10.53937/88 e \C70/rm/m/n/10.
+53937/52 M \C70/rm/m/n/10.53937/97 b \C70/rm/m/n/10.53937/76 „ \C70/rm/m/n/10.5
+3937/4e ^^M \C70/rm/m/n/10.53937/8d ³\OT1/cmr/m/n/10.53937 , \C70/rm/m/n/10.539
+37/65 H \C70/rm/m/n/10.53937/67 œ 	 \C70/rm/m/n/10.53937/4e † \C70/rm/m/n/10.53
+937/6b Ô \C70/rm/m/n/10.53937/8f ƒ \C70/rm/m/n/10.53937/66 > \C70/rm/m/n/10.539
+37/84 W \C70/rm/m/n/10.53937/76 „ \C70/rm/m/n/10.53937/63 Ð \C70/rm/m/n/10.5393
+7/53 G\OT1/cmr/m/n/10.53937 . \C70/rm/m/n/10.53937/4e Î \C70/rm/m/n/10.53937/53
+ Ÿ \C70/rm/m/n/10.53937/67 , \C70/rm/m/n/10.53937/76 „ \C70/rm/m/n/10.53937/8b 
+­ \C70/rm/m/n/10.53937/7e Ã \C70/rm/m/n/10.53937/96 Æ \C70/rm/m/n/10.53937/51 Æ
+ \C70/rm/m/n/10.53937/78 n \C70/rm/m/n/10.53937/73 ‡ \OT1/cmr/m/n/10.53937 0.74
+634
+ []
+
+[5 <./single_tree.png>] [6 <./xgboost.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 294.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 294.
  (./PB18111697_ÍõÕÂå«_lab3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 235.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 294.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 294.
 Package rerunfilecheck Info: File `PB18111697_ÍõÕÂå«_lab3.out' has not changed.
 
-(rerunfilecheck)             Checksum: 7B49E5E48B37450CDEF11B371666000F;882.
+(rerunfilecheck)             Checksum: A22B8EE4114FD80B792B32BB1755AF5D;1801.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.41063pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 294.
  ) 
 Here is how much of TeX's memory you used:
- 58260 strings out of 492623
- 1318106 string characters out of 6133291
- 1657634 words of memory out of 5000000
- 61124 multiletter control sequences out of 15000+600000
- 573930 words of font info for 179 fonts, out of 8000000 for 9000
+ 58564 strings out of 492623
+ 1322329 string characters out of 6133291
+ 1658637 words of memory out of 5000000
+ 61380 multiletter control sequences out of 15000+600000
+ 580140 words of font info for 202 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,10n,96p,1598b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
-imhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
-/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:
-/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun
-.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
-s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
+imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
+/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:
+/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei
+.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
+s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Wind
 ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>
 <c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
-onts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/W
-indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
+sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
+onts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/W
+indows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.t
 tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
 simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
 s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
-:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhe
-i.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
-ts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Win
-dows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc
-><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
-msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/
-Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/
-Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.
-ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts
-/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windo
-ws/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><
-c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sims
-un.ttc><c:/Windows/Fonts/simsun.ttc><g:/texlive/2019/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx12.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-csc10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><g:/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><g:/texlive/2019/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><g:/texlive/2019/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmr10.pfb><g:/texlive/2019/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr12.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr5.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-<g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><g:/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on PB18111697_ÍõÕÂå«_lab3.pdf (4 pages, 789925 bytes).
+:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
+n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
+ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Win
+dows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf
+><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/si
+msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/
+Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
+Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.
+ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts
+/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windo
+ws/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><
+c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sims
+un.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
+nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wi
+ndows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.tt
+c><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><g:/texlive/2019/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><g:/texlive/2019/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbx12.pfb><g:/texlive/2019/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmcsc10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmex10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><g:/
+texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><g:/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><g:/texlive/2019/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr5.pfb><g:/texlive/2019/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy5.pfb><g:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb>
+Output written on PB18111697_ÍõÕÂå«_lab3.pdf (6 pages, 944680 bytes).
 PDF statistics:
- 504 PDF objects out of 1000 (max. 8388607)
- 336 compressed objects within 4 object streams
- 17 named destinations out of 1000 (max. 500000)
- 391 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 606 PDF objects out of 1000 (max. 8388607)
+ 416 compressed objects within 5 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 489 words of extra memory for PDF output out of 10000 (max. 10000000)
 
