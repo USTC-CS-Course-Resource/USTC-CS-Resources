@@ -1,4 +1,0 @@
-digraph lab3 {
-	fontsize=18 rankdir=LR
-	pc -> next_pc [label=run]
-}

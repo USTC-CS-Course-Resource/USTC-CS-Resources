@@ -1,5 +1,0 @@
-digraph lab3 {
-	fontsize=18 rankdir=LR
-	addr -> "addr+1" [label=inc]
-	addr -> "addr-1" [label=dec]
-}
