@@ -1,30 +1,3 @@
-[submodule "CS专业课/USTC-2020-Compilers-Principles-HWs"]
-	path = CS专业课/USTC-2020-Compilers-Principles-HWs
-	url = git@github.com:RabbitWhite1/USTC-2020-Compilers-Principles-HWs.git
-[submodule "CS专业课/USTC-Compilers-Principles"]
-	path = CS专业课/USTC-Compilers-Principles
-	url = https://github.com/USTC-CS-Course-Resource/USTC-Compilers-Principles.git
-[submodule "CS专业课/Algorithm-HWs-and-Labs"]
-	path = CS专业课/Algorithm-HWs-and-Labs
-	url = https://github.com/USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
-[submodule "CS专业课/USTC-Computer-Networks-Labs"]
-	path = CS专业课/USTC-Computer-Networks-Labs
-	url = git@github.com:USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
-[submodule "CS专业课/OS/USTC-OSH-2020-Labs"]
-	path = CS专业课/OS/USTC-OSH-2020-Labs
-	url = https://github.com/USTC-CS-Course-Resource/USTC-OSH-2020-Labs.git
-[submodule "CS专业课/OS/GDBFS"]
-	path = CS专业课/OS/GDBFS
-	url = https://github.com/USTC-CS-Course-Resource/GDBFS.git
-[submodule "CS专业课/计算机组成原理/USTC-2020-COD-Labs"]
-	path = CS专业课/计算机组成原理/USTC-2020-COD-Labs
-	url = https://github.com/USTC-CS-Course-Resource/USTC-2020-COD-Labs.git
-[submodule "CS专业课/模拟与数字电路实验/FLXG_FPGA"]
-	path = CS专业课/模拟与数字电路实验/FLXG_FPGA
-	url = https://github.com/USTC-CS-Course-Resource/FLXG_FPGA.git
-[submodule "CS专业课/数理逻辑/InferenceEngine"]
-	path = CS专业课/数理逻辑/InferenceEngine
-	url = https://github.com/USTC-CS-Course-Resource/InferenceEngine.git
 [submodule "CS/USTC-Computer-Networks-Labs"]
 	path = CS/USTC-Computer-Networks-Labs
 	url = git@github.com:USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
@@ -34,6 +7,3 @@
 [submodule "CS/OS/USTC-OSH-2020-Labs"]
 	path = CS/OS/USTC-OSH-2020-Labs
 	url = git@github.com:USTC-CS-Course-Resource/USTC-OSH-2020-Labs.git
-[submodule "CS/--force"]
-	path = CS/--force
-	url = git@github.com:USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
