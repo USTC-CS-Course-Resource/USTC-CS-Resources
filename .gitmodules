@@ -10,3 +10,9 @@
 [submodule "CS/Algorithm-HWs-and-Labs"]
 	path = CS/Algorithm-HWs-and-Labs
 	url = git@github.com:USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
+[submodule "CS/Compiler/2020-USTC-Compiler-Lab-MLIR"]
+	path = CS/Compiler/2020-USTC-Compiler-Lab-MLIR
+	url = git@github.com:code-nowww/2020-USTC-Compiler-Lab-MLIR.git
+[submodule "CS/Compiler/USTC-Compilers-Principles"]
+	path = CS/Compiler/USTC-Compilers-Principles
+	url = git@github.com:USTC-CS-Course-Resource/USTC-Compilers-Principles.git
