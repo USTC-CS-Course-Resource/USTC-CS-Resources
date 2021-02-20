@@ -9,7 +9,7 @@
 	url = https://github.com/USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
 [submodule "CS专业课/USTC-Computer-Networks-Labs"]
 	path = CS专业课/USTC-Computer-Networks-Labs
-	url = https://github.com/USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
+	url = git@github.com:USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
 [submodule "CS专业课/OS/USTC-OSH-2020-Labs"]
 	path = CS专业课/OS/USTC-OSH-2020-Labs
 	url = https://github.com/USTC-CS-Course-Resource/USTC-OSH-2020-Labs.git
@@ -25,3 +25,15 @@
 [submodule "CS专业课/数理逻辑/InferenceEngine"]
 	path = CS专业课/数理逻辑/InferenceEngine
 	url = https://github.com/USTC-CS-Course-Resource/InferenceEngine.git
+[submodule "CS/USTC-Computer-Networks-Labs"]
+	path = CS/USTC-Computer-Networks-Labs
+	url = git@github.com:USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
+[submodule "CS/Mathematical-Logic/InferenceEngine"]
+	path = CS/Mathematical-Logic/InferenceEngine
+	url = git@github.com:USTC-CS-Course-Resource/InferenceEngine.git
+[submodule "CS/OS/USTC-OSH-2020-Labs"]
+	path = CS/OS/USTC-OSH-2020-Labs
+	url = git@github.com:USTC-CS-Course-Resource/USTC-OSH-2020-Labs.git
+[submodule "CS/--force"]
+	path = CS/--force
+	url = git@github.com:USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
