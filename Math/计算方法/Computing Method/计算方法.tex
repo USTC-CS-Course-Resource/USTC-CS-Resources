@@ -1,0 +1,480 @@
+\documentclass[UTF8]{article}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{makecell}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame =shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname                      
+}
+
+
+%画图包
+\usepackage{tikz}
+%画图背景包
+\usetikzlibrary{backgrounds}
+
+%自定义命令
+\newcommand{\psiG}{\psi_{G}}
+%在tikz中画一个顶点
+%#1:node名称
+%#2:位置
+%#3:标签
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%在tikz中画一条边
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%在tikz中放一个标签
+%#1:名称
+%#2:位置
+%#3:标签内容
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+\newcommand{\vr}{\bm{r}}
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+\newcommand{\jumpline} {\hspace*{\fill} \par}
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}%用于表格中换行
+
+\begin{document}
+\section{插值}
+\subsection{Hermite插值}
+\keypoint{Hermite插值}{$$
+	h_i=\left(1-2(x-x_i)\sum\limits_{j\not=i}\frac{1}{x_i-x_j}\right)l_i^2(x)$$
+	$$g_i=(x-x_i)l_i^2(x)$$
+}
+\subsection{三次样条M关系式}
+\keypoint{$S(x)$}{
+	\begin{align*}
+	S(x)&=\frac{(x_{i+1}-x)^3M_i+(x-x_i)^3M_{i+1}}{6h_i}+\frac{(x_{i+1}-x)y_i+(x-x_i)y_{i+1}}{h_i}\\
+	&-\frac{h_i}{6}[(x_{i+1}-x)M_i+(x-x_i)M_{i+1}],\ x\in[x_i,x_{i+1}]
+	\end{align*}
+}
+\keypoint{$M_i$的递推式}{
+	$$ \left\{
+	\begin{array}{l}
+	\mu_iM_{i-1}+2M_i+\lambda_iM_{i+1}=d_i,\ i=1,2,\cdots,n-1\\
+	\lambda_i=\frac{h_i}{h_i+h_{i-1}},\ \mu_i=1-\lambda_i\\
+	d_i=6f[x_{i-1},x_i,x_{i+1}]\\
+	\end{array}
+	\right. $$
+}
+\keypoint{边界条件为:$M_0=M_n=0$}{
+	\[ 
+	\left[
+	\begin{array}{ccccc}
+	2 & \lambda_1 & & & \\
+	\mu_2 & 2 & \lambda_2 & & \\
+	& \ddots & \ddots & \ddots & \\
+	& & \mu_{n-2} & 2 & \lambda_{n-2} \\
+	& & & \mu_{n-1} & 2 \\
+	\end{array}
+	\right]
+	\ 
+	\left[
+	\begin{array}{c}
+	M_1 \\ M_2 \\ \vdots \\ M_{n-2} \\ M_{n-1} \\
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	d_1-\mu_1M_0 \\ d_2 \\ \vdots \\ d_{n-2} \\ d_{n-1}-\lambda_{n-1}M_n \\
+	\end{array}
+	\right]
+	\]
+}
+\keypoint{边界条件为:$S'(x_0)=m_0,S'(x_n)=m_n$}{
+	\[
+	\left\{
+	\begin{array}{l}
+	2M_0+M_1=\frac{6}{h_0}[f[x_0,x_1]-m_0]=d_0=f[x_0,x_0,x_1]\\
+	M_{n-1}+2M_n=\frac{6}{h_{n-1}}[m_nf[x_{n-1},x_n]]=d_n=f[x_{n-1},x_n,x_n]\\
+	\end{array}
+	\right.
+	\]
+	\[ 
+	\left[
+	\begin{array}{cccccc}
+	2 & 1 & & & & \\
+	\mu_1 & 2 & \lambda_1 & & &\\
+	& \mu_2 & 2 & \lambda_2 & &\\
+	& & \ddots & \ddots & \ddots & \\
+	& & & \mu_{n-2} & 2 & \lambda_{n-1} \\
+	& & & & 1 & 2\\
+	\end{array}
+	\right]
+	\ 
+	\left[
+	\begin{array}{c}
+	M_0 \\ M_1 \\ M_2 \\ \vdots \\ M_{n-2} \\ M_{n-1} \\
+	\end{array}
+	\right]
+	=
+	\left[
+	\begin{array}{c}
+	d_0 \\ d_1 \\ d_2 \\ \vdots \\ d_{n-1} \\ d_{n} \\
+	\end{array}
+	\right]
+	\]
+}
+\keypoint{边值条件为被插函数以$x_n-x_0$为基本周期}{
+	即$m_0=m_n,\ M_0=M_n$，将$S'(x_0)=S'(x_n)$加入方程组，化为n变量，n个方程组。\par
+}
+\subsection{三次样条m关系式}
+\keypoint{S(x)}{\par
+		\begin{align*}
+		S(x)&=(1-2\frac{x-x_i}{x_i-x_{i+1}})(\frac{x-x_{i+1}}{x_i-x_{i+1}})^2y_i+(x-x_i)(\frac{x-x_{i+1}}{x_i-x_{i+1}})^2m_i\\
+		&+(1-2\frac{x-x_{i+1}}{x_{i+1}-x_i})(\frac{x-x_i}{x_{i+1}-x_i})^2y_{i+1}+(x-x_{i+1})(\frac{x-x_i}{x_{i+1}-x_i})^2m_{i+1}
+		\end{align*}
+}
+\keypoint{递推式}{
+	\[ \left\{
+	\begin{array}{l}
+	\lambda_im_{i-1}+2m_{i}+\mu_im_{i+1}=c_i,\ i=1,2,\cdots,n-1\\
+	\lambda_i=\frac{h_i}{h_i+h_{i-1}},\ \mu_i=1-\lambda_i\\
+	c_i=3[\lambda_iy[x_{i-1},x_i]+\mu_iy[x_i,x_{i+1}]]\\
+	\end{array}
+	\right.
+	\]
+}
+
+
+
+\section{拟合}
+\keypoint{矛盾方程组}{$AX=Y$无解。而$A^TAX=A^TY$为的解为最小二乘解(使$||AX-Y||_2$最小)。}
+
+
+
+\section{非线性方程求解}
+\keypoint{对分法(二分法)}{}
+\keypoint{不动点迭代的收敛}{
+	\begin{align*}
+	&\left\{ 
+	\begin{array}{l}
+	x\in[a,b] \Rightarrow a\leq\varphi(x)\leq b\\
+	\varphi(x)\in C^1[a,b]\land (\exists 0<L<1,s.t.,\forall x\in[a,b], |\phi'(x)|\leq L)\\
+	\end{array} 
+	\right.
+	\\
+	&\Rightarrow
+	\\
+	&\left\{ 
+	\begin{array}{l}
+	\mbox{在$[a,b]$上有唯一不动点$x^*$，而且迭代格式对任意初值均收敛于$x^*$}\\
+	|x^*-x_k|\leq\frac{L^k}{1-L}|x_1-x_0|\\
+	\end{array} 
+	\right.
+	\end{align*}
+	
+}
+\keypoint{迭代格式收敛阶}{
+	若存在$M>0$, $\lim\limits_{k\rightarrow\infty}\frac{|e_{k+1}|}{|e_k|^n}=\lim\limits_{k\rightarrow\infty}\frac{|x_{k+1}-\alpha|}{|x_k-\alpha|^n}=M$，则称迭代格式收敛阶为n.
+}
+\keypoint{误差阶计算的一个方法}{
+	若
+	$\left\{
+	\begin{array}{l}
+	\varphi^{(k)}(x^*)=0,\ k=0,1,\cdots,p-1\\
+	\varphi^p(x^*)\not=0
+	\end{array}
+	\right.,
+	$
+	则展开后有$\lim\limits_{k\rightarrow\infty}\frac{x_{k+1}-x^*}{(x_k-x^*)^p}=M$,故p阶收敛.
+}
+\keypoint{弦截法的误差阶}{先写成$$e_{k+1}=\frac{x_k-x_{k-1}}{f(x_k)-f(x_{k-1})}\cdot\frac{f(x_k)/e_k-f(x_{k-1})/e_{k-1}}{x_k-x_{k-1}}\cdot e_ke_{k-1}\ ,$$再对$f(x_k)=f(x^*+e_k)$泰勒展开,且令$|e_{k+1}|\sim A|e_k|^\alpha$,代入化简,得$\alpha=\frac{1+\alpha}{\alpha}.$}
+
+
+
+\section{求解线性方程组的直接法}
+\keypoint{Doolittle}{$A=LU$,$L$是单位下三角,$U$是上三角,先求$U$行,再求$L$列(先求非单位三角阵).}
+\keypoint{Crout}{$A=LU$,$L$是下三角,$U$是单位上三角,先求$L$列,再求$U$行(先求非单位三角阵).}
+\keypoint{追赶法}{三对角方程组}
+\keypoint{$LDL^T$分解}{对称正定矩阵，$L$是单位下三角矩阵，$D$是对角矩阵.}
+\section{求解线性方程组的迭代方法}
+\keypoint{行对角占优,列对角占优,对角占优}{大于行(列)内其他元素和即为行(列)占优. 统称对角占优.}
+\subsection{Jacobi迭代}
+\keypoint{Jacobi迭代}{$D=diag\{a_{11},\dots,a_{nn}\}$,则有$$X^{(k+1)}=D^{-1}(D-A)X^{(k)}+D^{-1}b$$}
+\keypoint{若$M$严格对角优，则可逆}{}
+\keypoint{当$A$严格对角优，Jacobi迭代收敛}{}
+\subsection{Gauss-Seidel迭代}
+\keypoint{Gauss-Seidel迭代}{令$A=L+D+U$,则$$(L+D)X^{(k+1)}+UX^{(k)}=b$$从而,$$X^{(k+1)}=-(D+L)^{-1}UX^{(k)}+(D+L)^{-1}b$$}
+\keypoint{当$A$严格对角优，Gauss-Seidel迭代收敛}{}
+\keypoint{当$A$正定对称时，Gauss-Seidel迭代收敛}{}
+\subsection{松弛迭代——SOR迭代}
+\keypoint{SOR迭代}{对结果加权$\omega$,剩余权重$(1-\omega)$给$X^{(k)}$}
+\keypoint{SOR迭代收敛必要条件}{$0<\omega<2$}
+\keypoint{若$A$对称正定，则在上述条件下恒收敛}{}
+
+
+
+\section{数值积分和数值微分}
+$I(f)$表示函数$f(x)$精确积分值,$I_n(f)$表示近似积分值.\par
+$I(f)=\int_{a}^{b}f(x)dx,\ I_n(f)=\sum\limits_{i=0}^{n}\alpha_if(x_i)$\par
+构造数值积分就是要确定$\alpha_i$的值\par
+\keypoint{代数精度}{若$I_n(f)$满足
+	$$
+	\begin{array}{c}
+	E_n(x^k)=I(x^k)-I_n(x^k)=0,\ k=0,1,\dots,m\\
+	E_n(x^{m+1})\not=0\\
+	\end{array}
+	$$
+	则称$I_n(f)$具有$m$阶代数精度.此时对任意不高于$m$次的多项式$f(x)$都有$I(f)=I_n(f)$.
+}
+\underline{要确定一个数值积分的代数精度，可以从$x,x^2,\dots$开始代,直到不为0.}\par
+\subsection{插值型数值积分}
+\keypoint{插值型数值积分代数精度}{$n$阶插值多项式形式的数值积分公式至少有$n$阶代数精度}
+\subsection{牛顿-柯特斯积分}
+\keypoint{梯形积分}{$T(f)=\frac{b-a}{2}[f(a)+f(b)]$}
+\keypoint{梯形积分代数精度和误差}{一阶代数精度.误差为:
+	$$E_1(x)=\int_{a}^{b}\frac{f''(\xi)}{2!}(x-a)(x-b)dx=-\frac{f''(\eta)}{12}(b-a)^3$$
+}
+\keypoint{Simpson}{$S(f)=\frac{b-a}{6}\left[f(a)+4f(\frac{a+b}{2})+f(b)\right]$}
+\keypoint{Simpson积分代数精度和误差}{三阶代数精度.误差为:
+	$$E_2(x)=\int_{a}^{b}\frac{f^{(4)}(\xi)}{4!}x(x-a)(x-\frac{a+b}{2})(x-b)dx=-\frac{f^{4}(\eta)}{2880}(b-a)^5$$
+}
+\keypoint{Newton-Cotes积分误差}{
+	$$ \left\{
+	\begin{array}{l}
+	\mbox{若$m$为奇数,则}E_n(f)=\frac{f^{(n+1)}(\eta)}{(n+1)!}\int_{a}^{b}(x-x_0)(x-x_1)\dots(x-x_n)dx\\
+	\mbox{若$m$为偶数,则}E_n(f)=\frac{f^{(n+2)}(\eta)}{(n+2)!}\int_{a}^{b}x(x-x_0)(x-x_1)\dots(x-x_n)dx\\
+	\end{array}
+	\right. $$
+}
+\subsection{复化数值积分}
+\keypoint{复化梯形积分计算公式}{$$T(h)=T_n(f)=h\left[\frac{1}{2}f(a)+\sum\limits_{i=0}^{n-1}f(a+ih)+\frac{1}{2}f(b)\right],\ h=\frac{b-a}{n}$$}
+\keypoint{复化梯形积分公式截断误差}{$$E_n(f)=-n\frac{h^3}{12}f''(\xi)=-\frac{(b-a)^3)}{12n^2}f''(\xi)$$}
+\keypoint{复化Simpson积分}{$$S_n(f)=\frac{h}{3}\left[f(a)+4\sum\limits_{i=0}^{m-1}f(x_{2i+1})+2\sum\limits_{i=1}^{m-1}f(x_{2i})+f(b)\right],\ h=\frac{b-a}{n},\ n=2m$$}
+\keypoint{复化Simpson积分公式截断误差}{$$E_n(f)=-m\frac{(2h)^5}{2880}f^{(4)}(\xi)=-\frac{(b-a)^5}{2880m^4}f^{(4)}(\xi)$$}
+\subsection{自动控制误差的复化积分}
+\keypoint{梯形积分误差控制}{
+	\begin{align*}
+	let\ H_n(f)&=h_n\sum\limits_{i=0}^{n-1}f(x_{i+1/2}),\ h_{2n}=\frac{b-a}{2n}\\
+	T_{2n}&=\frac{1}{2}[T_n(f)+h_n(f)]\\
+	&=\frac{T_n}{2}+h_{2n}\sum\limits_{i=1}^{n}f(a+(2i-1)h_{2n})\\
+	\end{align*}
+	
+}
+\keypoint{梯形积分后验误差}{由$I(f)-T_n(f)\approx4(I(f)-T_{2n}(f))$得:$$I(f)-T_{2n}(f)\approx\frac{1}{3}(T_{2n}(f)-T_n(f))$$}
+\keypoint{Simpson积分误差控制}{$$S_{2n}(f)=\frac{S_n(f)}{2}+\frac{1}{6}(4H_{2n}(f)-H_n(f))$$}
+\subsection{Romberg积分}
+\keypoint{Romberg积分}{
+	$$
+	\begin{array}{l}
+	I(f)\approx T_{2n}(f)+\frac{1}{3}(T_{2n}(f)-T_n(f))=S_n(f)\\
+	I(f)\approx S_{2n}(f)+\frac{1}{15}(S_{2n}(f)-S_n(f))=C_n(f)\\
+	\dots\\
+	R_{k,j}=R_{k,j-1}+\frac{R_{k,k-1}-R_{k-1,j-1}}{4^{j-1}-1}
+	\end{array}
+	$$
+}
+\subsection{高斯积分}
+\keypoint{积分公式代数精度最高为$2n-1$}{}
+\keypoint{Legendre多项式}{$L_n(x)=\frac{1}{2^nn!}\frac{d^n}{dx^n}(x^2-1)^n$}
+\keypoint{高斯积分}{对$I(f)=\int_{-1}^{1}f(x)dx$,选取Legendre多项式$L_n(x)$的$n$个零点为数值积分节点,则有
+	$$I_n(f)=\sum\limits_{i=1}^{n}\alpha_i^{(n)}f(x_i^{(n)}).$$
+	它具有$2n-1$阶代数精度
+}
+\subsection{数值微分}
+\keypoint{向前差商}{
+	$$
+	\begin{array}{l}
+	f'(x_0)\approx\frac{f(x_0+h)-f(x_0)}{h}\\
+	R(x)=-\frac{h}{2}f''(\xi)=O(h)\\
+	\end{array}
+	$$
+}
+\keypoint{向后差商}{
+	$$
+	\begin{array}{l}
+	f'(x_0)\approx\frac{f(x_0)-f(x_0-h)}{h}\\
+	R(x)=\frac{h}{2}f''(\xi)=O(h)\\
+	\end{array}
+	$$
+}
+\keypoint{中心差商}{
+	$$
+	\begin{array}{l}
+	f'(x_0)\approx\frac{f(x_0+h)-f(x_0-h)}{2h}\\
+	R(x)=\frac{h^2}{6}f''(\xi)=O(h^2)\\
+	\end{array}
+	$$
+}
+\keypoint{步长选取}{中心差商为例,舍入误差用$\frac{e}{h}$估计,有
+	$$\mbox{总误差为}\frac{h^2}{6}M_3+\frac{e}{h}$$
+	求导可知,达最小值时,$h=\sqrt[3]{\frac{3e}{M_3}}$
+}
+\keypoint{事后估计}{$\left[D(h,x)-D(\frac{h}{2},x)\right]<\epsilon$时,步长$h$就是合适的步长}
+\keypoint{插值型微分误差}{
+	\begin{align*}
+	R(x)&=\frac{d}{dx}\left(\frac{f^{(n+1)}(\xi)}{(n+1)!}\prod\limits_{\substack{i=0\\i\not=j}}^{n}(x_j-x_i)\frac{f^{(n+1)}(\xi)}{(n+1)!}\right)
+	\end{align*}
+}
+
+
+
+\section{常微分方程数值解}
+\subsection{Runge-Kutta方法}
+\keypoint{2阶Runge-Kutta}{
+	$$
+	\left\{
+	\begin{array}{l}
+	c_1+c_2=1\\
+	2c_2a=1\\
+	2c_2b=1\\
+	y_{n+1}=y_n+h(c_1k_1+c_2k_2)\\
+	k_1=f(x_n,y_n)\\
+	k_2=f(x_n+ah,y_n+bhk_1)\\
+	\end{array}
+	\right.
+	$$
+}
+\subsection{线性多步法}
+\keypoint{线性多步法}{
+	$$
+	\left\{
+	\begin{array}{l}
+	f(x_{n+1})=f(x_{n-p})+\int\nolimits_{x_{n-p}}^{x_{n+1}}f(x,y)dx\\
+	\mbox{显示格式积分节点为}\{x_n,x_{n-1},\dots,x_{n-q}\}\\
+	\mbox{隐式格式积分节点为}\{x_{n+1},x_{n},\dots,x_{n+1-q}\}\\
+	\end{array}
+	\right.
+	$$
+}
+
+
+
+\section{计算矩阵的特征值和特征向量}
+\subsection{幂法}
+\keypoint{幂法}{
+	有$X^{(k)}=\alpha_1\lambda_1^kv_1+\dots+\alpha_n\lambda_n^kv_n$
+	$$
+	\left\{
+	\begin{array}{l}
+	\mbox{按模最大特征值只有一个: }
+	\left\{
+	\begin{array}{l}
+		\lambda_1\approx x_i^{(k+1)}/x_i^{(k)}\\
+		v_1=X^{(k)}\\
+	\end{array}
+	\right.\\
+	
+	\mbox{按模最大特征值为两相反数: }
+	\left\{
+	\begin{array}{l}
+		\lambda_1\approx \sqrt{x_i^{(k+2)}/x_i^{(k)}}\\
+		v_1=X^{(k+1)}+\lambda_1X^{(k)}\\
+		v_2=X^{(k+1)}-\lambda_1X^{(k)}\\
+	\end{array}
+	\right.\\
+	
+	\end{array}
+	\right.
+	$$
+}
+\keypoint{规范化}{
+	$$
+	\left\{
+	\begin{array}{l}
+	Y^{(k)}=X^{(k)}/||X^{(k)}||_\infty\\
+	X^{(k+1)}=AX^{(k)}\\
+	\mbox{收敛于一个向量: }
+	\left\{
+	\begin{array}{l}
+	\lambda_1\approx \max\limits_{1\leq i\leq n}|x_{i}^{(k+1)}|\\
+	v_1=Y^{(k)}\\
+	\end{array}
+	\right.\\
+	\mbox{偶数列和奇数列收敛于反号向量: }
+	\left\{
+	\begin{array}{l}
+	\lambda_1\approx -\max\limits_{1\leq i\leq n}|x_{i}^{(k+1)}|\\
+	v_1=Y^{(k)}\\
+	\end{array}
+	\right.\\
+	\mbox{偶数列和奇数列收敛于两个不同向量: }
+	\left\{
+	\begin{array}{l}
+	\lambda_1\approx \sqrt{x_i^{(k+1)}/y_i^{(k-1)}}\\
+	\lambda_2=-\lambda_1\\
+	v_1=X^{(k+1)}+\lambda_1X^{(k)}\\
+	v_2=X^{(k+1)}-\lambda_1X^{(k)}\\
+	\end{array}
+	\right.\\
+	\end{array}
+	\right.
+	$$
+}
+\keypoint{反幂法取$A^{-1}$即可}{}
+\subsection{实对称矩阵的Jacobi方法}
+\keypoint{Givens变换结果}{
+	若$Q=Q(p,q,\theta)$,则有:
+	$$ \left\{
+	\begin{array}{l}
+	b_{ip}=b_{pi}=a_{pi}cos\theta-a_{qi}sin\theta,\ i\not=p,q\\
+	b_{iq}=b_{qi}=a_{pi}sin\theta+a_{qi}cos\theta,\ i\not=p,q\\
+	b_{pp}=a_{pp}cos^2\theta+a_{qq}sin^2\theta-a_{pq}sin2\theta\\
+	b_{qq}=a_{pp}sin^2\theta+a_{qq}cos^2\theta+a_{pq}sin2\theta\\
+	b_{pq}=b_{qp}=a_{pq}cos2\theta+\frac{a_{pp}-a_{qq}}{2}sin2\theta\\
+	\end{array}
+	\right.
+	$$
+	为使$b_{pq}=b_{qp}=0$,令$s=\frac{a_{qq}-a_{pp}}{2a_{pq}}$,\ $t^2+2st-1=0$的绝对值最小根作为$tan\theta$.
+	$$ \left\{
+	\begin{array}{l}
+	b_{ip}=b_{pi}=ca_{pi}-da_{qi},\ i\not=p,q\\
+	b_{iq}=b_{qi}=da_{pi}+ca_{qi},\ i\not=p,q\\
+	b_{pp}=a_{pp}-ta_{pq}\\
+	b_{qq}=a_{pp}+ta_{pq}\\
+	b_{pq}=b_{qp}=0\\
+	b_{ij}=a_{ij},\ i\not=p,q;\ j\not=p,q\\
+	\end{array}
+	\right.
+	$$
+}
+
+
+\end{document}
+
+
+
+
+
+
+
+

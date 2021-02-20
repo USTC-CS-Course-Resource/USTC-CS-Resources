@@ -1,0 +1,13 @@
+import numpy as np
+
+x = [0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00, 2.25, 2.50]
+y = [1.284, 1.648, 2.117, 2.718, 3.427, 2.798, 3.534, 4.456, 5.465, 5.894]
+
+
+print(np.matmul(
+        np.linalg.inv(np.array(
+            [[np.sum(np.square(np.sin(x))), np.sum(np.multiply(np.sin(x), np.cos(x)))],
+             [np.sum(np.multiply(np.sin(x), np.cos(x))), np.sum(np.square(np.cos(x)))]])),
+            np.array([np.sum(np.multiply(y, np.sin(x))), np.sum(np.multiply(y, np.cos(x))))])
+       )
+)

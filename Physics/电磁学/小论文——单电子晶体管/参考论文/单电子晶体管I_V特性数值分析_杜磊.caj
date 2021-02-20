@@ -1,0 +1,3 @@
+<script language=javascript >
+alert('下链接已失效，如需重复下载请重新检索下载！');
+</script><script>self.close();</script>
