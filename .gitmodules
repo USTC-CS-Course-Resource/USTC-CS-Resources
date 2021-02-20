@@ -7,3 +7,6 @@
 [submodule "CS/OS/USTC-OSH-2020-Labs"]
 	path = CS/OS/USTC-OSH-2020-Labs
 	url = git@github.com:USTC-CS-Course-Resource/USTC-OSH-2020-Labs.git
+[submodule "CS/Algorithm-HWs-and-Labs"]
+	path = CS/Algorithm-HWs-and-Labs
+	url = git@github.com:USTC-CS-Course-Resource/Algorithm-HWs-and-Labs.git
