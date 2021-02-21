@@ -16,3 +16,12 @@
 [submodule "CS/Compiler/USTC-Compilers-Principles"]
 	path = CS/Compiler/USTC-Compilers-Principles
 	url = git@github.com:USTC-CS-Course-Resource/USTC-Compilers-Principles.git
+[submodule "CS/OS/GDBFS"]
+	path = CS/OS/GDBFS
+	url = git@github.com:USTC-CS-Course-Resource/GDBFS.git
+[submodule "CS/Computer-Organization-and-Design/USTC-2020-COD-Labs"]
+	path = CS/Computer-Organization-and-Design/USTC-2020-COD-Labs
+	url = git@github.com:USTC-CS-Course-Resource/USTC-2020-COD-Labs.git
+[submodule "CS/Analog-and-Digital-Circuits/FLXG_FPGA"]
+	path = CS/Analog-and-Digital-Circuits/FLXG_FPGA
+	url = git@github.com:USTC-CS-Course-Resource/FLXG_FPGA.git
