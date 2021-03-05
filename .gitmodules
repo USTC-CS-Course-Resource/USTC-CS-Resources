@@ -25,3 +25,6 @@
 [submodule "CS/Analog-and-Digital-Circuits/FLXG_FPGA"]
 	path = CS/Analog-and-Digital-Circuits/FLXG_FPGA
 	url = git@github.com:USTC-CS-Course-Resource/FLXG_FPGA.git
+[submodule "CS/Embedded-System-Design/Realtime-FPGA-Video-Filter"]
+	path = CS/Embedded-System-Design/Realtime-FPGA-Video-Filter
+	url = git@github.com:code-nowww/Realtime-FPGA-Video-Filter.git
