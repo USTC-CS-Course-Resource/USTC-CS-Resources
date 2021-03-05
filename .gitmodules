@@ -1,5 +1,5 @@
 [submodule "CS/USTC-Computer-Networks-Labs"]
-	path = CS/USTC-Computer-Networks-Labs
+	path = CS/Computer-Networks/USTC-Computer-Networks-Labs
 	url = git@github.com:USTC-CS-Course-Resource/USTC-Computer-Networks-Labs.git
 [submodule "CS/Mathematical-Logic/InferenceEngine"]
 	path = CS/Mathematical-Logic/InferenceEngine
