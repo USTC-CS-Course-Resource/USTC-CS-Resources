@@ -1,0 +1,9 @@
+#!/bin/sh
+export HOSTNAME=pb18111697
+export USER=root
+export HOME=root
+export PS1="[$USER@$HOSTNAME \W]\# "
+#export PS1="[\[\033[01;32m\]$USER@\[\033[00m\]\[\033[01;34m\]$HOSTNAME\[\033[00m\ \W]\$ "
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+LD_LIBRARY_PATH=/lib:/usr/lib:$LD_LIBRARY_PATH
+export PATH LD_LIBRARY_PATH
