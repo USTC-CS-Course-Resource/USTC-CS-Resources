@@ -28,3 +28,6 @@
 [submodule "CS/Embedded-System-Design/Realtime-FPGA-Video-Filter"]
 	path = CS/Embedded-System-Design/Realtime-FPGA-Video-Filter
 	url = git@github.com:code-nowww/Realtime-FPGA-Video-Filter.git
+[submodule "CS/BigData-Algorithm"]
+	path = CS/BigData-Algorithm
+	url = git@github.com:USTC-CS-Course-Resource/BigData-Algorithm.git
