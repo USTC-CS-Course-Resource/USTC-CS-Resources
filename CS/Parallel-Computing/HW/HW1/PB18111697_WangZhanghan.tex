@@ -1,0 +1,269 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+\usepackage{adjustbox} % 旋转
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端, 
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处, 
+%\sum_{j=1}^{M}  对上下标位置没有设定, 会随公式所处环境自动调整. 
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+	rect1/.style = {
+		shape = rectangle,% 指定样式
+		minimum height=2cm,% 最小高度
+		minimum width=4cm,% 最小宽度
+		align = center,% 文字居中
+		drop shadow,% 阴影
+	}
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \\}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+	\colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+	\colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{20}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+	\sethlcolor{lgray}%背景色
+	\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+\lightercolor{red}{20}{lred}
+\lightercolor{black}{20}{lblack}
+\lightercolor{black}{60}{mblack}
+
+\title{并行计算 HW1}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{1.}
+\noindent 
+\textbf{改写求最大值问题的并行算法, 要求不使用数组 M.}\\
+
+\noindent 不妨设 $A\in R^n$ 为待求最大值的数组, 则算法如下:
+\begin{algorithm}[H]
+	\caption{Parallel-Max}
+	\begin{algorithmic}[1] %每行显示行号
+	\For {i=1 to n \textbf{par-}} \Comment{初始化}
+		\State $B[i][1]=1$
+	\EndFor	
+	\For {i=1 to n \textbf{par-}} \Comment{运算}
+		\For {j=1 to n \textbf{par-}}
+			\If {proc-id == $P_{ij}$}
+				\State $B[i][1]=\left\{
+				\begin{array}{ll}
+				0 & A_i<A_j \&\& B[i][0] == 1\\ 
+				\mbox{空操作} & else
+				\end{array}\right.$ \Comment{\textbf{此处认为能够原子地竞争判断并写入}}
+			\EndIf
+		\EndFor
+	\EndFor
+	\For {i=1 to n \textbf{par-}} \Comment{返回结果}
+		\If {$B[i][1] == 1$}
+			\State \Return $i$
+		\EndIf
+	\EndFor	
+	\end{algorithmic}
+\end{algorithm}
+
+\noindent 主要想法是仅使用 B 数组的第一列, 这里要求第六行能够\textbf{原子地竞争判断并写入}
+
+\newpage
+\section*{2.}
+\noindent \textbf{(课本5.6). 在 APRAM 模型上设计算法时, 应尽量使各处理器内的局部计算时间和读写时间大致于同步时间 B 相当. 当在 APRAM 上计算 n 个数的和时, 可以借用 B 叉树求和的办法. 假定有 p 个处理器计算 n 个数的和, 此时每个处理器上分配 n/p 个数, 各处理器先求出自身的局和, 然后从共享存储器中读取它的 B 个孩子的局和, 累加后置入指定的共享存储单元 SM 中, 最后根处理器所计算的和即为全和. 算法 5.4 示出了 APRAM 上的求和算法.}
+
+\begin{algorithm}[H]
+	\caption{Parallel-Sum}
+	\begin{algorithmic}[1] %每行显示行号
+	\State \textbf{Input}: $n$ 个待求和的数
+	\State \textbf{Output}: 总和在共享存储单元 SM 中
+	\State 各处理器求 n/p 各数的局和, 并写入 SM 中
+	\State Barrier
+	\For {$k=\ceil{\log_B(p(B-1)+1)}-2$ downto 0}
+		\For{\textbf{all} $P_i, 0\le i\le p-1$}
+			\If{$P_i$ 在第 $k$ 级}
+				\State $P_i$ 计算其 B 个孩子的局和并与自身局和相加, 然后将结果写入 SM 中
+				\State Barrier
+			\EndIf
+		\EndFor
+	\EndFor
+	\end{algorithmic}
+\end{algorithm}
+\noindent \textbf{① 试用 APRAM 模型之参数, 写出算法的时间复杂度函数表达式\\
+② 试解释 Barrier 语句的作用\\}
+\subsection*{①}
+\noindent 下面按步骤给出时间复杂度, 然后求和. 其中全局读写时间为 $d$
+\begin{enumerate}[(1).]
+\item 各个处理器求 $n/p$ 个数的局和, 并进行一次全局读写, 需要 $O(n/p + d)$
+\item Barrier 需要 $Barrier(p)\in O(d\log p)$
+\item 往后每级需要读取并计算 B 个孩子的局和, 共 $O(Bd)$, 而后同步需要 $O(d\log p)$共有 $\ceil{\log_B(p(B-1)+1)}-1$ 级. 因此这一步总共是 $$O([\ceil{\log_B(p(B-1)+1)}-1](Bd + d\log p))$$
+\end{enumerate}
+所以总的时间复杂度应为
+\begin{align*}
+O(n/p&+d+d\log p+[\ceil{\log_B(p(B-1)+1)}-1](B+\log p)d)\\
+&=O(n/p+\ceil{\log_B(p(B-1)+1)}(B+\log p)d)
+\end{align*}
+\subsection*{②}
+经过 Barrier 同步之后才能确保每个处理器已经计算完局和, 这样 SM 中才有对应的局和值, 才能去使用.
+
+\newpage
+\section*{3}
+\subsection*{①}
+\noindent 按步骤如下:
+\begin{itemize}
+\item 显然, 这个算法有 $1 + \ceil{\log_d(p(d-1)+1)}-1=\ceil{\log_d(p(d-1)+1)}$ 次通信开销,
+\item 而 (1) 处局和需要 $\Theta(n/p)$, 并且最底层每个处理器应上播 1 份数据, 然后需要一个路障同步, 需 $g+L$ 时间, 这里 $g$ 是带宽倒数, $L$ 是路障同步时间.
+\item (3) 中需要接收 d 个孩子消息, 并且求和, 发给父节点, 需要 $\Theta(d+g+L)$. 这样的操作经历了 $\ceil{\log_d(p(d-1)+1)}-1$ 次, 最后一次不用再发送
+\end{itemize}
+因此总共需要 \begin{align*}
+\Theta(n/p+g+L&+[\ceil{\log_d(p(d-1)+1)}-1]\cdot(d+g+L))\\
+&=\Theta(n/p+[\ceil{\log_d(p(d-1)+1)}]\cdot(d+g+L))
+\end{align*}
+\subsection*{②}
+根据上述对时间复杂度的估计, 可以看出来, 在固定处理器数和消息发送和同步的时间的情况下, 可以近似最小化 $f(d)=n/p+g+L+[\ceil{\log_d(p(d-1)+1)}-1]\cdot(d+g+L)$ 来得到 d.\\
+但若考虑到处理器数及网络情况等, 则最好应能够确保处理器得到充分利用且尽量避免网络拥挤.
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
