@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  4 APR 2021 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  5 APR 2021 21:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1368,44 +1368,203 @@ LaTeX Font Info:    Trying to load font information for U+wasy on input line 13
 (f:/App/texlive/2020/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
+<1.png, id=134, 978.65625pt x 1030.85126pt>
+File: 1.png Graphic file (type png)
+<use 1.png>
+Package pdftex.def Info: 1.png  used on input line 141.
+(pdftex.def)             Requested size: 528.93675pt x 557.15474pt.
+
 (f:/App/texlive/2020/texmf-dist/tex/generic/ctex/zhmap/ctex-zhmap-windows.tex
 File: ctex-zhmap-windows.tex 2020/10/19 v2.5.5 Windows font map loader for pdfT
 eX and DVIPDFMx (CTEX)
 {f:/App/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{UGBK.sfd}{Un
 icode.sfd}) [1
 
-] (./PB18111697.aux)
+] [2 <./1.png>]
+Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (
+quanjiao) on input line 210.
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--227
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 228--247
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 249--265
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--286
+
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 288--302
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 303--320
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 322--336
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 356--388
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 391--406
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 407--425
+
+ []
+
+[7] [8]
+<2.png, id=318, 1332.98pt x 943.525pt>
+File: 2.png Graphic file (type png)
+<use 2.png>
+Package pdftex.def Info: 2.png  used on input line 490.
+(pdftex.def)             Requested size: 528.93675pt x 374.40874pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 495--527
+
+ []
+
+[9 <./2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 529--542
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--561
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 563--576
+
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 577--595
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--610
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 611--625
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 627--639
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 640--650
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 652--665
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 666--677
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 679--692
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 693--705
+
+ []
+
+[13] (./PB18111697.aux)
 Package rerunfilecheck Info: File `PB18111697.out' has not changed.
-(rerunfilecheck)             Checksum: 232E869CBD4E37AFDFF515A34AFC815F;177.
+(rerunfilecheck)             Checksum: 9043681A0BF7C77853DFAC6CA9313504;4216.
  ) 
 Here is how much of TeX's memory you used:
- 30046 strings out of 479302
- 574032 string characters out of 5869224
- 1100975 words of memory out of 5000000
- 46491 multiletter control sequences out of 15000+600000
- 423178 words of font info for 100 fonts, out of 8000000 for 9000
+ 31169 strings out of 479302
+ 592353 string characters out of 5869224
+ 1114975 words of memory out of 5000000
+ 47418 multiletter control sequences out of 15000+600000
+ 446398 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,6n,90p,510b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/s
+ 87i,6n,90p,510b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
+imsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows
+/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
+/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun
+.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
+s/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
+ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
+<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/sim
+sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
+onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/W
+indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
+tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/
+simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Window
+s/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
+:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
+n.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fon
+ts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Win
+dows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf
+><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/si
+msun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/
+Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/
+Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.
+ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts
+/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windo
+ws/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><
+c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simh
+ei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fo
+nts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wi
+ndows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.tt
+c><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
 imhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows
 /Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:
 /Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei
 .ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
-s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Wind
-ows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>
+s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
+ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
 <c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/F
+sun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/F
 onts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/W
-indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.t
-tc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><f:/App/texlive/20
-20/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><f:/App/texlive/2020/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><f:/App/texlive/2020/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr12.pfb><f:/App/texlive/2020/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on PB18111697.pdf (1 page, 126373 bytes).
+indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><f:/App/texlive/2020/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><f:/App/texlive/2020/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx12.pfb><f:/App/texlive/2020/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr17.pfb>
+Output written on PB18111697.pdf (13 pages, 701309 bytes).
 PDF statistics:
- 233 PDF objects out of 1000 (max. 8388607)
- 146 compressed objects within 2 object streams
- 8 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 718 PDF objects out of 1000 (max. 8388607)
+ 503 compressed objects within 6 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 547 words of extra memory for PDF output out of 10000 (max. 10000000)
 

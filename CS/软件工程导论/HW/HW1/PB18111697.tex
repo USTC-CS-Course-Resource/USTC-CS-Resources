@@ -134,42 +134,575 @@
 
 \begin{document}
 \maketitle
-\section{1}
+\section{}
+\subsection{用例图}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{1.png}
+	\caption{题 1 的用例图}
+\end{figure}\par
 \subsection{用例表}
+\subsubsection{用例: 客户将银行卡插入读卡器,验证真伪}
 \noindent
-\textbf{用例}:
+\textbf{用例}: 客户将银行卡插入读卡器验证真伪
 \\
-\textbf{目标}:
+\textbf{目标}: 验证银行卡的真伪
 \\
-\textbf{前提条件}:
+\textbf{前提条件}: 无
 \\
-\textbf{触发器}:
+\textbf{触发器}: 用户插入卡
 \\
-\textbf{场景}:
-\begin{enumerate}
-\item 
-\end{enumerate}
-\textbf{异常}:
-\begin{enumerate}
-\item 
-\end{enumerate}
-\textbf{优先级}:
+\textbf{场景}: \\
+	\hspace*{2em} 用户使用 ATM 机器 \\
+\textbf{异常}: \\
+	\hspace*{2em} 无法识别银行卡 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: ATM 营业时间
 \\
-\textbf{何时可用}:
+\textbf{使用频率}: 每次用户操作都会使用
 \\
-\textbf{使用频率}:
+\textbf{使用方式}:\\
+	\hspace*{2em}1. 用户插入银行卡 \\
+	\hspace*{2em}2. ATM 机验证真伪 \\
+\textbf{扩展点}: 无
 \\
-\textbf{使用方式}:
+\textbf{次要参与者}: 无
 \\
-\textbf{次要参与者}:
+\textbf{次要参与者使用方式}: 无
 \\
-\textbf{次要参与者使用方式}:
+\textbf{未解决的问题}: 
+	\hspace*{2em}1. 对于无法识别的银行卡应作何反应?
+	
+
+\subsubsection{用例: 用户通过键盘输入密码, 取款机验证密码是否有效}
+\noindent
+\textbf{用例}: 用户通过键盘输入密码, 取款机验证密码是否有效
 \\
-\textbf{未解决的问题}:
-\begin{enumerate}
-\item 
-\end{enumerate}
+\textbf{目标}: 验证银行卡密码是否正确以确定身份
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 已完成
+\\
+\textbf{触发器}: 用户操作输入密码验证身份
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 用户使用 ATM 机器进行相关操作 \\
+\textbf{异常}: \\
+	\hspace*{2em} 用户密码输入错误 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入卡后
+\\
+\textbf{使用频率}: 用户首次插入银行卡后验证
+\\
+\textbf{使用方式}:\\
+	\hspace*{2em}1. 用户通过键盘输入银行卡密码 \\
+	\hspace*{2em}2. ATM 机验证真伪 \\
+\textbf{扩展点}: 无
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em}1. 对于无法识别的银行卡应作何反应?
+	
+\subsubsection{用例: 用户选择业务并操作(银行卡功能)——存款}
+\noindent
+\textbf{用例}: 用户选择业务并操作(银行卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择了存款操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em}1. 用户选择存款操作 \\
+	\hspace*{2em}2. 根据屏幕信息的交互提示进行操作确认 \\
+	\hspace*{2em}3. 用户放入纸钞 \\
+	\hspace*{2em}4. 系统验证可识别纸钞数目 \\
+	\hspace*{2em}5. 完成操作 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 存款时, 用户放入纸钞有问题——重新执行 \\
+	\hspace*{2em} 2. 凭条打印用纸不足——让银行职员处理 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等
+\\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 银行职员
+\\
+\textbf{次要参与者使用方式}: 直接打开 ATM 机箱操作.
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 凭条打印纸不足时如何通知银行职员处理? \\
+	
+\subsubsection{用例: 用户选择业务并操作(银行卡功能)——取款}
+\noindent
+\textbf{用例}: 用户选择业务并操作(银行卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择了取款操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em}1. 用户选择取款操作 \\
+	\hspace*{2em}2. 根据屏幕信息的交互提示进行操作确认 \\
+	\hspace*{2em}3. 系统吐出纸钞 \\
+	\hspace*{2em}4. 用户拿走纸钞 \\
+	\hspace*{2em}5. 完成操作 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 纸钞不足——让银行职员添加现金 \\
+	\hspace*{2em} 2. 凭条打印用纸不足——银行职员提供设备维护 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等
+\\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 银行职员
+\\
+\textbf{次要参与者使用方式}: 直接打开 ATM 机箱操作.
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 纸钞不足时如何通知银行职员处理? \\
+	\hspace*{2em} 2. 凭条打印纸不足时如何通知银行职员处理? \\
+		
+\subsubsection{用例: 用户选择业务并操作(银行卡功能)——查询账户}
+\noindent
+\textbf{用例}: 用户选择业务并操作(银行卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择了查询账户操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em}1. 用户选择查询账户操作 \\
+	\hspace*{2em}2. 根据屏幕信息的交互提示进行操作确认 \\
+	\hspace*{2em}3. 用户确认后退出 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+	
+\textbf{异常}: 无
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等
+\\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 银行职员
+\\
+\textbf{次要参与者使用方式}: 直接打开 ATM 机箱操作.
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 凭条打印纸不足时如何通知银行职员处理? \\
+			
+\subsubsection{用例: 用户选择业务并操作(银行卡功能)——修改密码}
+\noindent
+\textbf{用例}: 用户选择业务并操作(银行卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择了修改密码操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em}1. 用户选择修改密码操作 \\
+	\hspace*{2em}2. 根据屏幕信息的交互提示进行操作确认 \\
+	\hspace*{2em}3. 用户确认后退出 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+	
+\textbf{异常}: 无
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等
+\\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 无
+	
+	
+\subsubsection{用例: 用户选择业务并操作(信用卡功能)——查询}
+\noindent
+\textbf{用例}: 用户选择业务并操作(信用卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择查询操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 用户需要查询信用卡 \\
+	\hspace*{2em} 2. 系统显示信用卡相关信息 \\
+	\hspace*{2em} 3. 用户退出 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+\textbf{异常}: \\
+	\hspace*{2em} 1. 信用卡资料缺失——让客户到人工柜台处理 \\
+	\hspace*{2em} 2. 凭条打印用纸不足——让银行职员添加 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等 \\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 银行职员
+\\
+\textbf{次要参与者使用方式}: 直接打开 ATM 机箱操作.
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 凭条打印纸不足时如何通知银行职员处理? \\
+		
+		
+\subsubsection{用例: 用户选择业务并操作(信用卡功能)——还款}
+\noindent
+\textbf{用例}: 用户选择业务并操作(信用卡功能)
+\\
+\textbf{目标}: 完成用户的操作需求
+\\
+\textbf{前提条件}: 用例 "插入银行卡" 和 用例 "验证密码" 已完成
+\\
+\textbf{触发器}: 用户选择还款操作
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 用户需要还款信用卡 \\
+	\hspace*{2em} 2. 系统显示信用卡相关信息 \\
+	\hspace*{2em} 3. 用户放入纸钞或选择还款金额 \\
+	\hspace*{2em} 4. 系统确认并返回信息 \\
+	\hspace*{2em} 5. 用户可以选择是否打印凭条 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 用户纸钞额不足或余额不足——让用户重新选择还款金额 \\
+	\hspace*{2em} 2. 凭条打印用纸不足——让银行职员添加 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 用户插入银行卡并完成密码验证后
+\\
+\textbf{使用频率}: 一天多次
+\\
+\textbf{使用方式}: 根据屏幕信息的交互提示进行操作确认等 \\
+\textbf{扩展点}: \\
+	\hspace*{2em}1. 打印凭条 \\
+\textbf{次要参与者}: 银行职员
+\\
+\textbf{次要参与者使用方式}: 直接打开 ATM 机箱操作.
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 凭条打印纸不足时如何通知银行职员处理? \\
+			
+			
+\subsubsection{用例: 银行职员进行设备维护}
+\noindent
+\textbf{用例}: 银行职员进行设备维护
+\\
+\textbf{目标}: 维护 ATM 系统设备
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 无
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 银行职员打开 ATM 机箱进行维护
+\textbf{异常}: 无
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 无用户正在进行 ATM 操作时
+\\
+\textbf{使用频率}: 一天一次
+\\
+\textbf{使用方式}: 直接对 ATM 机箱进行操作 \\
+\textbf{扩展点}: 无
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 无
+			
+			
+\subsubsection{用例: 银行职员添加现金}
+\noindent
+\textbf{用例}: 银行职员添加现金
+\\
+\textbf{目标}: 为 ATM 系统添加现金
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 无
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 银行职员打开 ATM 机箱 \\
+	\hspace*{2em} 2. 银行职员放入现金 \\
+\textbf{异常}: 无
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 无用户正在进行 ATM 操作时
+\\
+\textbf{使用频率}: 一天一次
+\\
+\textbf{使用方式}: 直接对 ATM 机箱进行操作 \\
+\textbf{扩展点}: 无
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 无
+		
+\newpage
 \section{2}
+\subsection{用例图}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{2.png}
+	\caption{题 2 的用例图}
+\end{figure}\par
+\subsection{用例表}
+\subsubsection{用例: 企业用户上传应用到检测平台检测}
+\noindent
+\textbf{用例}: 企业用户上传应用到检测平台检测
+\\
+\textbf{目标}: 检测应用是否为灰色应用
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 企业用户提交
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 企业用户上传一个或多个应用到检测平台 \\
+	\hspace*{2em} 2. 若检测平台检测到灰色应用, 就封装相关的关键数据形成报告, 通过 web 客户端发送通知给用户 \\
+	\hspace*{2em} 3. 客户端提供下载报告功能 \\
+	\hspace*{2em} 4. 客户端提供浏览报告功能 \\
+\textbf{异常}: \\
+	\hspace*{2em} 1. 应用有问题, 无法检测——通知客户 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候
+\\
+\textbf{使用频率}: 一月多次
+\\
+\textbf{使用方式}: 企业用户通过客户端进行操作 \\
+\textbf{扩展点}: 通知发送
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 以何种格式向客户端返回报告信息? \\
+	\hspace*{2em} 2. 如何管理与存储用户查询记录和相关报告等? \\
+	
+\subsubsection{用例: 企业用户查看进行中任务}
+\noindent
+\textbf{用例}: 企业用户查看进行中任务
+\\
+\textbf{目标}: 查看进行中的任务状态
+\\
+\textbf{前提条件}: 已有进行中任务
+\\
+\textbf{触发器}: 企业用户触发查询
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 平台列出进行中任务 \\
+	\hspace*{2em} 2. 用户选择任务 \\
+	\hspace*{2em} 3. 平台返回任务相关信息 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 任务信息暂不可得——用户等待 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候
+\\
+\textbf{使用频率}: 一月多次
+\\
+\textbf{使用方式}: 企业用户通过客户端进行操作 \\
+\textbf{扩展点}: 无
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 以何种格式向客户端返回报告信息? \\
+	\hspace*{2em} 1. 以何种格式列出进行中任务? \\
+		
+\subsubsection{用例: 企业用户取消进行中任务}
+\noindent
+\textbf{用例}: 企业用户取消进行中任务
+\\
+\textbf{目标}: 取消进行中的任务状态
+\\
+\textbf{前提条件}: 已有进行中任务
+\\
+\textbf{触发器}: 企业用户触发取消功能
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 平台列出进行中任务 \\
+	\hspace*{2em} 2. 用户选择要取消的任务 \\
+	\hspace*{2em} 3. 平台返回取消操作是否成功 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 任务因各种原因不可取消——提供客服等给用户 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候
+\\
+\textbf{使用频率}: 一月多次
+\\
+\textbf{使用方式}: 企业用户通过客户端进行操作 \\
+\textbf{扩展点}: 无
+\\
+\textbf{次要参与者}: 无
+\\
+\textbf{次要参与者使用方式}: 无
+\\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 什么样才算是成功取消? \\
+	\hspace*{2em} 2. 取消后的记录如何保存? \\
+			
+\subsubsection{用例: 企业用户浏览历史检测任务数据}
+\noindent
+\textbf{用例}: 企业用户浏览历史检测任务数据
+\\
+\textbf{目标}: 查看进行中的任务状态
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 企业用户触发查询功能
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 平台列出历史任务 \\
+	\hspace*{2em} 2. 用户选择任务 \\
+	\hspace*{2em} 3. 平台返回任务对应数据 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 历史数据不存在等——让用户确认 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候 \\
+\textbf{使用频率}: 一月多次 \\
+\textbf{使用方式}: 企业用户通过客户端进行操作 \\
+\textbf{扩展点}: 无 \\
+\textbf{次要参与者}: 无 \\
+\textbf{次要参与者使用方式}: 无 \\
+\textbf{未解决的问题}: 
+	\hspace*{2em} 1. 历史数据丢失如何处理? \\
+	\hspace*{2em} 2. 用户找不到想要的历史记录怎么办? \\
+	\hspace*{2em} 3. 什么样的查询方式更好, 仅基于时间顺序不一定最优? \\
+				
+\subsubsection{用例: 系统管理员查看数据库内记录的设备状态}
+\noindent
+\textbf{用例}: 系统管理员查看数据库内记录的设备状态
+\\
+\textbf{目标}: 检查系统是否有问题
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 系统管理员触发查询
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 系统管理员输入查询代码 \\
+	\hspace*{2em} 2. 系统返回查询结果 \\
+	
+\textbf{异常}: 无 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候 \\
+\textbf{使用频率}: 一月一次 \\
+\textbf{使用方式}: 系统管理员打开系统管理界面操作 \\
+\textbf{扩展点}: 无 \\
+\textbf{次要参与者}: 无 \\
+\textbf{次要参与者使用方式}: 无 \\
+\textbf{未解决的问题}: 无 \\
+				
+\subsubsection{用例: 系统管理员更换老旧设备}
+\noindent
+\textbf{用例}: 系统管理员更换老旧设备
+\\
+\textbf{目标}: 将老旧设备更换为新设备
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 系统管理员需要更换老旧设备
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 系统管理员移除旧设备, 接入新设备 \\
+	\hspace*{2em} 2. 系统管理员通过 USB 连接 \\
+	\hspace*{2em} 3. 系统管理员完成初始化操作 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 系统无法识别新设备——尝试换用其他新设备 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候 \\
+\textbf{使用频率}: 一年多次 \\
+\textbf{使用方式}: 系统管理员打开机箱更换设备, 并通过控制面板操作 \\
+\textbf{扩展点}: 无 \\
+\textbf{次要参与者}: 无 \\
+\textbf{次要参与者使用方式}: 无 \\
+\textbf{未解决的问题}: 无 \\
+				
+\subsubsection{用例: 系统管理员添加新设备}
+\noindent
+\textbf{用例}: 系统管理员添加新设备
+\\
+\textbf{目标}: 为系统添加新设备
+\\
+\textbf{前提条件}: 无
+\\
+\textbf{触发器}: 系统管理员需要添加新设备
+\\
+\textbf{场景}: \\
+	\hspace*{2em} 1. 系统管理员接入新设备 \\
+	\hspace*{2em} 2. 系统管理员通过 USB 连接 \\
+	\hspace*{2em} 3. 系统管理员完成初始化操作 \\
+	
+\textbf{异常}: \\
+	\hspace*{2em} 1. 系统无法识别新设备——尝试换用其他新设备 \\
+	\hspace*{2em} 2. 设备槽已满——不允许再添加 \\
+%\textbf{优先级}: 
+%\\
+\textbf{何时可用}: 任何时候 \\
+\textbf{使用频率}: 一年多次 \\
+\textbf{使用方式}: 系统管理员打开机箱添加设备, 并通过控制面板操作 \\
+\textbf{扩展点}: 无 \\
+\textbf{次要参与者}: 无 \\
+\textbf{次要参与者使用方式}: 无 \\
+\textbf{未解决的问题}: 无 \\
+	
 
 \end{document}
 
