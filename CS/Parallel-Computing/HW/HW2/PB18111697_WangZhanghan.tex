@@ -229,27 +229,31 @@
 					\State level[i] = k
 				\EndFor
 			\EndFor
-			\For {k = $\log p$ to 1} \Comment{逐层上传统计数量, $O(\log n)$}
-				\For {proc i in level k \textbf{par-}} \Comment{初始化}
+			\For {k = $\ceil{1+\log n}$ to 1} \Comment{逐层上传统计数量, $O(\log n)$}
+				\For {proc i in level k \textbf{par-}}
 					\State $size[i] = size[RC_i] + size[LC_i]$
 				\EndFor
 			\EndFor
 			\State
-			
-			\For {k = 1 to $\log p$} \Comment{逐层上传统计数量, $O(\log n)$}
-				\For {proc i in level k \textbf{par-}} \Comment{初始化}
-					\If {i 是右节点}
-						\State $rank[i] = rank[parent[i]] + 1$
-					\ElsIf{i 是左节点}
-						\State 
+			\For {i=1 to n \textbf{par-}} \Comment{利用顺序统计数的方法计算每个节点的 rank, $O(\log n)$}
+				\State $rank[i] = size[LC_i] + 1$
+				\State $j = i$
+				\While {$j != root$}
+					\If {$value[j] < value[i]$}
+						\State $rank[i] = rank[i] + size[LC_j] + 1$
 					\EndIf
-				\EndFor
+					\State $j = parent[j]$
+				\EndWhile
 			\EndFor
+			\For {i=1 to n \textbf{par-}} \Comment{写入数组, O(1)}
+				\State array[rank[i]] = value[i]
+			\EndFor
+			\State \Return array
 		\EndFunction
 	\end{algorithmic}
 \end{algorithm}
 
-根据前面的分析知道, \textbf{时间复杂度是 $O(\log n)$ 的}, 所采用的并行计算模型是\textbf{}.
+根据前面的分析知道, \textbf{时间复杂度是 $O(\log n)$ 的}, 所采用的并行计算模型是\textbf{PRAM-CRCW}.
 \end{document}
 
 

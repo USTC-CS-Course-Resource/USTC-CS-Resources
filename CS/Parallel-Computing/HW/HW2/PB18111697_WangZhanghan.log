@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  4 APR 2021 22:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  6 APR 2021 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1653,10 +1653,10 @@ Package rerunfilecheck Info: File `PB18111697_WangZhanghan.out' has not changed
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 50890 strings out of 479302
- 1184866 string characters out of 5869224
- 1741792 words of memory out of 5000000
- 67031 multiletter control sequences out of 15000+600000
+ 50900 strings out of 479302
+ 1185018 string characters out of 5869224
+ 1742792 words of memory out of 5000000
+ 67041 multiletter control sequences out of 15000+600000
  442960 words of font info for 174 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  121i,8n,117p,1630b,1518s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1700,7 +1700,7 @@ ic/amsfonts/cm/cmr17.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm10
 00.pfb>
-Output written on PB18111697_WangZhanghan.pdf (2 pages, 393380 bytes).
+Output written on PB18111697_WangZhanghan.pdf (2 pages, 397148 bytes).
 PDF statistics:
  449 PDF objects out of 1000 (max. 8388607)
  288 compressed objects within 3 object streams
