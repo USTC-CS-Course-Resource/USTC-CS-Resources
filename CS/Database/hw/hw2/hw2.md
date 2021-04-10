@@ -106,9 +106,16 @@ From (
     Select sno, avg(sc.score) As all_avg -- 总平均成绩排名前 50% (ceil) 的学生
     From Student s, Course c, SC sc
     Where s.sno = sc.sno and c.cno = sc.cno
+        and all_avg >= (Select avg(sc.score) As all_avg_50 
+            From Student s, Course c, SC sc
+            Where s.sno = sc.sno and c.cno = sc.cno
+            Group By sno
+            Order By all_avg_50 DESC -- 降序
+            Limit (Select ceil(count(*) * 0.5) From Student), 1
+        ) 
+        -- 不等式右边是一个无关子查询以获取第 49 名学生总平均成绩
+        -- 滤出总平均成绩大于等于第 49 名学生的总平均成绩的学生
     Group By sno
-    Order By all_avg DESC -- 降序
-    Limit (Select ceil(count(*) * 0.5) From Student)
     ) sno_all_avg50, Student s, Course c, SC sc
 Where sno_all_avg50.sno = sc.sno and c.cno = sc.cno
     and c.type = 0
