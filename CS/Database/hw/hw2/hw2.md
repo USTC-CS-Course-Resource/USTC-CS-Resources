@@ -101,19 +101,19 @@ Where NOT EXISTS ( -- 不存在一个 cno 不在 sno 选过的课集合中
 **查询总平均成绩排名在前50%（向上取整）的学生中必修课平均分最高的前10位同学，要求返回这些学生的学号、姓名、必修课平均分以及课程总平均成绩（不足10位时则全部返回）**
 
 ```sql
-Select s.sno, s.sname, snoAllAvg50.allAvg, avg(sc.score) As requiredAvg
+Select s.sno, s.sname, snoAllAvg50.allAvg, avg(sc.score) As required_avg
 From (
-    Select sno, avg(sc.score) As allAvg -- 总平均成绩排名前 50% (ceil) 的学生
+    Select sno, avg(sc.score) As all_avg -- 总平均成绩排名前 50% (ceil) 的学生
     From Student s, Course c, SC sc
     Where s.sno = sc.sno and c.cno = sc.cno
     Group By sno
-    Order By allAvg DESC -- 降序
+    Order By all_avg DESC -- 降序
     Limit (Select ceil(count(*) * 0.5) From Student)
-    ) snoAllAvg50, Student s, Course c, SC sc
-Where sno50.sno = sc.sno and c.cno = sc.cno
+    ) sno_all_avg50, Student s, Course c, SC sc
+Where sno_all_avg50.sno = sc.sno and c.cno = sc.cno
     and c.type = 0
 Group By sno
-Order By requiredAvg
+Order By required_avg
 Limit 10;
 ```
 
@@ -121,14 +121,14 @@ Limit 10;
 **查询每门课程的课程名、课程类型、最高成绩、最低成绩、平均成绩和不及格率，要求结果按通识课、必修课、选修课、公选课顺序排列（提示：课程名可能有重名）**
 
 ```sql
-Select c.cname, c.type, max(sc.score) maxScore, min(sc.score) minScore, avg(sc.score) avgScore, failedCount / count(sc.score) failedRate
+Select c.cname, c.type, max(sc.score) max_score, min(sc.score) min_score, avg(sc.score) avg_score, failed_count / count(sc.score) failed_rate
 From Course c, SC sc, (
     Select c.cno, count(*)
     From Course c, SC sc
     Where sc.score < 60
     Group By c.cno
-    ) failedCount
-Where c.cno = failedCount.cno
+    ) failed_count
+Where c.cno = failed_count.cno
 Group By c.cno
 Order By (
     Case c.type
@@ -158,13 +158,11 @@ Where s.sno = refailed.sno and c.cno = refailed.cno
 ```sql
 Delete From SC sc
 Where Exists (
-    Select * From (
-        Select sc.sno, sc.cno From (
-            Select sc.sno, sc.cno, max(sc.term) As latestTerm
-            Group By sc.sno, sc.cno
-        ) latestRetake
-    Where sc.sno = latestRetake.sno and sc.cno = latestRetake.cno
-        and sc.term < latestRetake.latestTerm -- 学期早于最近学期
-    )
+    Select sc.sno, sc.cno From (
+        Select sc.sno, sc.cno, max(sc.term) As latest_term
+        Group By sc.sno, sc.cno
+    ) latest_retake
+    Where sc.sno = latest_retake.sno and sc.cno = latest_retake.cno
+        and sc.term < latest_retake.latest_term -- 学期早于最近学期
 )
 ```
