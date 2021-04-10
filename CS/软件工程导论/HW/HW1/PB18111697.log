@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  5 APR 2021 21:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  7 APR 2021 23:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1384,127 +1384,82 @@ icode.sfd}) [1
 Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (
 quanjiao) on input line 210.
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--227
+Underfull \hbox (badness 10000) in paragraph at lines 211--246
 
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 228--247
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--265
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 266--286
+Underfull \hbox (badness 10000) in paragraph at lines 248--284
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 288--302
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 303--320
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--336
+Underfull \hbox (badness 10000) in paragraph at lines 286--317
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 356--388
+Underfull \hbox (badness 10000) in paragraph at lines 352--384
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 391--406
+Underfull \hbox (badness 10000) in paragraph at lines 387--402
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 407--425
+Underfull \hbox (badness 10000) in paragraph at lines 403--421
 
  []
 
 [7] [8]
-<2.png, id=318, 1332.98pt x 943.525pt>
+<2.png, id=318, 1699.34875pt x 952.55875pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
-Package pdftex.def Info: 2.png  used on input line 490.
-(pdftex.def)             Requested size: 528.93675pt x 374.40874pt.
+Package pdftex.def Info: 2.png  used on input line 486.
+(pdftex.def)             Requested size: 528.93675pt x 296.49655pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 495--527
+Underfull \hbox (badness 10000) in paragraph at lines 491--526
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 491--526
 
  []
 
 [9 <./2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 529--542
+Underfull \hbox (badness 10000) in paragraph at lines 528--559
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 543--561
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--576
+Underfull \hbox (badness 10000) in paragraph at lines 561--592
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 577--595
+Underfull \hbox (badness 10000) in paragraph at lines 594--621
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 597--610
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 611--625
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 627--639
+Underfull \hbox (badness 10000) in paragraph at lines 623--645
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 640--650
+Underfull \hbox (badness 10000) in paragraph at lines 647--671
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 652--665
+Underfull \hbox (badness 10000) in paragraph at lines 673--698
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 666--677
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 679--692
-
- []
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 693--705
-
- []
-
-[13] (./PB18111697.aux)
+[12] [13] (./PB18111697.aux)
 Package rerunfilecheck Info: File `PB18111697.out' has not changed.
 (rerunfilecheck)             Checksum: 9043681A0BF7C77853DFAC6CA9313504;4216.
  ) 
@@ -1561,7 +1516,7 @@ indows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><f:/App/texlive/2020/texmf
 s/type1/public/amsfonts/cm/cmr10.pfb><f:/App/texlive/2020/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmr12.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmr17.pfb>
-Output written on PB18111697.pdf (13 pages, 701309 bytes).
+Output written on PB18111697.pdf (13 pages, 704445 bytes).
 PDF statistics:
  718 PDF objects out of 1000 (max. 8388607)
  503 compressed objects within 6 object streams
