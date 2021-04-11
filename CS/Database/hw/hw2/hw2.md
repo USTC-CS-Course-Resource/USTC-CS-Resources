@@ -84,13 +84,12 @@ Where sc2.sno = s.sno
 ```sql
 Select sno, sname
 From Student s
-Where NOT EXISTS ( -- 不存在一个 cno 不在 sno 选过的课集合中
-    Select * From Course
-    Where type = 0 
-        and cno NOT IN (
+Where NOT EXISTS ( -- 该学生不存在:
+    Select * From Course -- 某门课
+    Where type = 0 -- 是必修课
+        and cno NOT IN ( -- 且在该学生已选课程中分数大于等于60
             Select Distinct cno From SC 
-            Where sno = Student.sno 
-                and sc.score < 60 -- 不及格的必修课
+            Where sno = Student.sno and sc.score >= 60
         )
 );
 ```
