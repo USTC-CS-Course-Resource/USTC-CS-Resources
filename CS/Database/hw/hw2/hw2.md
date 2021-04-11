@@ -25,7 +25,7 @@ SC(sno,cno,score: float,term:int)
 **查询姓名中含有 "科" 字的学生学号和姓名.**
 
 ```sql
-Select sno, sname from Student
+Select sno, sname From Student
 Where sname Like '%科%';
 ```
 
@@ -33,8 +33,8 @@ Where sname Like '%科%';
 **查询学分不低于3分的必修课课程号和课程名**
 
 ```sql
-Select cno, cname from Course
-Where Course.credit >= 3;
+Select cno, cname From Course
+Where Course.type = 0 and Course.credit >= 3;
 ```
 
 ### (3)
@@ -44,7 +44,7 @@ Where Course.credit >= 3;
 Select Distinct s.sno, s.sname
 from Student s, Course c, SC sc
 Where s.sno = sc.sno and sc.cno = c.cno
-    and c.type = 3; -- 选了公选课
+    and c.type = 3 and sc.score = NULL; -- 选了公选课 且 缺少成绩
 ```
 
 ### (4)
@@ -52,7 +52,7 @@ Where s.sno = sc.sno and sc.cno = c.cno
 
 ```sql
 Select sno, sname, 
-    TIMESTAMPDIFF(YEAR, birthdate, DATE_FORMAT(now(), '%Y-%m-%d')) As age
+    timeStampDiff(YEAR, birthdate, now()) As age
 From Student
 Where age > 20;
 ```
@@ -86,14 +86,12 @@ Select sno, sname
 From Student s
 Where NOT EXISTS ( -- 不存在一个 cno 不在 sno 选过的课集合中
     Select * From Course
-    Where cno NOT IN (
-        Select Distinct cno From SC Where sno = Student.sno)
-    )
-    and NOT EXISTS ( -- s.sno 不存在不合格的科目
-        Select * From Course c, SC sc
-        Where s.sno = sc.sno and cno = sc.cno
-            and sc.score < 60 -- 不及格
-    )
+    Where type = 0 
+        and cno NOT IN (
+            Select Distinct cno From SC 
+            Where sno = Student.sno 
+                and sc.score < 60 -- 不及格的必修课
+        )
 );
 ```
 
@@ -150,13 +148,12 @@ Order By (
 **查询存在课程重修不及格情况的学生学号、姓名以及重修不及格的课程号和课程名**
 
 ```sql
-Select s.sno, s.sname, c.cno, c.cname
-From Student s, Course c (
-    Select sc.sno, sc.cno From SC sc
-    Group By s.sno, c.cno
-    Having count(*) > 1 and max(sc.score) < 60
-) refailed -- 重修不及格学生号-课程号
-Where s.sno = refailed.sno and c.cno = refailed.cno
+Select Distinct s.sno, s.sname, c.cno, c.cname
+From Student s, Course c, SC sc
+Where s.sno = sc.sno and c.cno = sc.cno
+Group By s.sno, c.cno
+Having count(*) > 1 and max(sc.score) < 60 -- 重修不及格
+
 ```
 
 ### (10)
