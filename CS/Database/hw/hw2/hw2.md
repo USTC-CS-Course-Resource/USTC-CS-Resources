@@ -152,7 +152,6 @@ From Student s, Course c, SC sc
 Where s.sno = sc.sno and c.cno = sc.cno
 Group By s.sno, s.sname, c.cno, c.cname
 Having count(*) > 1 and max(sc.score) < 60 -- 重修不及格
-
 ```
 
 ### (10)
