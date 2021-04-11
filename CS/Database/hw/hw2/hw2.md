@@ -98,7 +98,7 @@ Where NOT EXISTS ( -- 该学生不存在:
 **查询总平均成绩排名在前50%（向上取整）的学生中必修课平均分最高的前10位同学，要求返回这些学生的学号、姓名、必修课平均分以及课程总平均成绩（不足10位时则全部返回）**
 
 ```sql
-Select s.sno, s.sname, snoAllAvg50.allAvg, avg(sc.score) As required_avg
+Select s.sno, s.sname, allAvg, avg(sc.score) As required_avg
 From (
     Select sno, avg(sc.score) As all_avg -- 总平均成绩排名前 50% (ceil) 的学生
     From Student s, Course c, SC sc
@@ -116,7 +116,7 @@ From (
     ) sno_all_avg50, Student s, Course c, SC sc
 Where sno_all_avg50.sno = sc.sno and c.cno = sc.cno
     and c.type = 0
-Group By sno
+Group By sno, sname, all_avg
 Order By required_avg
 Limit 10;
 ```
@@ -125,15 +125,15 @@ Limit 10;
 **查询每门课程的课程名、课程类型、最高成绩、最低成绩、平均成绩和不及格率，要求结果按通识课、必修课、选修课、公选课顺序排列（提示：课程名可能有重名）**
 
 ```sql
-Select c.cname, c.type, max(sc.score) max_score, min(sc.score) min_score, avg(sc.score) avg_score, failed_count / count(sc.score) failed_rate
+Select c.cname, c.type, max(sc.score) max_score, min(sc.score) min_score, avg(sc.score) avg_score, failed_count_tb.failed_count / count(sc.score) failed_rate
 From Course c, SC sc, (
-    Select c.cno, count(*)
+    Select c.cno, count(*) As failed_count
     From Course c, SC sc
     Where sc.score < 60
     Group By c.cno
-    ) failed_count
-Where c.cno = failed_count.cno
-Group By c.cno
+    ) failed_count_tb
+Where c.cno = failed_count_tb.cno
+Group By c.cno, c.cname, c.ctype, failed_count_tb.failed_count
 Order By (
     Case c.type
     When 2 Then 0   -- 通识课
@@ -150,7 +150,7 @@ Order By (
 Select Distinct s.sno, s.sname, c.cno, c.cname
 From Student s, Course c, SC sc
 Where s.sno = sc.sno and c.cno = sc.cno
-Group By s.sno, c.cno
+Group By s.sno, s.sname, c.cno, c.cname
 Having count(*) > 1 and max(sc.score) < 60 -- 重修不及格
 
 ```
