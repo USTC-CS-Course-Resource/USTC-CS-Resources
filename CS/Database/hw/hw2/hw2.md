@@ -97,6 +97,7 @@ Where NOT EXISTS ( -- 该学生不存在:
 ### (7)
 **查询总平均成绩排名在前50%（向上取整）的学生中必修课平均分最高的前10位同学，要求返回这些学生的学号、姓名、必修课平均分以及课程总平均成绩（不足10位时则全部返回）**
 
+不用 `join`, 则以 (学号, 姓名) 为唯一区分标志:
 ```sql
 Select s.sno, s.sname, allAvg, avg(sc.score) As required_avg
 From (
@@ -121,6 +122,44 @@ Order By required_avg
 Limit 10;
 ```
 
+若使用 `join`:
+```sql
+Select s.sno, s.sname, allAvg, required_avg
+From ( -- 总平均成绩排名前 50% (ceil) 的学生及其成绩表
+    Select sno, avg(sc.score) As all_avg 
+    From Student s, Course c, SC sc
+    Where s.sno = sc.sno and c.cno = sc.cno
+        and all_avg >= (
+            Select all_avg_50 From (
+                Select avg(sc.score) As all_avg_50,
+                    row_number() over (Order By all_avg_50 DESC)
+                From Student s, Course c, SC sc
+                Where s.sno = sc.sno and c.cno = sc.cno
+                Group By sno
+            )
+            Where r = (Select ceil(count(*)) From Student) -- 排名恰为 50% 上取整的排名序号
+        ) 
+    Group By sno
+) all_avg50
+Natural Join ( -- 各学生的必修课平均成绩表
+    Select s.sno, avg(sc.score) As required_avg
+    From Student s , Course c, SC sc
+    Where c.cno = sc.cno and c.type = 0
+    Group By sno
+) total_required
+Natural Join Student s -- 连入学生信息
+Order By required_avg
+Limit 10
+```
+<!-- select * from (
+    select id, avg(score2) avgscore2 from tmp group by id
+    ) tt
+natural join (
+    select name, avg(score1) avgscore1 from tmp group by name
+    ) t
+natural join tmp
+order by score2
+; -->
 ### (8)
 **查询每门课程的课程名、课程类型、最高成绩、最低成绩、平均成绩和不及格率，要求结果按通识课、必修课、选修课、公选课顺序排列（提示：课程名可能有重名）**
 
