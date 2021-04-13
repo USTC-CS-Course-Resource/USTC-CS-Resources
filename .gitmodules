@@ -31,3 +31,6 @@
 [submodule "CS/BigData-Algorithm"]
 	path = CS/BigData-Algorithm
 	url = git@github.com:USTC-CS-Course-Resource/BigData-Algorithm.git
+[submodule "CS/Computer-Architecture/Computer-Architecture-Labs"]
+	path = CS/Computer-Architecture/Computer-Architecture-Labs
+	url = git@github.com:USTC-CS-Course-Resource/Computer-Architecture-Labs.git
