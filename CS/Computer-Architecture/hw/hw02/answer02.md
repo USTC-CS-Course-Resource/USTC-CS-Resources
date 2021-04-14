@@ -9,10 +9,12 @@ PB18111697 王章瀚
 ```riscv
     sw      x0, 7000(x0)        ; i = 0
     add     x6, x0, 100         ; x6 = 101
-    lw      x7, i5000           ; lw 5000 from `i5000`
+    auipc   x7, i5000           ; get address of `i5000`
+    lw      x7, 0(x7)           ; lw 5000 from `i5000`
     lw      x7, 0(x7)           ; x7 = C = mem[5000]
 loop:
-    lw      x5, i57000           ; lw 7000 from `i7000`
+    auipc   x5, i7000           ; get address of `i7000`
+    lw      x5, 0(x5)           ; lw 7000 from `i7000`
     lw      x5, 0(x5)           ; x5 = i = mem[7000]
     add     x29, x0, 2          ; x29 = 2
     sll     x28, x5, x29        ; x28 = i << 2
@@ -22,7 +24,8 @@ loop:
     sw      x29, 1000(x28)      ; A[i] = B[i] + C
     ; loop body end
     add     x5, x5, 1           ; i++
-    lw      x30, i7000          ;
+    auipc   x5, i7000           ; get address of `i7000`
+    lw      x5, 0(x5)           ; lw 7000 from `i7000`
     sw      x5, 0(x30)          ; mem[7000] = i
     blt     x5, x6, loop        ; if i < 101, loop
     
@@ -37,11 +40,11 @@ i7000:
 
 ```
 
-按此代码, 整个 `loop` 标签标记的循环体共执行 $12 \times 101 = 1212$ 条, 加上最开始的初始化 4 条, 总共是 1216 条
+按此代码, 整个 `loop` 标签标记的循环体共执行 $14 \times 101 = 1414$ 条, 加上最开始的初始化 5 条, 总共是 1419 条
 
-**纯代码和数据**大小为 20 条指令 + 3 个字的大小, 即 $32 bits \times 23=736 bit$,
+**纯代码和数据**大小为 19 条指令 + 3 个字的大小, 即 $32 bits \times (19+3)=704 bit$,
 
-若**算上数组 A, B 和 C, i 的存储空间**, 则至少需要再 $101*2*32bits + 2 * 32bits=6528 bits$, 加上代码是 $6528+736=7264$
+若**算上数组 A, B 和 C, i 的存储空间**, 则至少需要再 $101*2*32bits + 2 * 32bits=6528 bits$, 加上代码是 $6528+704=7232$
 
 ## EX2
 
