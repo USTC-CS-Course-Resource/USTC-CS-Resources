@@ -138,13 +138,13 @@ i7000:
 ![](6.2.png)
 
 ### 吞吐率
-吞吐率 $TP=\frac{7}{18\Delta t}$
+吞吐率 $TP=\frac{7}{17\Delta t}$
 
 ### 加速比
 原本做一次加法需要 $4\Delta t$, 一次乘法需要 $3\Delta t$, 总共 4 次加法, 3 次乘法, 故有
 $$T_{原}=4\times 5\Delta t + 3\times 3\Delta t=29 \Delta t$$
-流水化后, 只需 $18\Delta t$, 故加速比是 $S=\frac{29\Delta t}{18\Delta t}\approx1.611$
+流水化后, 只需 $17\Delta t$, 故加速比是 $S=\frac{29\Delta t}{17\Delta t}\approx1.7059$
 
 ### 效率
 
-$E=\frac{29}{18* 5}\approx 0.322$
+$E=\frac{29}{17* 5}\approx 0.3412$
