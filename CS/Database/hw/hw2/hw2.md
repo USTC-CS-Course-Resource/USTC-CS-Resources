@@ -112,7 +112,7 @@ From (
                 Where s.sno = sc.sno and c.cno = sc.cno
                 Group By sno
             )
-            Where r = (Select ceil(count(*)) From Student) -- 排名恰为 50% 上取整的排名序号
+            Where r = (Select ceil(count(*)*0.5) From Student) -- 排名恰为 50% 上取整的排名序号
         ) 
     Group By sno
     ) sno_all_avg50, Student s, Course c, SC sc
@@ -138,7 +138,7 @@ From ( -- 总平均成绩排名前 50% (ceil) 的学生及其成绩表
                 Where s.sno = sc.sno and c.cno = sc.cno
                 Group By sno
             )
-            Where r = (Select ceil(count(*)) From Student) -- 排名恰为 50% 上取整的排名序号
+            Where r = (Select ceil(count(*)*0.5) From Student) -- 排名恰为 50% 上取整的排名序号
         ) 
     Group By sno
 ) all_avg50
