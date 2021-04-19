@@ -167,11 +167,21 @@ order by score2
 ```sql
 Select c.cname, c.type, max(sc.score) max_score, min(sc.score) min_score, avg(sc.score) avg_score, failed_count_tb.failed_count / count(sc.score) failed_rate
 From Course c, SC sc, (
-    Select c.cno, count(*) As failed_count
-    From Course c, SC sc
-    Where sc.score < 60
-    Group By c.cno
-    ) failed_count_tb
+    Select c.cno, failed_count 
+    From (
+        Select c.cno, count(*) As failed_count
+        From Course c, SC sc
+        Where sc.score < 60
+        Group By c.cno
+        ) failed_count_tb_part
+    Union (
+        Select c.cno, 0 As failed_count
+        Where not exists (
+            Select * from Sc sc
+            Where sc.cno = c.cno and sc.score < 60;
+        )
+    )
+) failed_count_tb
 Where c.cno = failed_count_tb.cno
 Group By c.cno, c.cname, c.ctype, failed_count_tb.failed_count
 Order By (
