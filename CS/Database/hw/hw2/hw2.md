@@ -173,13 +173,12 @@ From Course c, SC sc, (
         From Course c, SC sc
         Where sc.score < 60
         Group By c.cno
-        ) failed_count_tb_part
+    ) failed_count_tb_part
     Union (
         Select c.cno, 0 As failed_count
         Where not exists (
             Select * from Sc sc
             Where sc.cno = c.cno and sc.score < 60;
-        )
     )
 ) failed_count_tb
 Where c.cno = failed_count_tb.cno
@@ -212,6 +211,7 @@ Delete From SC sc
 Where Exists (
     Select sc.sno, sc.cno From (
         Select sc.sno, sc.cno, max(sc.term) As latest_term
+        where sc.score is not null -- 必须要有成绩
         Group By sc.sno, sc.cno
     ) latest_retake
     Where sc.sno = latest_retake.sno and sc.cno = latest_retake.cno
