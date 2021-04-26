@@ -146,7 +146,7 @@ where reader_id not in (select id from reader)
 验证如下:
 ```sql
 -- 书名 name 不能为空
-select * from book where name is not null;
+select * from book where name is null;
 -- 状态 status 只能为 0 或 1
 select * from book where status != 0 and status != 1;
 ```
@@ -257,7 +257,7 @@ create view reader_borrow_view as (
 -- query
 select rid, count(distinct bid) as borrow_count
 from reader_borrow_view
-where timestampdiff(day, borrow_date, now()) <= 366
+where timestampdiff(year, borrow_date, now()) <= 1
 group by rid;
 ```
 
