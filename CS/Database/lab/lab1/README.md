@@ -7,25 +7,6 @@
 ```sql
 -- 图书
 ---- ID 为主键, 书名不能为空. status 为 1 表示借出, 为 0 表示在馆, 默认为 0
-Book(ID char(8), name varchar(10), author varchar(10), price float, status int)
-
--- 读者
----- 读者号 ID 为主键
-Reader(ID char(8), name varchar(10), age int, address varchar(20))
-
--- 借阅
----- Return_Date 为 NULL 表示未还, 
----- 主键为 (book_ID, Reader_ID), 
----- book_ID 为外键, 引用 Book 表的 ID
----- Reader_ID 为外键, 引用 Reader 的 ID
-Borrow(book_ID char(8), Reader_ID char(8), Borrow_Date date, Return_Date date)
-```
-
-以下使用令人舒适的命名规则:
-
-```sql
--- 图书
----- ID 为主键, 书名不能为空. status 为 1 表示借出, 为 0 表示在馆, 默认为 0
 book(id char(8), name varchar(10), author varchar(10), price float, status int)
 
 -- 读者
@@ -57,7 +38,7 @@ Use library;
 -- 创建 book 表
 Create Table book(
     id char(8) , 
-    name varchar(10) NOT NULL, 
+    name varchar(20) NOT NULL, 
     author varchar(10), 
     price float, 
     status int DEFAULT 0,
@@ -89,14 +70,6 @@ Create Table borrow(
 );
 ```
 
-插入部分数据
-```sql
-Insert Into book (id, name, author, price, status)
-Values
-('00000000', 'Dragon', 'Shirley', 999, 0),
-('00000000', 'Olaf The Snowman', 'Hank', 666, 0)
-```
-
 ### 2.
 **设计例子，验证实体完整性、参照完整性、用户自定义完整性**
 
@@ -116,7 +89,13 @@ select id from reader where id is null;
 select book_id, reader_id from borrow 
 where book_id is null or reader_id is null;
 ```
+
 若返回均为空集, 则满足实体完整性
+
+插入一个空值的是不行的:
+```sql
+insert into book(id) value(null);
+```
 
 #### 验证参照完整性
 
@@ -136,6 +115,12 @@ where reader_id not in (select id from reader)
 ```
 如果返回均是空集, 则说明满足参照完整性
 
+```sql
+insert into borrow value('b100','r1', now(), null);
+```
+
+对 reader 的外键验证也是类似的.
+
 #### 验证用户自定义完整性
 
 包括:
@@ -149,6 +134,11 @@ where reader_id not in (select id from reader)
 select * from book where name is null;
 -- 状态 status 只能为 0 或 1
 select * from book where status != 0 and status != 1;
+```
+
+这里的 `status` 不能是 100, 只能是 0 或 1
+```sql
+insert into book value('b100', 'somebookname', 'someone', 0, 100);
 ```
 
 如果返回均为空集, 则说明满足用户自定义完整性
@@ -174,12 +164,10 @@ where borrow.book_id = book.id and borrow.reader_id = reader.id
 #### (3)
 **检索未借阅图书的读者姓名**;
 
-认为是: 当前没有正在借阅图书的读者(而非从未借过书的读者)
 ```sql
 select reader.name from reader
 where reader.id not in (
     select distinct reader_id from borrow
-        where borrow.return_date is not null
 );
 ```
 
@@ -207,7 +195,7 @@ select reader.name from reader
 where reader.id in (
     select reader.id from reader, borrow
         where reader.id = borrow.reader_id
-            and borrow.return_date is null
+            /* and borrow.return_date is null */
         group by borrow.reader_id
         having count(*) > 3
 );
@@ -219,14 +207,14 @@ where reader.id in (
 ```sql
 select distinct reader.name, reader.id from reader, borrow
 where not exists (
-        select borrow.book_id from book, borrow
-        where reader.id = borrow.reader_id
-            and borrow.book_id in (
-            select book_id from reader, borrow
-            where reader.id = borrow.reader_id 
-                and reader.name = '李林'
-        )
-    );
+    select borrow.book_id from book, borrow
+    where reader.id = borrow.reader_id
+        and borrow.book_id in (
+        select book_id from reader, borrow
+        where reader.id = borrow.reader_id 
+            and reader.name = '李林'
+    )
+);
 ```
 
 #### (8)
