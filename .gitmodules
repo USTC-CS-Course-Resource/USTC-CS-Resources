@@ -34,3 +34,6 @@
 [submodule "CS/Computer-Architecture/Computer-Architecture-Labs"]
 	path = CS/Computer-Architecture/Computer-Architecture-Labs
 	url = git@github.com:USTC-CS-Course-Resource/Computer-Architecture-Labs.git
+[submodule "CS/Artificial-Intelligence/Artificial-Intelligence-Labs"]
+	path = CS/Artificial-Intelligence/Artificial-Intelligence-Labs
+	url = git@github.com:USTC-CS-Course-Resource/Artificial-Intelligence-Labs.git
