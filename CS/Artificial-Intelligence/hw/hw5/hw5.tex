@@ -1,0 +1,228 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumitem}
+%\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{20}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+		\sethlcolor{lgray}%背景色
+		\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+
+
+
+\title{人工智能基础 HW3}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{7.13}
+\noindent\textbf{This exercise looks into the relationship between clauses and implication sentences.}
+\subsection*{a.}
+\noindent \textbf{Show that the clause $(\lnot P_1\lor \cdots\lor \lnot P_m\lor Q)$ is logically equivalent to the implication sentence $(P_1\land\cdots\land P_m)\Rightarrow Q$}\\
+\jumpLine\noindent 
+Proof.
+\begin{align*}
+	(P_1\land\cdots\land P_m)\Rightarrow Q &\Leftrightarrow \lnot(P_1\land\cdots\land P_m)\lor Q \\
+	&\Leftrightarrow (\lnot P_1\lor\cdots\lor\lnot P_m)\lor Q \\
+	&\Leftrightarrow \lnot P_1\lor\cdots\lor\lnot P_m\lor Q
+\end{align*}
+\hfill $\square$
+
+\subsection*{b.}
+\noindent \textbf{Show that every clause (regardless of the number of positive literals) can be written in the form $(P_1\land\cdots\land P_m)\Rightarrow (Q_1\lor\cdots\lor Q_n)$, where the $P_s$ and $Q_s$ are proposition symbols. A knowledge base consisting of such sentences is in implicative normal form or Kowalski form (Kowalski, 1979). }\\
+\jumpLine\noindent 
+I first show that $(P_1\land\cdots\land P_m)\Rightarrow (Q_1\lor\cdots\lor Q_n)$ is equivalent to $\lnot P_1\lor\cdots\lor\lnot P_m\lor Q_1\lor\cdots\lor Q_n$:
+\begin{align*}
+	(P_1\land\cdots\land P_m)\Rightarrow (Q_1\lor\cdots\lor Q_n) &\Leftrightarrow \lnot(P_1\land\cdots\land P_m)\lor (Q_1\lor\cdots\lor Q_n) \\
+	&\Leftrightarrow (\lnot P_1\lor\cdots\lor\lnot P_m)\lor (Q_1\lor\cdots\lor Q_n) \\
+	&\Leftrightarrow \lnot P_1\lor\cdots\lor\lnot P_m\lor Q_1\lor\cdots\lor Q_n
+\end{align*}
+Secondly, each clause can be written in the form of $\lnot P_1\lor\cdots\lor\lnot P_m\lor Q_1\lor\cdots\lor Q_n$. \\
+Thus, every clause can be written in the form of $(P_1\land\cdots\land P_m)\Rightarrow (Q_1\lor\cdots\lor Q_n)$
+
+\subsection*{c.}
+\noindent \textbf{Write down the full resolution rule for sentences in implicative normal form.}\\
+\jumpLine\noindent 
+The resolution rule is:
+$$\frac{l_1\lor\cdots\lor l_k,\qquad m_1\lor\cdots\lor m_n}{l_1\lor\cdots\lor l_{i-1}\lor l_{i+1}\lor\cdots\lor l_k\lor m_1\lor\cdots\lor m_{j-1}\lor m_{j+1} \lor\cdots\lor m_n}$$
+where $l_i$ and $m_j$ are complementary literals.\\
+This can be rewritten as:
+$$\frac{\lnot P_1\lor\cdots\lor\lnot P_m\lor Q_1\lor\cdots\lor Q_n,\qquad \lnot R_1\lor\cdots\lor\lnot R_k\lor S_1\lor\cdots\lor S_l}{P_1\lor\cdots\lor P_{i-1}\lor P_{i+1}\lor\cdots\lor P_m\lor Q_1\lor\cdots\lor Q_n\lor \lnot R_1\lor\cdots\lor\lnot R_k S_1\lor\cdots\lor S_{j-1}\lor S_{j+1} \lor\cdots\lor S_l}$$
+where $P_i=S_j$. According to (b), the rule above can be written as:
+$$\frac{(P_1\land\cdots\land P_m)\Rightarrow (Q_1\lor\cdots\lor Q_n),\qquad (R_1\land\cdots\land R_k)\Rightarrow (S_1\lor\cdots\lor S_l)}{P_1\lor\cdots\lor P_{i-1}\lor P_{i+1}\lor\cdots\lor P_m\lor Q_1\lor\cdots\lor Q_n\lor \lnot R_1\lor\cdots\lor\lnot R_k\lor  S_1\lor\cdots\lor S_{j-1}\lor S_{j+1} \lor\cdots\lor S_l}$$
+
+
+
+\section*{Proof}
+\noindent \textbf{Prove the completeness of the forward chaining algorithm.}\\
+\jumpLine\noindent 
+\begin{enumerate}[label=\arabic*. ]
+	\item 当 FC 到达不动点后, 不会再有新的推理
+	\item 考虑算法伪代码中的 inferred 表的最终状态, 参与推理过程的均为 true, 否则为 false. 可以把这个推理表看成一个模型 M, 
+	\item 且原始 KB 中的每个子句在模型 M 中都为真. 其证明如下:
+	\begin{enumerate}[label=(\arabic*). ]
+		\item 如果有某个子句 $a_1\land\cdots\land a_k\Rightarrow b$ 在 M 中为 false, 那么 $a_1\land\cdots\land a_k$ 在 M 中为 true 且 $b$ 在 M 中为 false
+		\item 但由于算法已经到达了不动点, 故此条知识应得以继续推理, 矛盾.
+	\end{enumerate}
+	\item 因此 M 是 KB 的一个模型. 若 $KB\vDash q$, 则 $q$ 在 KB 的所有模型中为 true, 也即在 M 下为 true.
+	\item 因此 $q$ 在 inferred 表中也为 true, 进而能够被 FC 算法推断出来.
+\end{enumerate}
+
+\end{document}
+
+
+
+
