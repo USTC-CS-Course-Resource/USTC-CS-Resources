@@ -1,22 +1,12 @@
 /*==============================================================*/
 /* DBMS name:      Sybase SQL Anywhere 12                       */
-/* Created on:     2021/4/30 18:41:47                           */
+/* Created on:     2021/5/2 14:40:06                            */
 /*==============================================================*/
 
-
-if exists(select 1 from sys.sysforeignkey where role='FK_ACCOUNT_OPEN_ACCO_BRANCH') then
-    alter table account
-       delete foreign key FK_ACCOUNT_OPEN_ACCO_BRANCH
-end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_CHECKING_CHECKING_ACCOUNT') then
     alter table checking_account
        delete foreign key FK_CHECKING_CHECKING_ACCOUNT
-end if;
-
-if exists(select 1 from sys.sysforeignkey where role='FK_CUSTOMER_RESPONSIB_STAFF') then
-    alter table customer
-       delete foreign key FK_CUSTOMER_RESPONSIB_STAFF
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_DEPARTME_DEPARTMEN_BRANCH') then
@@ -24,24 +14,24 @@ if exists(select 1 from sys.sysforeignkey where role='FK_DEPARTME_DEPARTMEN_BRAN
        delete foreign key FK_DEPARTME_DEPARTMEN_BRANCH
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_CHE_HAVE_CHEC_CUSTOMER') then
-    alter table have_checking_account
-       delete foreign key FK_HAVE_CHE_HAVE_CHEC_CUSTOMER
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_CUSTOMER') then
+    alter table have_account
+       delete foreign key FK_HAVE_ACC_HAVE_ACCO_CUSTOMER
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_CHE_HAVE_CHEC_CHECKING') then
-    alter table have_checking_account
-       delete foreign key FK_HAVE_CHE_HAVE_CHEC_CHECKING
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_SAVING_A') then
+    alter table have_account
+       delete foreign key FK_HAVE_ACC_HAVE_ACCO_SAVING_A
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_SAV_HAVE_SAVI_CUSTOMER') then
-    alter table have_saving_account
-       delete foreign key FK_HAVE_SAV_HAVE_SAVI_CUSTOMER
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_BRANCH') then
+    alter table have_account
+       delete foreign key FK_HAVE_ACC_HAVE_ACCO_BRANCH
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_SAV_HAVE_SAVI_SAVING_A') then
-    alter table have_saving_account
-       delete foreign key FK_HAVE_SAV_HAVE_SAVI_SAVING_A
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_CHECKING') then
+    alter table have_account
+       delete foreign key FK_HAVE_ACC_HAVE_ACCO_CHECKING
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_LOAN_BORROW_CUSTOMER') then
@@ -59,6 +49,16 @@ if exists(select 1 from sys.sysforeignkey where role='FK_PAY_LOAN_PAY_LOAN2_LOAN
        delete foreign key FK_PAY_LOAN_PAY_LOAN2_LOAN
 end if;
 
+if exists(select 1 from sys.sysforeignkey where role='FK_RESPONSI_RESPONSIB_CUSTOMER') then
+    alter table responsibility
+       delete foreign key FK_RESPONSI_RESPONSIB_CUSTOMER
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_RESPONSI_RESPONSIB_STAFF') then
+    alter table responsibility
+       delete foreign key FK_RESPONSI_RESPONSIB_STAFF
+end if;
+
 if exists(select 1 from sys.sysforeignkey where role='FK_SAVING_A_SAVING_ACCOUNT') then
     alter table saving_account
        delete foreign key FK_SAVING_A_SAVING_ACCOUNT
@@ -69,7 +69,15 @@ if exists(select 1 from sys.sysforeignkey where role='FK_STAFF_HIRE_BRANCH') the
        delete foreign key FK_STAFF_HIRE_BRANCH
 end if;
 
-drop index if exists account.open_account_FK;
+if exists(select 1 from sys.sysforeignkey where role='FK_WORK_IN_WORK_IN_STAFF') then
+    alter table work_in
+       delete foreign key FK_WORK_IN_WORK_IN_STAFF
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_WORK_IN_WORK_IN2_DEPARTME') then
+    alter table work_in
+       delete foreign key FK_WORK_IN_WORK_IN2_DEPARTME
+end if;
 
 drop index if exists account.account_PK;
 
@@ -83,8 +91,6 @@ drop index if exists checking_account.checking_account_PK;
 
 drop table if exists checking_account;
 
-drop index if exists customer.responsibility_FK;
-
 drop index if exists customer.customer_PK;
 
 drop table if exists customer;
@@ -95,21 +101,17 @@ drop index if exists department.department_PK;
 
 drop table if exists department;
 
-drop index if exists have_checking_account.have_checking_account2_FK;
+drop index if exists have_account.have_account4_FK;
 
-drop index if exists have_checking_account.have_checking_account_FK;
+drop index if exists have_account.have_account3_FK;
 
-drop index if exists have_checking_account.have_checking_account_PK;
+drop index if exists have_account.have_account2_FK;
 
-drop table if exists have_checking_account;
+drop index if exists have_account.have_account_FK;
 
-drop index if exists have_saving_account.have2_FK;
+drop index if exists have_account.have_account_PK;
 
-drop index if exists have_saving_account.have_FK;
-
-drop index if exists have_saving_account.have_PK;
-
-drop table if exists have_saving_account;
+drop table if exists have_account;
 
 drop index if exists loan.borrow_FK;
 
@@ -125,6 +127,14 @@ drop index if exists pay_loan.pay_loan_PK;
 
 drop table if exists pay_loan;
 
+drop index if exists responsibility.responsibility2_FK;
+
+drop index if exists responsibility.responsibility_FK;
+
+drop index if exists responsibility.responsibility_PK;
+
+drop table if exists responsibility;
+
 drop index if exists saving_account.saving_account_PK;
 
 drop table if exists saving_account;
@@ -135,13 +145,20 @@ drop index if exists staff.staff_PK;
 
 drop table if exists staff;
 
+drop index if exists work_in.work_in2_FK;
+
+drop index if exists work_in.work_in_FK;
+
+drop index if exists work_in.work_in_PK;
+
+drop table if exists work_in;
+
 /*==============================================================*/
 /* Table: account                                               */
 /*==============================================================*/
 create table account 
 (
    id                   char(18)                       not null,
-   bra_name             varchar(16)                    not null,
    balance              double                         not null,
    type                 smallint                       not null,
    open_account_date    date                           not null,
@@ -156,13 +173,6 @@ comment on table account is
 /*==============================================================*/
 create unique index account_PK on account (
 id ASC
-);
-
-/*==============================================================*/
-/* Index: open_account_FK                                       */
-/*==============================================================*/
-create index open_account_FK on account (
-bra_name ASC
 );
 
 /*==============================================================*/
@@ -188,11 +198,7 @@ name ASC
 create table checking_account 
 (
    acc_id               char(18)                       not null,
-   bra_name             varchar(16)                    null,
-   balance              double                         not null,
-   type                 smallint                       not null,
-   open_account_date    date                           not null,
-   overdraft            double                         null,
+   overdraft            double                         not null,
    constraint PK_CHECKING_ACCOUNT primary key clustered (acc_id)
 );
 
@@ -209,7 +215,6 @@ acc_id ASC
 create table customer 
 (
    id                   char(18)                       not null,
-   sta_id               char(18)                       not null,
    name                 varchar(16)                    not null,
    phone                varchar(16)                    not null,
    address              varchar(32)                    not null,
@@ -217,7 +222,6 @@ create table customer
    contacts_phone       varchar(16)                    not null,
    contacts_email       varchar(32)                    not null,
    contacts_relation    varchar(16)                    not null,
-   type                 integer                        not null,
    constraint PK_CUSTOMER primary key (id)
 );
 
@@ -229,13 +233,6 @@ id ASC
 );
 
 /*==============================================================*/
-/* Index: responsibility_FK                                     */
-/*==============================================================*/
-create index responsibility_FK on customer (
-sta_id ASC
-);
-
-/*==============================================================*/
 /* Table: department                                            */
 /*==============================================================*/
 create table department 
@@ -244,7 +241,6 @@ create table department
    bra_name             varchar(16)                    not null,
    name                 varchar(16)                    not null,
    type                 varchar(16)                    not null,
-   department_manager_id char(18)                       not null,
    constraint PK_DEPARTMENT primary key (id)
 );
 
@@ -263,69 +259,52 @@ bra_name ASC
 );
 
 /*==============================================================*/
-/* Table: have_checking_account                                 */
+/* Table: have_account                                          */
 /*==============================================================*/
-create table have_checking_account 
-(
-   cus_id               char(18)                       not null,
-   che_acc_id           char(18)                       not null,
-   latest_visit_date    date                           not null,
-   constraint PK_HAVE_CHECKING_ACCOUNT primary key clustered (cus_id, che_acc_id)
-);
-
-/*==============================================================*/
-/* Index: have_checking_account_PK                              */
-/*==============================================================*/
-create unique clustered index have_checking_account_PK on have_checking_account (
-cus_id ASC,
-che_acc_id ASC
-);
-
-/*==============================================================*/
-/* Index: have_checking_account_FK                              */
-/*==============================================================*/
-create index have_checking_account_FK on have_checking_account (
-cus_id ASC
-);
-
-/*==============================================================*/
-/* Index: have_checking_account2_FK                             */
-/*==============================================================*/
-create index have_checking_account2_FK on have_checking_account (
-che_acc_id ASC
-);
-
-/*==============================================================*/
-/* Table: have_saving_account                                   */
-/*==============================================================*/
-create table have_saving_account 
+create table have_account 
 (
    cus_id               char(18)                       not null,
    sav_acc_id           char(18)                       not null,
+   bra_name             varchar(16)                    not null,
+   che_acc_id           char(18)                       not null,
    latest_visit_date    date                           not null,
-   constraint PK_HAVE_SAVING_ACCOUNT primary key clustered (cus_id, sav_acc_id)
+   constraint PK_HAVE_ACCOUNT primary key clustered (cus_id, bra_name)
 );
 
 /*==============================================================*/
-/* Index: have_PK                                               */
+/* Index: have_account_PK                                       */
 /*==============================================================*/
-create unique clustered index have_PK on have_saving_account (
+create unique clustered index have_account_PK on have_account (
 cus_id ASC,
-sav_acc_id ASC
+bra_name ASC
 );
 
 /*==============================================================*/
-/* Index: have_FK                                               */
+/* Index: have_account_FK                                       */
 /*==============================================================*/
-create index have_FK on have_saving_account (
+create index have_account_FK on have_account (
 cus_id ASC
 );
 
 /*==============================================================*/
-/* Index: have2_FK                                              */
+/* Index: have_account2_FK                                      */
 /*==============================================================*/
-create index have2_FK on have_saving_account (
+create index have_account2_FK on have_account (
 sav_acc_id ASC
+);
+
+/*==============================================================*/
+/* Index: have_account3_FK                                      */
+/*==============================================================*/
+create index have_account3_FK on have_account (
+bra_name ASC
+);
+
+/*==============================================================*/
+/* Index: have_account4_FK                                      */
+/*==============================================================*/
+create index have_account4_FK on have_account (
+che_acc_id ASC
 );
 
 /*==============================================================*/
@@ -391,15 +370,44 @@ loa_id ASC
 );
 
 /*==============================================================*/
+/* Table: responsibility                                        */
+/*==============================================================*/
+create table responsibility 
+(
+   cus_id               char(18)                       not null,
+   sta_id               char(18)                       not null,
+   type                 integer                        not null,
+   constraint PK_RESPONSIBILITY primary key clustered (cus_id, sta_id)
+);
+
+/*==============================================================*/
+/* Index: responsibility_PK                                     */
+/*==============================================================*/
+create unique clustered index responsibility_PK on responsibility (
+cus_id ASC,
+sta_id ASC
+);
+
+/*==============================================================*/
+/* Index: responsibility_FK                                     */
+/*==============================================================*/
+create index responsibility_FK on responsibility (
+cus_id ASC
+);
+
+/*==============================================================*/
+/* Index: responsibility2_FK                                    */
+/*==============================================================*/
+create index responsibility2_FK on responsibility (
+sta_id ASC
+);
+
+/*==============================================================*/
 /* Table: saving_account                                        */
 /*==============================================================*/
 create table saving_account 
 (
    acc_id               char(18)                       not null,
-   bra_name             varchar(16)                    null,
-   balance              double                         not null,
-   type                 smallint                       not null,
-   open_account_date    date                           not null,
    interest_rate        double                         not null,
    currency_type        varchar(16)                    not null,
    constraint PK_SAVING_ACCOUNT primary key clustered (acc_id)
@@ -440,21 +448,42 @@ create index hire_FK on staff (
 bra_name ASC
 );
 
-alter table account
-   add constraint FK_ACCOUNT_OPEN_ACCO_BRANCH foreign key (bra_name)
-      references branch (name)
-      on update restrict
-      on delete restrict;
+/*==============================================================*/
+/* Table: work_in                                               */
+/*==============================================================*/
+create table work_in 
+(
+   sta_id               char(18)                       not null,
+   dep_id               varchar(16)                    not null,
+   is_manager           smallint                       not null,
+   constraint PK_WORK_IN primary key clustered (sta_id, dep_id)
+);
+
+/*==============================================================*/
+/* Index: work_in_PK                                            */
+/*==============================================================*/
+create unique clustered index work_in_PK on work_in (
+sta_id ASC,
+dep_id ASC
+);
+
+/*==============================================================*/
+/* Index: work_in_FK                                            */
+/*==============================================================*/
+create index work_in_FK on work_in (
+sta_id ASC
+);
+
+/*==============================================================*/
+/* Index: work_in2_FK                                           */
+/*==============================================================*/
+create index work_in2_FK on work_in (
+dep_id ASC
+);
 
 alter table checking_account
    add constraint FK_CHECKING_CHECKING_ACCOUNT foreign key (acc_id)
       references account (id)
-      on update restrict
-      on delete restrict;
-
-alter table customer
-   add constraint FK_CUSTOMER_RESPONSIB_STAFF foreign key (sta_id)
-      references staff (id)
       on update restrict
       on delete restrict;
 
@@ -464,27 +493,27 @@ alter table department
       on update restrict
       on delete restrict;
 
-alter table have_checking_account
-   add constraint FK_HAVE_CHE_HAVE_CHEC_CUSTOMER foreign key (cus_id)
+alter table have_account
+   add constraint FK_HAVE_ACC_HAVE_ACCO_CUSTOMER foreign key (cus_id)
       references customer (id)
       on update restrict
       on delete restrict;
 
-alter table have_checking_account
-   add constraint FK_HAVE_CHE_HAVE_CHEC_CHECKING foreign key (che_acc_id)
-      references checking_account (acc_id)
-      on update restrict
-      on delete restrict;
-
-alter table have_saving_account
-   add constraint FK_HAVE_SAV_HAVE_SAVI_CUSTOMER foreign key (cus_id)
-      references customer (id)
-      on update restrict
-      on delete restrict;
-
-alter table have_saving_account
-   add constraint FK_HAVE_SAV_HAVE_SAVI_SAVING_A foreign key (sav_acc_id)
+alter table have_account
+   add constraint FK_HAVE_ACC_HAVE_ACCO_SAVING_A foreign key (sav_acc_id)
       references saving_account (acc_id)
+      on update restrict
+      on delete restrict;
+
+alter table have_account
+   add constraint FK_HAVE_ACC_HAVE_ACCO_BRANCH foreign key (bra_name)
+      references branch (name)
+      on update restrict
+      on delete restrict;
+
+alter table have_account
+   add constraint FK_HAVE_ACC_HAVE_ACCO_CHECKING foreign key (che_acc_id)
+      references checking_account (acc_id)
       on update restrict
       on delete restrict;
 
@@ -506,6 +535,18 @@ alter table pay_loan
       on update restrict
       on delete restrict;
 
+alter table responsibility
+   add constraint FK_RESPONSI_RESPONSIB_CUSTOMER foreign key (cus_id)
+      references customer (id)
+      on update restrict
+      on delete restrict;
+
+alter table responsibility
+   add constraint FK_RESPONSI_RESPONSIB_STAFF foreign key (sta_id)
+      references staff (id)
+      on update restrict
+      on delete restrict;
+
 alter table saving_account
    add constraint FK_SAVING_A_SAVING_ACCOUNT foreign key (acc_id)
       references account (id)
@@ -515,6 +556,18 @@ alter table saving_account
 alter table staff
    add constraint FK_STAFF_HIRE_BRANCH foreign key (bra_name)
       references branch (name)
+      on update restrict
+      on delete restrict;
+
+alter table work_in
+   add constraint FK_WORK_IN_WORK_IN_STAFF foreign key (sta_id)
+      references staff (id)
+      on update restrict
+      on delete restrict;
+
+alter table work_in
+   add constraint FK_WORK_IN_WORK_IN2_DEPARTME foreign key (dep_id)
+      references department (id)
       on update restrict
       on delete restrict;
 
