@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase SQL Anywhere 12                       */
-/* Created on:     2021/5/7 16:13:00                            */
+/* Created on:     2021/5/11 21:07:14                           */
 /*==============================================================*/
 
 
@@ -29,19 +29,34 @@ if exists(select 1 from sys.sysforeignkey where role='FK_DEPARTME_MANAGER_STAFF'
        delete foreign key FK_DEPARTME_MANAGER_STAFF
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_CUSTOMER') then
-    alter table have_account
-       delete foreign key FK_HAVE_ACC_HAVE_ACCO_CUSTOMER
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_CHE_HAVE_CHEC_CUSTOMER') then
+    alter table have_check_account
+       delete foreign key FK_HAVE_CHE_HAVE_CHEC_CUSTOMER
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_BRANCH') then
-    alter table have_account
-       delete foreign key FK_HAVE_ACC_HAVE_ACCO_BRANCH
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_CHE_HAVE_CHEC_BRANCH') then
+    alter table have_check_account
+       delete foreign key FK_HAVE_CHE_HAVE_CHEC_BRANCH
 end if;
 
-if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_ACC_HAVE_ACCO_ACCOUNT') then
-    alter table have_account
-       delete foreign key FK_HAVE_ACC_HAVE_ACCO_ACCOUNT
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_CHE_HAVE_CHEC_CHECKING') then
+    alter table have_check_account
+       delete foreign key FK_HAVE_CHE_HAVE_CHEC_CHECKING
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_STO_HAVE_STOR_CUSTOMER') then
+    alter table have_store_account
+       delete foreign key FK_HAVE_STO_HAVE_STOR_CUSTOMER
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_STO_HAVE_STOR_BRANCH') then
+    alter table have_store_account
+       delete foreign key FK_HAVE_STO_HAVE_STOR_BRANCH
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_HAVE_STO_HAVE_STOR_SAVING_A') then
+    alter table have_store_account
+       delete foreign key FK_HAVE_STO_HAVE_STOR_SAVING_A
 end if;
 
 if exists(select 1 from sys.sysforeignkey where role='FK_LOAN_RELEASE_L_BRANCH') then
@@ -125,15 +140,25 @@ drop index if exists department_manager.department_manager_PK;
 
 drop table if exists department_manager;
 
-drop index if exists have_account.have_account3_FK;
+drop index if exists have_check_account.have_check_account3_FK;
 
-drop index if exists have_account.have_account2_FK;
+drop index if exists have_check_account.have_check_account2_FK;
 
-drop index if exists have_account.have_account_FK;
+drop index if exists have_check_account.have_check_account_FK;
 
-drop index if exists have_account.have_account_PK;
+drop index if exists have_check_account.have_check_account_PK;
 
-drop table if exists have_account;
+drop table if exists have_check_account;
+
+drop index if exists have_store_account.have_store_account3_FK;
+
+drop index if exists have_store_account.have_store_account2_FK;
+
+drop index if exists have_store_account.have_store_account_FK;
+
+drop index if exists have_store_account.have_store_account_PK;
+
+drop table if exists have_store_account;
 
 drop index if exists loan.release_loan_FK;
 
@@ -341,49 +366,87 @@ sta_id ASC
 );
 
 /*==============================================================*/
-/* Table: have_account                                          */
+/* Table: have_check_account                                    */
 /*==============================================================*/
-create table have_account 
+create table have_check_account 
 (
    cus_id               char(18)                       not null,
    bra_name             varchar(16)                    not null,
-   acc_id               char(18)                       not null,
+   che_acc_id           char(18)                       not null,
    latest_visit_date    date                           not null,
-   type                 smallint                       not null,
-   constraint PK_HAVE_ACCOUNT primary key clustered (cus_id, bra_name, acc_id)
+   constraint PK_HAVE_CHECK_ACCOUNT primary key clustered (cus_id, bra_name, che_acc_id)
 );
 
-comment on table have_account is 
-'应当对 (用户id, 支行名, 账户类型) 有一个 unique 约束';
-
 /*==============================================================*/
-/* Index: have_account_PK                                       */
+/* Index: have_check_account_PK                                 */
 /*==============================================================*/
-create unique clustered index have_account_PK on have_account (
+create unique clustered index have_check_account_PK on have_check_account (
 cus_id ASC,
 bra_name ASC,
-acc_id ASC
+che_acc_id ASC
 );
 
 /*==============================================================*/
-/* Index: have_account_FK                                       */
+/* Index: have_check_account_FK                                 */
 /*==============================================================*/
-create index have_account_FK on have_account (
+create index have_check_account_FK on have_check_account (
 cus_id ASC
 );
 
 /*==============================================================*/
-/* Index: have_account2_FK                                      */
+/* Index: have_check_account2_FK                                */
 /*==============================================================*/
-create index have_account2_FK on have_account (
+create index have_check_account2_FK on have_check_account (
 bra_name ASC
 );
 
 /*==============================================================*/
-/* Index: have_account3_FK                                      */
+/* Index: have_check_account3_FK                                */
 /*==============================================================*/
-create index have_account3_FK on have_account (
-acc_id ASC
+create index have_check_account3_FK on have_check_account (
+che_acc_id ASC
+);
+
+/*==============================================================*/
+/* Table: have_store_account                                    */
+/*==============================================================*/
+create table have_store_account 
+(
+   cus_id               char(18)                       not null,
+   bra_name             varchar(16)                    not null,
+   sav_acc_id           char(18)                       not null,
+   latest_visit_date    date                           not null,
+   constraint PK_HAVE_STORE_ACCOUNT primary key clustered (cus_id, bra_name, sav_acc_id)
+);
+
+/*==============================================================*/
+/* Index: have_store_account_PK                                 */
+/*==============================================================*/
+create unique clustered index have_store_account_PK on have_store_account (
+cus_id ASC,
+bra_name ASC,
+sav_acc_id ASC
+);
+
+/*==============================================================*/
+/* Index: have_store_account_FK                                 */
+/*==============================================================*/
+create index have_store_account_FK on have_store_account (
+cus_id ASC
+);
+
+/*==============================================================*/
+/* Index: have_store_account2_FK                                */
+/*==============================================================*/
+create index have_store_account2_FK on have_store_account (
+bra_name ASC
+);
+
+/*==============================================================*/
+/* Index: have_store_account3_FK                                */
+/*==============================================================*/
+create index have_store_account3_FK on have_store_account (
+sav_acc_id ASC
 );
 
 /*==============================================================*/
@@ -599,21 +662,39 @@ alter table department_manager
       on update restrict
       on delete restrict;
 
-alter table have_account
-   add constraint FK_HAVE_ACC_HAVE_ACCO_CUSTOMER foreign key (cus_id)
+alter table have_check_account
+   add constraint FK_HAVE_CHE_HAVE_CHEC_CUSTOMER foreign key (cus_id)
       references customer (id)
       on update restrict
       on delete restrict;
 
-alter table have_account
-   add constraint FK_HAVE_ACC_HAVE_ACCO_BRANCH foreign key (bra_name)
+alter table have_check_account
+   add constraint FK_HAVE_CHE_HAVE_CHEC_BRANCH foreign key (bra_name)
       references branch (name)
       on update restrict
       on delete restrict;
 
-alter table have_account
-   add constraint FK_HAVE_ACC_HAVE_ACCO_ACCOUNT foreign key (acc_id)
-      references account (id)
+alter table have_check_account
+   add constraint FK_HAVE_CHE_HAVE_CHEC_CHECKING foreign key (che_acc_id)
+      references checking_account (acc_id)
+      on update restrict
+      on delete restrict;
+
+alter table have_store_account
+   add constraint FK_HAVE_STO_HAVE_STOR_CUSTOMER foreign key (cus_id)
+      references customer (id)
+      on update restrict
+      on delete restrict;
+
+alter table have_store_account
+   add constraint FK_HAVE_STO_HAVE_STOR_BRANCH foreign key (bra_name)
+      references branch (name)
+      on update restrict
+      on delete restrict;
+
+alter table have_store_account
+   add constraint FK_HAVE_STO_HAVE_STOR_SAVING_A foreign key (sav_acc_id)
+      references saving_account (acc_id)
       on update restrict
       on delete restrict;
 

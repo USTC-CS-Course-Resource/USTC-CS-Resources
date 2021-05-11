@@ -17,10 +17,10 @@ PB18111697 王章瀚
 
 ### 账户操作
 
-- **开户**: 应同时向 账户表(`account`) 添加账户, 并在相应子类表储蓄账户(`saving_account`) 或 支票账户(`checking_account`) 中添加相关信息.
-  - **拥有账户关系** 保证了一个客户在一个银行内只能有一个储蓄帐号和一个支票账号
+- **开户**: 应同时向 账户表(`account`) 添加账户, 并在相应子类表储蓄账户(`saving_account`) 或 支票账户(`checking_account`) 中添加相关信息, 最后添加拥有关系:
+  - **拥有储蓄/支票账户关系** 由于对于客户身份证号和支行名会有索引, 插入查询等操作是比较快的.
   - **账户表** 保证了账户号的唯一性
-- **销户**, 应当事务地先将 `have_account` 内数据置 `NULL`, 而后 `saving_account` 或 `checking_account` 的数据, 最后 `account` 表内数据.
+- **销户**, 应当事务地先将 `have_store_account` 或 `have_check_account` 内数据置 `NULL`, 而后 `saving_account` 或 `checking_account` 的数据, 最后 `account` 表内数据.
 - **查询**: 
   - 定位账户的依据: 
     - 账户号: 则直接从 `account` 表可查到
