@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int n = 100000;
+    int n = 1000000;
     srand(0);
     auto array = new int[n];
     auto correct_answer = new int[n];
@@ -40,6 +40,9 @@ int main()
 
     int samples[NUM_THREADS * NUM_THREADS] = {0};
 
+#ifdef PROFILE
+    auto time_begin = chrono::system_clock::now();
+#endif
 #pragma omp parallel 
 {
 	int i = omp_get_thread_num();
@@ -48,6 +51,7 @@ int main()
     int end = min(begin + step , n);
     int local_n = end - begin;
     sort(array + begin, array + end);
+    // printf("thread: %d: sample: \t%ld\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
     // sample
     // TODO: haven't implement when `the size of last segment is less than n / p`
     assert(end - begin > NUM_THREADS && "haven't implement when `the size of last segment is less than NUM_THREADS`");
@@ -58,6 +62,10 @@ int main()
         samples[j] = array[A_idx];
     }
 }
+#ifdef PROFILE
+    printf("sample:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    time_begin = chrono::system_clock::now();
+#endif
 
 
 #ifdef DEBUG
@@ -75,7 +83,6 @@ int main()
     }
     printf("|\n");
 #endif
-
     // sort samples
     sort(samples, std::end(samples));
 
@@ -162,11 +169,14 @@ int main()
     }
     printf("\n");
 #endif
-    
+#ifdef PROFILE
+    printf("prepare for swap:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    time_begin = chrono::system_clock::now();
+#endif
     // do swap and local merge sort
-    auto begin_time = chrono::system_clock::now();
-    int swapped_array[n] = {0};
-    int result_array[n] = {0};
+    // auto begin_time = chrono::system_clock::now();
+    auto swapped_array = new int[n];
+    auto result_array = new int[n];
 #pragma omp parallel
 {
     int i = omp_get_thread_num();
@@ -180,11 +190,14 @@ int main()
         idx += local_seg_size;
         local_seg_end[j] = idx;
     }
-    printf("%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - begin_time).count());
+#ifdef PROFILE
+    printf("thread %d: prepare for merge:    \t%ld ns\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    auto local_time_begin = chrono::system_clock::now();
+#endif
 
     // local merge
     using value_array_idx_pair = pair<int, int>;
-    auto cmp = [](const value_array_idx_pair &a, const value_array_idx_pair &b) { return a.first > b.first; };
+    auto cmp = [](const value_array_idx_pair &a, const value_array_idx_pair &b) { return (a.first) > (b.first); };
     priority_queue<value_array_idx_pair, vector<value_array_idx_pair>, decltype(cmp)> min_heap(cmp);
 
     for (int j = 0; j < NUM_THREADS; j++) {
@@ -200,8 +213,30 @@ int main()
         }
         result_array[idx++] = min_pair.first;
     }
+
+    // local merge using pointer
+    // using value_array_idx_pair = pair<int*, int*>;
+    // auto cmp = [](const value_array_idx_pair &a, const value_array_idx_pair &b) { return *(a.first) > *(b.first); };
+    // priority_queue<value_array_idx_pair, vector<value_array_idx_pair>, decltype(cmp)> min_heap(cmp);
+
+    // for (int j = 0; j < NUM_THREADS; j++) {
+    //     min_heap.push({swapped_array + local_seg_idx[j], swapped_array + local_seg_end[j]});
+    // }
+
+    // idx = swapped_local_begin[i];
+    // while (!min_heap.empty()) {
+    //     auto min_pair = min_heap.top();
+    //     min_heap.pop();
+    //     if (min_pair.first + 1 < min_pair.second) {
+    //         min_heap.push({min_pair.first + 1, min_pair.second});
+    //     }
+    //     result_array[idx++] = *(min_pair.first);
+    // }
+#ifdef PROFILE
+    printf("thread %d, merge:    \t%ld ns\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - local_time_begin).count());
+#endif
 }
-    printf("%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - begin_time).count());
+    // printf("merge:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
 
     auto psrs_time_end = chrono::system_clock::now();
     auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
@@ -232,6 +267,7 @@ int main()
     }
     printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
     printf("PSRS Sort:\t %ld ns\n", psrs_sort_duration.count());
+    printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
     printf("===================================================\n");
 
 }
