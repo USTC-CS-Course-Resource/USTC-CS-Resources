@@ -5,37 +5,76 @@
 #include <math.h>
 #include <unistd.h>
 #include <chrono>
+#include <cstring>
 
 using namespace std;
 using namespace chrono;
 
 int _ = 0;
 
+inline int* size_to_idx(int n, int* sizes) {
+    auto idx = new int[n+1] {0};
+    for (int i = 1; i <= n; i++) {
+        idx[i] = idx[i-1] + sizes[i-1];
+    }
+    return idx;
+}
+
+inline int* idx_to_size(int n, int* idx) {
+    auto size = new int[n] {0};
+    for (int i = 0; i < n; i++) {
+        size[i] = idx[i+1] - idx[i];
+    }
+    return size;
+}
+
 int main(int argc, char* argv[]) {
+    // gernerate data
+    int n = 1000000;
+    auto raw_array = new int[n];
+    srand(0);
+    for (int i = 0; i < n; i++) {
+        raw_array[i] = rand() % (n - 0) + 0;
+    }
+
+    /*======================== std::sort begin ========================*/
+    auto correct_answer = new int[n];
+    memcpy(correct_answer, raw_array, sizeof(int) * n);
+    auto qsort_time_begin = chrono::system_clock::now();
+    sort(correct_answer, correct_answer + n);
+    auto qsort_time_end = chrono::system_clock::now();
+    auto qsort_duration = chrono::duration_cast<chrono::nanoseconds>(qsort_time_end - qsort_time_begin);
+    /*======================== std::sort end ========================*/
+
+
+
+    /*======================== PSRS begin ========================*/
     // init MPI
     int group_size, my_rank;
     MPI_Status status;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &group_size);
+    std::chrono::_V2::system_clock::time_point psrs_time_begin;
+    if (my_rank == 0) psrs_time_begin = chrono::system_clock::now();
 
-    auto psrs_time_begin = chrono::system_clock::now();
-
-    // data size
-    int n = 10000000;
+    // set data size
     int step = (int)(ceil((double)n / group_size));
     int my_n = step;
     if (my_rank == group_size - 1) my_n = n - my_rank * step;
-
-    // generate data
-    srand(my_rank * group_size);
-    auto my_array = new int[my_n];
-    for (int i = 0; i < my_n; i++) {
-        my_array[i] = rand() % (n - 0) + 0;
+    auto sizes = new int[group_size];
+    for (int i = 0; i < group_size; i++) {
+        sizes[i] = step;
     }
+    sizes[group_size-1] = n - (group_size - 1) * step;
 
-    /************ begin ***********/
-    if (my_rank == 0) psrs_time_begin = chrono::system_clock::now();
+    // scatter data
+    auto my_array = new int[my_n];
+    MPI_Scatterv(raw_array, sizes, size_to_idx(group_size, sizes), MPI_INT, my_array, my_n, MPI_INT, 0, MPI_COMM_WORLD);
+    
+#ifdef PROFILE
+    if (my_rank == 0) printf("after scattered data:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
+#endif
     // local sort
     sort(my_array, my_array + my_n);
 #ifdef DEBUG
@@ -44,6 +83,9 @@ int main(int argc, char* argv[]) {
         printf("%d ", my_array[i]);
     }
     printf("\n");
+#endif
+#ifdef PROFILE
+    if (my_rank == 0) printf("after local sort:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
 #endif
 
     // prepare for sampling
@@ -77,7 +119,7 @@ int main(int argc, char* argv[]) {
 
 #ifdef DEBUG
     if(my_rank == 0) {
-        printf("process %d recv pivots: \"", my_rank);
+        printf("pivots: \"");
         for (int i = 0; i < num_pivots; i++) {
             printf("%d ", pivots[i]);
         }
@@ -85,8 +127,11 @@ int main(int argc, char* argv[]) {
     }
 #endif
 
-    //================================ global swapping ====================================//
+#ifdef PROFILE
+    if (my_rank == 0) printf("after broadcast pivots:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
+#endif
 
+    //================================ global swapping ====================================//
     auto my_swapped_array = new int[n];
     auto my_swapped_seg_sizes = new int[group_size] {0};
     auto my_seg_idx = new int[group_size + 1] {0};
@@ -105,46 +150,56 @@ int main(int argc, char* argv[]) {
             my_seg_idx[++k] = my_n;
         }
     }
-    /// recv
-    for (int i = 0; i < group_size; i++) {
-        MPI_Irecv(my_swapped_seg_sizes + i, 1, MPI_INT, i, /*tag=*/0, MPI_COMM_WORLD, requests + i);
-    }
-    auto seg_sizes = new int[group_size] {0};
-    for (int i = 0; i < group_size; i++) {
-        seg_sizes[i] = my_seg_idx[i+1] - my_seg_idx[i];
-    }
-    /// send
-    for (int i = 0; i < group_size; i++) {
-        MPI_Send(seg_sizes + i, 1, MPI_INT, i, 0, MPI_COMM_WORLD);
-    }
+    auto my_seg_sizes = idx_to_size(group_size, my_seg_idx);
 
+    // scatter the sizes
+    for (int i = 0; i < group_size; i++) {
+        // scatter my sizes to each according process
+        MPI_Iscatter(my_seg_sizes, 1, MPI_INT, &my_swapped_seg_sizes[i], 1, MPI_INT, i, MPI_COMM_WORLD, &requests[i]);
+    }
     MPI_Waitall(group_size, requests, MPI_STATUS_IGNORE);
 
-    auto my_swapped_seg_idx = new int[group_size + 1];
-    auto tmp_seg_idx = new int[group_size + 1];
+    // compute the `my_swapped_seg_idx`
+    auto my_swapped_seg_idx = size_to_idx(group_size, my_swapped_seg_sizes);
+    auto my_swapped_n = my_swapped_seg_idx[group_size];
+
+#if defined DEBUG && defined VERBOSE
+    printf("p%d swapped sizes:\t", my_rank);
+    for (int i = 0; i < group_size; i++) {
+        printf("%d ", my_swapped_seg_sizes[i]);
+    }
+    printf("\n");
+
+    printf("p%d swapped idxes:\t", my_rank);
     for (int i = 0; i <= group_size; i++) {
-        if (i > 0) {
-            my_swapped_seg_idx[i] = my_swapped_seg_idx[i - 1] + my_swapped_seg_sizes[i - 1];
-            tmp_seg_idx[i] = my_swapped_seg_idx[i];
-        }
+        printf("%d ", my_swapped_seg_idx[i]);
     }
+    printf("\n");
+#endif
 
+    // Gather data
     for (int i = 0; i < group_size; i++) {
-        MPI_Irecv(my_swapped_array + my_swapped_seg_idx[i], my_swapped_seg_sizes[i], MPI_INT, i, /*tag=*/1, MPI_COMM_WORLD, requests + i);
-    }
-
-    for (int i = 0; i < group_size; i++) {
-        MPI_Send(my_array + my_seg_idx[i], seg_sizes[i], MPI_INT, i, /*tag=*/1, MPI_COMM_WORLD);
+        MPI_Igatherv(&my_array[my_seg_idx[i]], my_seg_sizes[i], MPI_INT, 
+            /*recvbuf=*/my_swapped_array, /*recvcounts=*/my_swapped_seg_sizes, /*displs=*/my_swapped_seg_idx, MPI_INT, 
+            /*root=*/i, MPI_COMM_WORLD, &requests[i]);
     }
     MPI_Waitall(group_size, requests, MPI_STATUS_IGNORE);
 
-    if (my_rank == 0) {
-        auto psrs_time_end = chrono::system_clock::now();
-        auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
-        printf("before local merge:\t %ld ns\n", psrs_sort_duration.count());
+#ifdef PROFILE
+    if (my_rank == 0) printf("after global swapping:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
+#endif
+
+#ifdef DEBUG
+    printf("p%d swapped array:\t", my_rank);
+    for (int i = 0; i < my_swapped_n; i++) {
+        printf("%d ", my_swapped_array[i]);
     }
+    printf("\n");
+#endif
 
     //================================ local merge ====================================//
+    auto tmp_seg_idx = new int[group_size + 1] {0};
+    memcpy(tmp_seg_idx, my_swapped_seg_idx, sizeof(int) * (group_size + 1));
     auto my_result = new int[n];
     using value_array_idx_pair = pair<int, int>;
     auto cmp = [](const value_array_idx_pair &a, const value_array_idx_pair &b) { return (a.first) > (b.first); };
@@ -164,60 +219,64 @@ int main(int argc, char* argv[]) {
         my_result[idx++] = min_pair.first;
     }
 
-    if (my_rank == 0) {
-        auto psrs_time_end = chrono::system_clock::now();
-        auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
-        printf("before gather all result:\t %ld ns\n", psrs_sort_duration.count());
+#ifdef PROFILE
+    if (my_rank == 0) printf("after local merge:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
+#endif
+
+#ifdef DEBUG
+    printf("p%d local merged array:\t", my_rank);
+    for (int i = 0; i < my_swapped_n; i++) {
+        printf("%d ", my_result[i]);
     }
+    printf("\n");
+#endif
 
     //================================ gather all result ====================================//
     // gather size
-    auto all_result_begins = new int[group_size] {0};
-    auto all_result_sizes = new int[group_size];
+    auto result_idx = new int[group_size + 1] {0};
+    auto result_sizes = new int[group_size] {0};
+    MPI_Gather(&my_swapped_n, 1, MPI_INT, result_sizes, 1, MPI_INT, /*root=*/0, MPI_COMM_WORLD);
+
     if (my_rank == 0) {
-        for (int i = 0; i < group_size; i++) {
-            MPI_Irecv(all_result_sizes + i, /*count=*/1, MPI_INT, i, /*tag=*/0, MPI_COMM_WORLD, requests + i);
-        }
-    }
-    MPI_Send(&my_swapped_seg_idx[group_size], /*count=*/1, MPI_INT, /*dest=*/0, /*tag=*/0, MPI_COMM_WORLD);
-    if (my_rank == 0) {
-        MPI_Waitall(group_size, requests, MPI_STATUS_IGNORE);
-        for (int i = 0; i < group_size; i++) {
-            if (i > 0) {
-                all_result_begins[i] = all_result_begins[i - 1] + all_result_sizes[i - 1];
-            }
+        for (int i = 1; i <= group_size; i++) {
+            result_idx[i] = result_idx[i - 1] + result_sizes[i - 1];
         }
     }
 
-    // gather final result
-    auto all_results = new int[n] {0};
-    if (my_rank == 0) {
-        for (int i = 0; i < group_size; i++) {
-            MPI_Irecv(all_results + all_result_begins[i], /*count=*/all_result_sizes[i], MPI_INT, i, /*tag=*/0, MPI_COMM_WORLD, requests + i);
-        }
-    }
-    MPI_Send(my_result, /*count=*/my_swapped_seg_idx[group_size], MPI_INT, /*dest=*/0, /*tag=*/0, MPI_COMM_WORLD);
+    auto result = new int[n];
+    MPI_Gatherv(my_result, my_swapped_n, MPI_INT, result, result_sizes, result_idx, MPI_INT, 0, MPI_COMM_WORLD);
+    
+#ifdef PROFILE
+    if (my_rank == 0) printf("after gather  results:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
+#endif
+
     if (my_rank == 0) {
         MPI_Waitall(group_size, requests, MPI_STATUS_IGNORE);
         auto psrs_time_end = chrono::system_clock::now();
         auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
 #ifdef DEBUG        
         sleep(1);
+        printf("result sizes:\t");
+        for (int i = 0; i < group_size; i++) {
+            printf("%d ", result_sizes[i]);
+        }
+        printf("\n");
+        printf("gathered result:\t");
         for (int i = 0; i < n; i++) {
-            printf("%d ", all_results[i]);
+            printf("%d ", result[i]);
         }
         printf("\n");
 #endif
         printf("=====================Summary=======================\n");
-        // if (memcmp(correct_answer, result_array, sizeof(int) * n) == 0) {
-        //     printf("\033[1;32mThe result is correct!\033[0m\n");
-        // }
-        // else {
-        //     printf("\033[1;31mThe result is wrong!\033[0m\n");
-        // }
-        // printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
+        if (memcmp(correct_answer, result, sizeof(int) * n) == 0) {
+            printf("\033[1;32mThe result is correct!\033[0m\n");
+        }
+        else {
+            printf("\033[1;31mThe result is wrong!\033[0m\n");
+        }
+        printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
         printf("PSRS Sort:\t %ld ns\n", psrs_sort_duration.count());
-        // printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
+        printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
         printf("===================================================\n");
     }
     
