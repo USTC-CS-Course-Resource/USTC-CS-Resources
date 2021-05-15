@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <omp.h>
 
-static long num_steps = 10000000;
-#define NUM_THREAD 2
+static long num_steps = 1000000000;
+#define NUM_THREAD 16
 
 double step;
 
@@ -17,5 +17,5 @@ void main() {
         sum += 4.0 / (1.0 + x * x);
     }
     double pi = sum * step;
-    printf("%lf\n", pi);
+    // printf("%lf\`n", pi);
 }

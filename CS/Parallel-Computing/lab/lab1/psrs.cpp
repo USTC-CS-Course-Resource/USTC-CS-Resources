@@ -8,13 +8,13 @@
 #include <cstdlib>
 #include <omp.h>
 
-#define NUM_THREADS 4
+#define NUM_THREADS 16
 
 using namespace std;
 
 int main()
 {
-    int n = 1000000;
+    int n = 1e8;
     srand(0);
     auto array = new int[n];
     auto correct_answer = new int[n];
@@ -51,7 +51,6 @@ int main()
     int end = min(begin + step , n);
     int local_n = end - begin;
     sort(array + begin, array + end);
-    // printf("thread: %d: sample: \t%ld\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
     // sample
     // TODO: haven't implement when `the size of last segment is less than n / p`
     assert(end - begin > NUM_THREADS && "haven't implement when `the size of last segment is less than NUM_THREADS`");
@@ -226,7 +225,6 @@ int main()
     printf("thread %d, merge:    \t%ld ns\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - local_time_begin).count());
 #endif
 }
-    // printf("merge:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
 
     auto psrs_time_end = chrono::system_clock::now();
     auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
