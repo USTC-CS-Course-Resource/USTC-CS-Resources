@@ -1,10 +1,8 @@
-// pc_lab1.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
-
 #include <iostream>
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <queue>
 #include <cstring>
 #include <chrono>
 #include <cstdlib>
@@ -16,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    int n = 100000;
+    int n = 1e7;
     srand(0);
     auto array = new int[n];
     auto correct_answer = new int[n];
@@ -27,20 +25,24 @@ int main()
     }
 
     // begin timing for quick sort
-    auto time_begin = chrono::system_clock::now();
+    auto qsort_time_begin = chrono::system_clock::now();
     sort(correct_answer, correct_answer + n);
-    auto time_end = chrono::system_clock::now();
-    auto quick_sort_duration = chrono::duration_cast<chrono::nanoseconds>(time_end - time_begin);
+    auto qsort_time_end = chrono::system_clock::now();
+    auto qsort_duration = chrono::duration_cast<chrono::nanoseconds>(qsort_time_end - qsort_time_begin);
     // end timing for quicksort
 
     // begin timing for psrs sort
-    time_begin = chrono::system_clock::now();
+    auto psrs_time_begin = chrono::system_clock::now();
     // size of divided array
     int step = ceil((double)n / NUM_THREADS);
 
 	omp_set_num_threads(NUM_THREADS);
 
     int samples[NUM_THREADS * NUM_THREADS] = {0};
+
+#ifdef PROFILE
+    auto time_begin = chrono::system_clock::now();
+#endif
 #pragma omp parallel 
 {
 	int i = omp_get_thread_num();
@@ -59,6 +61,11 @@ int main()
         samples[j] = array[A_idx];
     }
 }
+#ifdef PROFILE
+    printf("sample:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    time_begin = chrono::system_clock::now();
+#endif
+
 
 #ifdef DEBUG
     printf("local sort:\n");
@@ -75,7 +82,6 @@ int main()
     }
     printf("|\n");
 #endif
-
     // sort samples
     sort(samples, std::end(samples));
 
@@ -98,12 +104,6 @@ int main()
         printf("%d ", pivots[i]);
     }
     printf("\n");
-    printf("local sort:\n");
-    for (int i = 0; i < n; i++) {
-        if (i % step == 0) printf("| ");
-        printf("%d ", array[i]);
-    }
-    printf("|\n");
 #endif
 
     // // get segments' index for global swapping
@@ -126,7 +126,6 @@ int main()
         seg_idx[i][++k] = end;
     }
 }
-
 #if defined DEBUG && defined VERBOSE
     printf("seg_idx:\n");
     for (int i = 0; i < NUM_THREADS; i++) {
@@ -163,30 +162,67 @@ int main()
     }
     printf("\n");
 #endif
-    
-    // do swap and local sort
-    int swapped_array[n];
+#ifdef PROFILE
+    printf("prepare for swap:    \t%ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    time_begin = chrono::system_clock::now();
+#endif
+    // do swap and local merge sort
+    // auto begin_time = chrono::system_clock::now();
+    auto swapped_array = new int[n];
 #pragma omp parallel
 {
     int i = omp_get_thread_num();
     int idx = swapped_local_begin[i];
+    int local_seg_end[NUM_THREADS] = {0};
+    int local_seg_idx[NUM_THREADS] = {0};
     for (int j = 0; j < NUM_THREADS; j++) {
-        for (int k = seg_idx[j][i]; k < seg_idx[j][i+1]; k++) {
-            swapped_array[idx++] = array[k];
-        }
+        local_seg_idx[j] = idx;
+        auto local_seg_size = seg_idx[j][i+1] - seg_idx[j][i];
+        memcpy(swapped_array + idx, array + seg_idx[j][i], local_seg_size * sizeof(int));
+        idx += local_seg_size;
+        local_seg_end[j] = idx;
     }
-    // local sort again
-    sort(swapped_array + swapped_local_begin[i], swapped_array + swapped_local_begin[i] + swapped_local_n[i]);
-}
-    time_end = chrono::system_clock::now();
-    auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(time_end - time_begin);
-
+#ifdef PROFILE
+    printf("thread %d: prepare for merge:    \t%ld ns\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - time_begin).count());
+    auto local_time_begin = chrono::system_clock::now();
+#endif
 #ifdef DEBUG
-    printf("result:\n");
+#pragma omp master
+{
+    printf("swapped:\n");
     int j = 0;
     for (int i = 0; i < n; i++) {
         if (i == swapped_local_begin[j] && ++j) printf("| ");
         printf("%d ", swapped_array[i]);
+    }
+    printf("|\n");
+}
+#endif
+
+    // local sort
+    sort(swapped_array + swapped_local_begin[i], swapped_array + swapped_local_begin[i] + swapped_local_n[i]);
+
+#ifdef PROFILE
+    printf("thread %d, merge:    \t%ld ns\n", i, chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - local_time_begin).count());
+#endif
+}
+
+    auto psrs_time_end = chrono::system_clock::now();
+    auto psrs_sort_duration = chrono::duration_cast<chrono::nanoseconds>(psrs_time_end - psrs_time_begin);
+
+#ifdef DEBUG
+    printf("answer:\n");
+    int j = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == swapped_local_begin[j] && ++j) printf("| ");
+        printf("%d ", correct_answer[i]);
+    }
+    printf("|\n");
+    printf("result:\n");
+    j = 0;
+    for (int i = 0; i < n; i++) {
+        if (i == swapped_local_begin[j] && ++j) printf("| ");
+        printf("%d ", result_array[i]);
     }
     printf("|\n");
 #endif
@@ -198,8 +234,9 @@ int main()
     else {
         printf("\033[1;31mThe result is wrong!\033[0m\n");
     }
-    printf("Quick Sort:\t %ld ns\n", quick_sort_duration.count());
+    printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
     printf("PSRS Sort:\t %ld ns\n", psrs_sort_duration.count());
+    printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
     printf("===================================================\n");
 
 }

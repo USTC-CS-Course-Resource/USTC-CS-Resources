@@ -2,11 +2,11 @@
 #include <omp.h>
 
 static long num_steps = 1000000000;
-#define NUM_THREAD 1
+#define NUM_THREAD 16
 
 double step;
 
-void main() {
+int main() {
     double pi, sum[NUM_THREAD] = {0.0};
     double step = 1.0/(double)num_steps;
 
@@ -23,5 +23,5 @@ void main() {
     for (int i = 0; i < NUM_THREAD; i++) {
         pi += step * sum[i];
     }
-    // printf("%lf\n", pi);
+    printf("%lf\n", pi);
 }

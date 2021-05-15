@@ -8,13 +8,13 @@
 #include <cstdlib>
 #include <omp.h>
 
-#define NUM_THREADS 16
+#define NUM_THREADS 4
 
 using namespace std;
 
 int main()
 {
-    int n = 1e8;
+    int n = 1e7;
     srand(0);
     auto array = new int[n];
     auto correct_answer = new int[n];

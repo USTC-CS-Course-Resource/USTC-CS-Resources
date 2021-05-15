@@ -6,7 +6,7 @@ static long num_steps = 1000000000;
 
 double step;
 
-void main() {
+int main() {
     double pi;
     double step = 1.0/(double)num_steps;
 
@@ -23,5 +23,5 @@ void main() {
 #pragma omp critical
     pi += step * sum;
 }
-    // printf("%lf\n", pi);
+    printf("%lf\n", pi);
 }

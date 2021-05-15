@@ -4,7 +4,7 @@ static long num_steps = 1000000000;
 
 double step;
 
-void main() {
+int main() {
     int i;
     double x, pi, sum = 0.0;
     double step = 1.0/(double)num_steps;
@@ -15,4 +15,5 @@ void main() {
 
     pi = step * sum;
     printf("%lf\n", pi);
+    return 0;
 }
