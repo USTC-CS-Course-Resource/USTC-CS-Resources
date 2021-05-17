@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  18 MAY 2021 00:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  18 MAY 2021 00:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1670,7 +1670,7 @@ icode.sfd}) [1
 Package CJKpunct Info: use punctuation spaces for family 'rm' with punctstyle (
 quanjiao) on input line 234.
  [2]
-<image/2.6.png, id=188, 1069.9975pt x 268.00125pt>
+<image/2.6.png, id=191, 1069.9975pt x 268.00125pt>
 File: image/2.6.png Graphic file (type png)
 <use image/2.6.png>
 Package pdftex.def Info: image/2.6.png  used on input line 296.
@@ -1701,10 +1701,10 @@ Package rerunfilecheck Info: File `hw3_hw4.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 49807 strings out of 479302
- 1166809 string characters out of 5869224
- 1745757 words of memory out of 5000000
- 65897 multiletter control sequences out of 15000+600000
+ 49817 strings out of 479302
+ 1166929 string characters out of 5869224
+ 1745758 words of memory out of 5000000
+ 65907 multiletter control sequences out of 15000+600000
  446200 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,9n,97p,1614b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1712,13 +1712,13 @@ Here is how much of TeX's memory you used:
 imsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows
 /Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:
 /Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun
-.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Font
-s/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Wind
-ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc>
-<c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/sim
-hei.ttf><c:/Windows/Fonts/simhei.ttf>{f:/App/texlive/2020/texmf-dist/fonts/enc/
-dvips/cm-super/cm-super-ts1.enc}<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
-simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Window
+.ttc><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Font
+s/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Wind
+ows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simhei.ttf>
+<c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf>{f:/App/texlive/2020/
+texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/Windows/Fonts/simhei.t
+tf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/simhei.ttf><c:/Windows/Fonts/
+simhei.ttf><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Window
 s/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c
 :/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsu
 n.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fon
@@ -1754,7 +1754,7 @@ ive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><f:/App/texlive/202
 0/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><f:/App/texlive/2020/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><f:/App/texlive/2020/texmf-dis
 t/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on hw3_hw4.pdf (5 pages, 760537 bytes).
+Output written on hw3_hw4.pdf (5 pages, 762063 bytes).
 PDF statistics:
  554 PDF objects out of 1000 (max. 8388607)
  362 compressed objects within 4 object streams
