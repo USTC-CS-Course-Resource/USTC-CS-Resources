@@ -5,8 +5,8 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{113E83B4-DD1A-409E-9B6C-5289FAD06A08}" Loaded="No" Name="contacts_and_customers" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="contacts_and_customers.cdm"/>
-		<Model Expanded="Yes" ID="{E57C2B8B-2942-44BD-9691-5D674DFD9916}" Name="lab2_2haverelation" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="lab2.cdm"/>
-		<Model Expanded="Yes" ID="{B185443A-DFCD-4182-940C-21B2F48DAE1D}" Name="lab2" Selected="Yes" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="lab2.pdm"/>
+		<Model Expanded="Yes" ID="{E57C2B8B-2942-44BD-9691-5D674DFD9916}" Name="lab2_2haverelation" Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="lab2.cdm"/>
+		<Model Expanded="Yes" ID="{B185443A-DFCD-4182-940C-21B2F48DAE1D}" Loaded="No" Name="lab2" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="lab2.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
