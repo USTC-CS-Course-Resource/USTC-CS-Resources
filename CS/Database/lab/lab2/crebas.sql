@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Sybase SQL Anywhere 12                       */
-/* Created on:     2021/5/18 16:40:09                           */
+/* Created on:     2021/5/18 18:36:00                           */
 /*==============================================================*/
 
 
@@ -373,6 +373,7 @@ create table have_check_account
    cus_id               char(18)                       not null,
    bra_name             varchar(16)                    not null,
    che_acc_id           char(18)                       null,
+   last_visit_date      timestamp                      null,
    constraint PK_HAVE_CHECK_ACCOUNT primary key clustered (cus_id, bra_name)
 );
 
@@ -413,6 +414,7 @@ create table have_store_account
    cus_id               char(18)                       not null,
    bra_name             varchar(16)                    not null,
    sav_acc_id           char(18)                       null,
+   last_visit_date      timestamp                      null,
    constraint PK_HAVE_STORE_ACCOUNT primary key clustered (cus_id, bra_name)
 );
 
