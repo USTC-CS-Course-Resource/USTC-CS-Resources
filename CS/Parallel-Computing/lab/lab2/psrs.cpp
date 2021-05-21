@@ -10,8 +10,6 @@
 using namespace std;
 using namespace chrono;
 
-int _ = 0;
-
 inline int* size_to_idx(int n, int* sizes) {
     auto idx = new int[n+1] {0};
     for (int i = 1; i <= n; i++) {
@@ -30,13 +28,14 @@ inline int* idx_to_size(int n, int* idx) {
 
 int main(int argc, char* argv[]) {
     // gernerate data
-    int n = 1000000;
+    int n = 100000000;
     auto raw_array = new int[n];
     srand(0);
     for (int i = 0; i < n; i++) {
         raw_array[i] = rand() % (n - 0) + 0;
     }
 
+#ifndef PSRS_ONLY
     /*======================== std::sort begin ========================*/
     auto correct_answer = new int[n];
     memcpy(correct_answer, raw_array, sizeof(int) * n);
@@ -45,7 +44,7 @@ int main(int argc, char* argv[]) {
     auto qsort_time_end = chrono::system_clock::now();
     auto qsort_duration = chrono::duration_cast<chrono::nanoseconds>(qsort_time_end - qsort_time_begin);
     /*======================== std::sort end ========================*/
-
+#endif
 
 
     /*======================== PSRS begin ========================*/
@@ -71,7 +70,8 @@ int main(int argc, char* argv[]) {
     // scatter data
     auto my_array = new int[my_n];
     MPI_Scatterv(raw_array, sizes, size_to_idx(group_size, sizes), MPI_INT, my_array, my_n, MPI_INT, 0, MPI_COMM_WORLD);
-    
+    delete raw_array;
+
 #ifdef PROFILE
     if (my_rank == 0) printf("after scattered data:\t %ld ns\n", chrono::duration_cast<chrono::nanoseconds>(chrono::system_clock::now() - psrs_time_begin).count());
 #endif
@@ -102,8 +102,7 @@ int main(int argc, char* argv[]) {
     }
     
     // gather and sort samples, then pick pivots
-    MPI_Gather(my_samples, group_size, MPI_INT,
-        all_samples, group_size, MPI_INT, 0, MPI_COMM_WORLD);
+    MPI_Gather(my_samples, group_size, MPI_INT, all_samples, group_size, MPI_INT, 0, MPI_COMM_WORLD);
 
     int num_pivots = group_size - 1;
     auto pivots = new int[num_pivots];
@@ -132,23 +131,20 @@ int main(int argc, char* argv[]) {
 #endif
 
     //================================ global swapping ====================================//
-    auto my_swapped_array = new int[n];
     auto my_swapped_seg_sizes = new int[group_size] {0};
     auto my_seg_idx = new int[group_size + 1] {0};
     auto requests = new MPI_Request[group_size];
-    {
-        /// prepare for sending
-        int k = 0;
-        for (int j = 0; j < my_n && k < group_size - 1; j++) {
-            // maybe no elements between some pivots
-            while (my_array[j] > pivots[k] && k < group_size - 1) {
-                my_seg_idx[++k] = j;
-            }
+    /// prepare for sending
+    int k = 0;
+    for (int j = 0; j < my_n && k < group_size - 1; j++) {
+        // maybe no elements between some pivots
+        while (my_array[j] > pivots[k] && k < group_size - 1) {
+            my_seg_idx[++k] = j;
         }
-        //// maybe all less than pivots
-        while (k < group_size) {
-            my_seg_idx[++k] = my_n;
-        }
+    }
+    //// maybe all less than pivots
+    while (k < group_size) {
+        my_seg_idx[++k] = my_n;
     }
     auto my_seg_sizes = idx_to_size(group_size, my_seg_idx);
 
@@ -178,6 +174,7 @@ int main(int argc, char* argv[]) {
 #endif
 
     // Gather data
+    auto my_swapped_array = new int[my_swapped_n];
     for (int i = 0; i < group_size; i++) {
         MPI_Igatherv(&my_array[my_seg_idx[i]], my_seg_sizes[i], MPI_INT, 
             /*recvbuf=*/my_swapped_array, /*recvcounts=*/my_swapped_seg_sizes, /*displs=*/my_swapped_seg_idx, MPI_INT, 
@@ -268,6 +265,7 @@ int main(int argc, char* argv[]) {
         printf("\n");
 #endif
         printf("=====================Summary=======================\n");
+#ifndef PSRS_ONLY
         if (memcmp(correct_answer, result, sizeof(int) * n) == 0) {
             printf("\033[1;32mThe result is correct!\033[0m\n");
         }
@@ -275,11 +273,20 @@ int main(int argc, char* argv[]) {
             printf("\033[1;31mThe result is wrong!\033[0m\n");
         }
         printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
+#endif
         printf("PSRS Sort:\t %ld ns\n", psrs_sort_duration.count());
+#ifndef PSRS_ONLY
         printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
+#endif
         printf("===================================================\n");
     }
     
+    delete my_array;
+    delete my_seg_idx;
+    delete my_seg_sizes;
+    delete my_swapped_array;
+    delete my_swapped_seg_idx;
+    delete my_swapped_seg_sizes;
 
     /************  end  ***********/
     MPI_Finalize();
