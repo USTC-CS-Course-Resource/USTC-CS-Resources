@@ -22,5 +22,5 @@ run_pi: pi-v1 pi-v2 pi-v3 pi-v4 pi-v5
 	g++ $< -o $* -fopenmp -O3
 
 clean:
-	rm pi-v1 pi-v2 pi-v3 pi-v4 pi-v5 psrs
+	rm -rf pi-v1 pi-v2 pi-v3 pi-v4 pi-v5 psrs
 	

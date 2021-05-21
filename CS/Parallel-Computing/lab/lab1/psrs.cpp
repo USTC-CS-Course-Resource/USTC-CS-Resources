@@ -14,23 +14,28 @@ using namespace std;
 
 int main()
 {
-    int n = 1e7;
+    int n = 1e6;
     srand(0);
     auto array = new int[n];
+#ifndef ONLY_PSRS
     auto correct_answer = new int[n];
+#endif
     for (int i = 0; i < n; i++) {
         int tmp = rand() % (n - 0) + 0;
         array[i] = tmp;
+#ifndef ONLY_PSRS
         correct_answer[i] = tmp;
+#endif
     }
 
+#ifndef ONLY_PSRS
     // begin timing for quick sort
     auto qsort_time_begin = chrono::system_clock::now();
     sort(correct_answer, correct_answer + n);
     auto qsort_time_end = chrono::system_clock::now();
     auto qsort_duration = chrono::duration_cast<chrono::nanoseconds>(qsort_time_end - qsort_time_begin);
     // end timing for quicksort
-
+#endif
     // begin timing for psrs sort
     auto psrs_time_begin = chrono::system_clock::now();
     // size of divided array
@@ -138,6 +143,7 @@ int main()
 
     // get swapped local size and local end and do swap
     int swapped_local_n[NUM_THREADS] = {0};
+    int swapped_local_begin[NUM_THREADS + 1] = {0};
 #pragma omp parallel
 {
     int i = omp_get_thread_num();
@@ -145,9 +151,8 @@ int main()
         swapped_local_n[i] += seg_idx[j][i+1] - seg_idx[j][i];
     }
 }
-    int swapped_local_begin[NUM_THREADS + 1] = {0};
-    for (int i = 1; i <= NUM_THREADS; i++) {
-        swapped_local_begin[i] = swapped_local_begin[i-1] + swapped_local_n[i-1];
+    for (int j = 1; j <= NUM_THREADS; j++) {
+        swapped_local_begin[j] = swapped_local_begin[j-1] + swapped_local_n[j-1];
     }
 
 #if defined DEBUG && defined VERBOSE
@@ -247,6 +252,7 @@ int main()
 #endif
 
     printf("=====================Summary=======================\n");
+#ifndef ONLY_PSRS
     if (memcmp(correct_answer, result_array, sizeof(int) * n) == 0) {
         printf("\033[1;32mThe result is correct!\033[0m\n");
     }
@@ -254,8 +260,11 @@ int main()
         printf("\033[1;31mThe result is wrong!\033[0m\n");
     }
     printf("Quick Sort:\t %ld ns\n", qsort_duration.count());
+#endif
     printf("PSRS Sort:\t %ld ns\n", psrs_sort_duration.count());
+#ifndef ONLY_PSRS
     printf("speedup:\t %lf\n", qsort_duration.count() / (double)psrs_sort_duration.count());
+#endif
     printf("===================================================\n");
 
 }
