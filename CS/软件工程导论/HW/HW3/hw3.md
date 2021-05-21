@@ -4,6 +4,9 @@ PB18111697 王章瀚
 
 -----
 
+**注: 本次作业的图片均在 processon 上作出, 助教如需更仔细观察, 可访问[此链接](https://www.processon.com/view/link/609cb64ce401fd149382c72b)**
+(https://www.processon.com/view/link/609cb64ce401fd149382c72b)
+
 ## 1.
 
 **请仔细观察学校校门进出口闸机的工作方式, 设计相关的类, 画出相应的类图.**
@@ -179,7 +182,7 @@ class TaskManageServer extends Thread {
     private Address noticeServerAddress; // 用以向通知服务器通信
     private TaskDatabaseServer taskDatabaseServer; // 用以直接调用任务数据库服务器
     
-    // 服务器主线程
+    // 服务器主线程, 用以收/发各种请求并调用相关函数处理.
     public void run();
     /* 提交任务
      * 任务提交后, `task` 会调用其私有成员函数 `basicCheck` 检查文件格式
@@ -218,7 +221,7 @@ class NoticeServer extends Thread{
     private Address frontEndAddress; // 用以向前端消息通信
     private HashMap<User, ArrayList<Notice>> notices;
 
-    // 服务器主线程
+    // 服务器主线程, 用以收/发各种请求并调用相关函数处理.
     public void run();
     public ArrayList<Notice> getAllNotices(User user);
     public String getDetails(Notice notice);
@@ -233,7 +236,7 @@ class FrontEndServer extends Thread {
     private Address noticeServerAddress; // 用以向通知服务器通信
     private Address taskManageServer; // 用以向任务管理服务器通信
     
-    // 服务器主线程
+    // 服务器主线程, 用以收/发各种请求并调用相关函数处理.
     public void run();
     // 提交任务
     public void submitTask(User user, String appName, Path appLocalPath);
