@@ -1,0 +1,237 @@
+\documentclass[UTF8]{article}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{amsmath}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage[space]{ctex} %中文包
+\usepackage{listings} %放代码
+\usepackage{xcolor} %代码着色宏包
+\usepackage{CJK} %显示中文宏包
+\usepackage{float}
+\usepackage{diagbox}
+\usepackage{bm}
+\usepackage{ulem} 
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{fancybox} %花里胡哨的盒子
+\usepackage{xhfill} %填充包, 可画分割线 https://www.latexstudio.net/archives/8245
+\usepackage{multicol} %多栏包
+\usepackage{enumitem}
+%\usepackage{enumerate} %可以方便地自定义枚举标题
+\usepackage{multirow} %表格中多行单元格合并
+\usepackage{wasysym} %可以使用wasysym里的一堆奇奇怪怪的符号
+\usepackage{hyperref} % url
+%%%%%%%%%%%%%%%伪代码%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+%%%%%%%%%%%%%%%画图包%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\usepackage{pgfplots} % http://pgfplots.sourceforge.net/gallery.html
+\usetikzlibrary{pgfplots.patchplots} % 拟合支持
+\usetikzlibrary{arrows,shapes,automata,petri,positioning,calc} % 状态图支持
+\usetikzlibrary{arrows.meta} % 箭头
+\usetikzlibrary{shadows} % 阴影支持
+\usepackage{forest} % 画树
+
+\geometry{left = 1.5cm, right = 1.5cm, top=1.5cm, bottom=2cm}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{
+	backgroundcolor=\color{white}, 
+	%\tiny < \scriptsize < \footnotesize < \small < \normalsize < \large < \Large < \LARGE < \huge < \Huge
+	basicstyle = \footnotesize,       
+	breakatwhitespace = false,        
+	breaklines = true,                 
+	captionpos = b,                    
+	commentstyle = \color{mygreen}\bfseries,
+	extendedchars = false,
+	frame = shadowbox, 
+	framerule=0.5pt,
+	keepspaces=true,
+	keywordstyle=\color{blue}\bfseries, % keyword style
+	language = C++,                     % the language of code
+	otherkeywords={string}, 
+	numbers=left, 
+	numbersep=5pt,
+	numberstyle=\tiny\color{mygray},
+	rulecolor=\color{black},         
+	showspaces=false,  
+	showstringspaces=false, 
+	showtabs=false,    
+	stepnumber=1,         
+	stringstyle=\color{mymauve},        % string literal style
+	tabsize=4,          
+	title=\lstname           
+}
+
+%\sum\nolimits_{j=1}^{M}   上下标位于求和符号的水平右端，
+%\sum\limits_{j=1}^{M}   上下标位于求和符号的上下处，
+%\sum_{j=1}^{M}  对上下标位置没有设定，会随公式所处环境自动调整。
+
+%%%%%%%%%%%%%画图包%%%%%%%%%%%%%
+\usepackage{tikz}
+%%%%%%%%%%%%%好看的矩形%%%%%%%%%%%%%
+\tikzset{
+  rect1/.style = {
+    shape = rectangle,% 指定样式
+    minimum height=2cm,% 最小高度
+    minimum width=4cm,% 最小宽度
+    align = center,% 文字居中
+    drop shadow,% 阴影
+  }
+}
+%%%%%%%%%%%%%画图背景包%%%%%%%%%%%%%
+\usetikzlibrary{backgrounds}
+
+%%%%%%%%%%%%%在tikz中画一个顶点%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:node名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签%%%%%%%%%%%%%
+\newcommand{\newVertex}[3]{\node[circle, draw=black, line width=1pt, scale=0.8] (#1) at #2{#3}}
+%%%%%%%%%%%%%在tikz中画一条边%%%%%%%%%%%%%
+\newcommand{\newEdge}[2]{\draw [black,very thick](#1)--(#2)}
+%%%%%%%%%%%%%在tikz中放一个标签%%%%%%%%%%%%%
+%%%%%%%%%%%%%#1:名称%%%%%%%%%%%%%
+%%%%%%%%%%%%%#2:位置%%%%%%%%%%%%%
+%%%%%%%%%%%%%#3:标签内容%%%%%%%%%%%%%
+\newcommand{\newLabel}[3]{\node[line width=1pt] (#1) at #2{#3}}
+
+%%%%%%%%%%%%%强制跳过一行%%%%%%%%%%%%%
+\newcommand{\jumpLine} {\hspace*{\fill} \par}
+%%%%%%%%%%%%%关键点指令,可用itemise替代%%%%%%%%%%%%%
+\newcommand{\keypoint}[2]{$\bullet$\textbf{#1}\quad#2\par}
+%%%%%%%%%%%%%<T>平均值表示%%%%%%%%%%%%%
+\newcommand{\average}[1]{\left\langle #1\right\rangle }
+%%%%%%%%%%%%%表格内嵌套表格%%%%%%%%%%%%%
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+%%%%%%%%%%%%%大黑点item头%%%%%%%%%%%%%
+\newcommand{\itemblt}{\item[$\bullet$]}
+%%%%%%%%%%%%%大圈item头%%%%%%%%%%%%%
+\newcommand{\itemc}{\item[$\circ$]}
+%%%%%%%%%%%%%大星星item头%%%%%%%%%%%%%
+\newcommand{\itembs}{\item[$\bigstar$]}
+%%%%%%%%%%%%%右▷item头%%%%%%%%%%%%%
+\newcommand{\itemrhd}{\item[$\rhd$]}
+%%%%%%%%%%%%%定义为%%%%%%%%%%%%%
+\newcommand{\defas}{=_{df}}
+%%%%%%%%%%%%%偏导%%%%%%%%%%%%%
+\newcommand{\partialx}[2]{\frac{\partial #1}{\partial #2}}
+%%%%%%%%%%%%%蕴含%%%%%%%%%%%%%
+\newcommand{\imp}{\rightarrow}
+%%%%%%%%%%%%%上取整%%%%%%%%%%%%%
+\newcommand{\ceil}[1]{\lceil#1\rceil}
+%%%%%%%%%%%%%下取整%%%%%%%%%%%%%
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+
+%%%%%%%%%%%%%双线分割线%%%%%%%%%%%%%
+\newcommand*{\doublerule}{\hrule width \hsize height 1pt \kern 0.5mm \hrule width \hsize height 2pt}
+%%%%%%%%%%%%%双线中间可加东西的分割线%%%%%%%%%%%%%
+\newcommand\doublerulefill{\leavevmode\leaders\vbox{\hrule width .1pt\kern1pt\hrule}\hfill\kern0pt }
+%%%%%%%%%%%%%左大括号%%%%%%%%%%%%%
+\newcommand{\leftbig}[1]{\left\{\begin{array}{l}#1\end{array}\right.}
+%%%%%%%%%%%%%矩阵%%%%%%%%%%%%%
+\newcommand{\mat}[2]{\left[\begin{array}{#1}#2\end{array}\right]}
+%%%%%%%%%%%%%可换行圆角文本框%%%%%%%%%%%%%
+\newcommand{\ovalboxn}[1]{\ovalbox{\tabincell{l}{#1}}}
+%%%%%%%%%%%%%设置section的counter, 使从1开始%%%%%%%%%%%%%
+\setcounter{section}{0}
+
+%%%%%%%%%%%%%Colors%%%%%%%%%%%%%
+\newcommand{\lightercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!white}
+}
+\newcommand{\darkercolor}[3]{% Reference Color, Percentage, New Color Name
+    \colorlet{#3}{#1!#2!black}
+}
+\definecolor{aquamarine}{rgb}{0.5, 1.0, 0.83}
+\definecolor{Seashell}{RGB}{255, 245, 238} %背景色浅一点的
+\definecolor{Firebrick4}{RGB}{255, 0, 0}%文字颜色红一点的
+\lightercolor{gray}{20}{lgray}
+\newcommand{\hlg}[1]{
+	\begingroup
+		\sethlcolor{lgray}%背景色
+		\textcolor{black}{\hl{\mbox{#1}}}%textcolor里面对应文字颜色
+	\endgroup
+}
+
+
+
+\title{人工智能基础 HW7}
+\author{PB18111697 王章瀚}
+
+\begin{document}
+\maketitle
+\section*{13.15}
+\noindent \textbf{在一年一度的体检之后，医生告诉你一些坏消息和一些好消息。坏消息是你在一种严重疾病的测试中结果呈阳性，而这个测试的准确度为99\%(即当你确实患这种病时，测试结果为阳性的概率为0.99；而当你未患这种疾病时测试结果为阴性的概率也是0.99)。好消息是，这是一种罕见的病，在你这个年龄段大约10000人中才有1例。为什么“这种病很罕见”对于你而言是一个好消息？你确实患有这种病的概率是多少？} \\\jumpLine \noindent
+设患这种病事件为 X, 检测结果阳性为 Y. 则患病概率为
+$$Pr[X|Y]=\frac{Pr[XY]}{Pr[Y]}=\frac{\frac{1}{10000}\cdot0.99}{\frac{1}{10000}\cdot 0.99+\frac{9999}{10000}\cdot 0.01}=0.0098$$
+
+因此确实患有这种病的概率为 $0.0098$. 这种病很罕见之所以是好消息, 是因为根据贝叶斯规则, 很有可能我是没得病但却因为阳性概率依然有 $0.01$ 而导致了最终阳性的概率并不小.
+
+\section*{13.18}
+\noindent \textbf{假设给你一只袋子，装有 $n$ 个无偏差的硬币，并且告诉你其中 $n-1$ 个硬币是正常的，一面是正面而另一面是反面。不过剩余 $1$ 枚硬币是伪造的，它的两面都是正面。}
+\subsection*{1.}
+\noindent \textbf{ 假设你把手伸进口袋均匀随机地取出一枚硬币，把它抛出去，硬币落地后正面朝上。那么你取出伪币的（条件）概率是多少？} \\\jumpLine \noindent
+设取出伪币事件为 A, 抛一次正面朝上事件为 B. 则
+$$Pr[A|B]=\frac{Pr[AB]}{Pr[B]}=\frac{\frac{1}{n}\cdot 1}{\frac{1}{n}\cdot 1 + \frac{n-1}{n}\cdot\frac{1}{2}}=\frac{2}{n+1}$$
+\subsection*{2.}
+\noindent \textbf{假设你不停地抛这枚硬币，一共抛了 $k$ 次，而且看到 $k$ 次正面向上。那么你取出伪币的条件概率是多少？} \\\jumpLine \noindent
+设取出伪币事件为 A, 抛 k 次正面朝上事件为 B. 则
+$$Pr[A|B]=\frac{Pr[AB]}{Pr[B]}=\frac{\frac{1}{n}\cdot 1^k}{\frac{1}{n}\cdot 1^k + \frac{n-1}{n}\cdot\frac{1}{2}^k}=\frac{2^k}{2^k+n-1}$$
+\subsection*{3.}
+\noindent \textbf{假设你希望通过把取出的硬币抛 $k$ 次的方法来确定它是不是伪造的。如果抛 $k$ 次后都是正面朝上，那么决策过程返回 fake（伪造)，否则返回 normal （正常)。这个过程发生错误的（无条件）概率是多少？} \\\jumpLine \noindent
+设取出伪币事件为 A, 抛 k 次正面朝上事件为 B. 则
+$$Pr[error]=Pr[\bar{A}B]=\frac{n-1}{n}\frac{1}{2}^k=\frac{n-1}{2^k n}$$
+
+\section*{13.21}
+\noindent \textbf{假设你是雅典一次夜间出租车肇事逃逸的交通事的目击者。雅典所有的出租车都是蓝色或者绿色的。而你发誓所看见的肇事出租车是蓝色的。大量测试表明，在昏暗的灯光条件下，区分蓝色和绿色的可靠度为75\%。}
+\subsection*{1.}
+\noindent \textbf{有可能据此计算出肇事出租车最可能是什么颜色吗？（提示:请仔细区分命题“肇事车是蓝色的”和命题“肇事车看起来是蓝色的”。）} \\\jumpLine \noindent
+从概率上说, 设确实是蓝色为 X, 看到是蓝色为 Y. 则只能给出,
+$$Pr[X|Y] = \frac{Pr[XY]}{Pr[Y]} = \frac{75\% Pr[X]}{75\%Pr[X]+25\%(1-Pr[X])}$$
+因此它确实是蓝色的概率可能介于 $[0,1]$, 故不能据此判断肇事出租车是什么颜色.
+\subsection*{2.}
+\noindent \textbf{如果你知道雅典的出租车10辆中有9辆是绿色的呢？} \\\jumpLine\noindent
+则 $Pr[X]=\frac{1}{10}$, 那么就有
+$$Pr[X|Y] = \frac{Pr[XY]}{Pr[Y]} = \frac{75\% \frac{1}{10}}{75\%\frac{1}{10}+25\%(1-\frac{1}{10})}=0.25$$
+因此只有 $0.25$ 的概率能说肇事出租车是蓝色, 但有 $0.75$ 的概率认为出租车是绿色的. 所以并不太可能通过这个证词就判断他是蓝色还是绿色. (但相较而言绿色概率大一些)
+
+\section*{13.22}
+\noindent \textbf{文本分类是基于文本内容将给定的一个文档分类成固定的几个类中的一类。朴素贝叶斯模型经常用于这个问题。在朴素贝叶斯模型中，查询（query）变量是这个文档的类别，而结果（effect）变量是语言中每个单词的存在与否；假设文档中单词的出现是独立的，单词的出现频率由文档类别决定。}
+\subsection*{a.}
+\noindent \textbf{给定一组已经被分类的文档，准确解释如何构造这样的模型。} \\\jumpLine\noindent
+构造模型如下:
+\begin{itemize}
+	\item 该模型包含各个类别的先验概率 $Pr[category]$, 以及各个类别文档下各个单词出现的条件概率 $Pr[word_i | category]$
+	\item $Pr[category=c]$ 可以用该组已经被分类的文档中, $c$ 类文档的比例来估计
+	\item $Pr[word_i =true| category=c]$ 可以用所有 $c$ 类文档中单词 $word_i$ 出现的比例来估计.
+	\item $Pr[word_i=true]$ 可以用所有文档中各个单词出现的比例来估计.
+\end{itemize}
+\subsection*{b.}
+\noindent \textbf{准确解释如何分类一个新文档。} \\\jumpLine\noindent
+当要分类时, 给定文档中, 是否出现各个单词 $word_i=w_1$, 根据前述先验可以写出文档为 $c$ 类的概率是:
+\begin{align*}
+	Pr[category=c|word_1=w_1,\cdots,word_n=w_n] &=\frac{1}{\prod_{i}Pr[word_i=w_i]}Pr[category=c]\prod_{i}P(word_i|category=c)
+\end{align*}
+由这个表达式能够给出, 该文档为 $c$ 类的概率. 我们只要选取 $$\arg\max\limits_{c}Pr[category=c|word_1=w_1,\cdots,word_n=w_n]$$
+即可对该新文档进行分类.
+\subsection*{c.}
+\noindent \textbf{题目中的条件独立性假设合理吗?请讨论。} \\\jumpLine\noindent
+其实不太合理. 一篇文档中很多单词之间都是相互有联系的, 一些主题词汇或者词组都有很大概率会同时出现. 但是从另一个角度来说, 每个单词有它的同义替换词, 所以它们是否出现从这个角度来看是比较独立的.
+
+
+
+
+
+\end{document}
+
+
+
+
