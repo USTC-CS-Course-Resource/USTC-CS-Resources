@@ -28,7 +28,7 @@ inline int* idx_to_size(int n, int* idx) {
 
 int main(int argc, char* argv[]) {
     // gernerate data
-    int n = 100000000;
+    int n = 27;
     auto raw_array = new int[n];
     srand(0);
     for (int i = 0; i < n; i++) {
