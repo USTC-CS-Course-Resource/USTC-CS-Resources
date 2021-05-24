@@ -43,3 +43,6 @@
 [submodule "CS/Parallel-Computing"]
 	path = CS/Parallel-Computing
 	url = git@github.com:USTC-CS-Course-Resource/Parallel-Computing.git
+[submodule "CS/Database"]
+	path = CS/Database
+	url = git@github.com:USTC-CS-Course-Resource/Database.git
