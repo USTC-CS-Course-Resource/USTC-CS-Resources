@@ -40,3 +40,6 @@
 [submodule "CS/Computer-Architecture"]
 	path = CS/Computer-Architecture
 	url = git@github.com:USTC-CS-Course-Resource/Computer-Architecture.git
+[submodule "CS/Parallel-Computing"]
+	path = CS/Parallel-Computing
+	url = git@github.com:USTC-CS-Course-Resource/Parallel-Computing.git
