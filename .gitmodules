@@ -46,3 +46,6 @@
 [submodule "CS/Database"]
 	path = CS/Database
 	url = git@github.com:USTC-CS-Course-Resource/Database.git
+[submodule "CS/Software-Engineering"]
+	path = CS/Software-Engineering
+	url = git@github.com:USTC-CS-Course-Resource/Software-Engineering.git
