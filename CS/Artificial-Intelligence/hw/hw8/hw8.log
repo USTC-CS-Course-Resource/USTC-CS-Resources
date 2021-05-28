@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  27 MAY 2021 20:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.16)  28 MAY 2021 16:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1586,7 +1586,30 @@ eX and DVIPDFMx (CTEX)
 {f:/App/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{UGBK.sfd}{Un
 icode.sfd}) [1
 
- <./image/14.22.png>] [2]
+ <./image/14.22.png>]
+Overfull \hbox (7.91298pt too wide) in paragraph at lines 213--215
+\C70/rm/m/n/10.53937/53 ï \C70/rm/m/n/10.53937/80 ý \C70/rm/m/n/10.53937/56 à \
+C70/rm/m/n/10.53937/59 1 \C70/rm/m/n/10.53937/71 & \C70/rm/m/n/10.53937/5c ^^Q 
+\C70/rm/m/n/10.53937/4e † \OT1/cmr/m/n/10.53937 3 \C70/rm/m/n/10.53937/98 —\OT1
+/cmr/m/n/10.53937 , \C70/rm/m/n/10.53937/62 ^^V \C70/rm/m/n/10.53937/56 à \C70/
+rm/m/n/10.53937/65 p \C70/rm/m/n/10.53937/95 ^^Y \C70/rm/m/n/10.53937/59 ^^Z \C
+70/rm/m/n/10.53937/4e † $\OMS/cmsy/m/n/10.53937 ^^F\OT1/cmr/m/n/10.53937 1$\C70
+/rm/m/n/10.53937/98 —\OT1/cmr/m/n/10.53937 . \C70/rm/m/n/10.53937/4e ^^M \C70/r
+m/m/n/10.53937/59 ¨ \C70/rm/m/n/10.53937/8b ¤ \C70/rm/m/n/10.53937/4e : \C70/rm
+/m/n/10.53937/59 1 \C70/rm/m/n/10.53937/71 & \C70/rm/m/n/10.53937/57 ( \C70/rm/
+m/n/10.53937/52 M\OT1/cmr/m/n/10.53937 , \C70/rm/m/n/10.53937/65 p \C70/rm/m/n/
+10.53937/95 ^^Y \C70/rm/m/n/10.53937/57 ( \C70/rm/m/n/10.53937/54 ^^N\OT1/cmr/m
+/n/10.53937 . \C70/rm/m/n/10.53937/56 à \C70/rm/m/n/10.53937/6b d \C70/rm/m/n/1
+0.53937/75 1 $\OML/cmm/m/it/10.53937 M[] \OT1/cmr/m/n/10.53937 = 1$ \C70/rm/m/n
+/10.53937/77 å \C70/rm/m/n/10.53937/90 S $\OML/cmm/m/it/10.53937 N \OMS/cmsy/m/
+n/10.53937 2 f\OT1/cmr/m/n/10.53937 0\OML/cmm/m/it/10.53937 ; \OT1/cmr/m/n/10.5
+3937 1\OML/cmm/m/it/10.53937 ; \OT1/cmr/m/n/10.53937 2\OML/cmm/m/it/10.53937 ; 
+\OT1/cmr/m/n/10.53937 3\OML/cmm/m/it/10.53937 ; \OT1/cmr/m/n/10.53937 4\OML/cmm
+/m/it/10.53937 ; \OT1/cmr/m/n/10.53937 5\OML/cmm/m/it/10.53937 ; [] \OMS/cmsy/m
+/n/10.53937 g$\OT1/cmr/m/n/10.53937 ;
+ []
+
+[2]
 <image/14.9.png, id=148, 1287.81125pt x 815.045pt>
 File: image/14.9.png Graphic file (type png)
 <use image/14.9.png>
@@ -1601,11 +1624,11 @@ Package rerunfilecheck Info: File `hw8.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 48378 strings out of 479302
- 1142364 string characters out of 5869224
- 1729597 words of memory out of 5000000
- 64603 multiletter control sequences out of 15000+600000
- 434648 words of font info for 143 fonts, out of 8000000 for 9000
+ 48390 strings out of 479302
+ 1142525 string characters out of 5869224
+ 1730597 words of memory out of 5000000
+ 64614 multiletter control sequences out of 15000+600000
+ 434918 words of font info for 144 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,14n,90p,1579b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/simsun.ttc><c:/Windows/Fonts/s
@@ -1639,7 +1662,7 @@ sfonts/cm/cmr17.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts
 7.pfb><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 ><f:/App/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><f:/A
 pp/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on hw8.pdf (3 pages, 863064 bytes).
+Output written on hw8.pdf (3 pages, 863343 bytes).
 PDF statistics:
  351 PDF objects out of 1000 (max. 8388607)
  217 compressed objects within 3 object streams
